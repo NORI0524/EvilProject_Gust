@@ -11,62 +11,83 @@ public class Player : BaseCompornent
     float cameraMove = 0.1f;
 
     Camera playerCamera = null;
+    Rigidbody rigidbody = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        var obj = GameObject.Find("Main Camera");
-        playerCamera = obj.GetComponent<Camera>();
+        playerCamera = Camera.main;
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //移動の入力
+        Vector3 vec = Vector3.zero;
+
         if (Input.GetKey(KeyCode.W))
         {
-            var rot = transform.rotation;
-            rot.x = playerCamera.transform.rotation.x;
-
-            var move = transform.forward * movePower;
-            transform.Translate(move);
+            vec.z += 1;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            var move = transform.forward * movePower * -1;
-            transform.Translate(move);
+            vec.z -= 1;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            var move = transform.right * movePower * - 1;
-            transform.Translate(move);
+            vec.x -= 1;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            var move = transform.right * movePower;
-            transform.Translate(move);
+            vec.x += 1;
         }
 
-        //カメラ操作
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            var axis = transform.up * - 1;
-            playerCamera.transform.RotateAround(Position, axis, cameraMove);
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            var axis = transform.up;
-            playerCamera.transform.RotateAround(Position, axis, cameraMove);
-        }
+        ////カメラ操作
+        //if (Input.GetKey(KeyCode.LeftArrow))
+        //{
+        //    var axis = transform.up * -1;
+        //    playerCamera.transform.RotateAround(Position, axis, cameraMove);
+        //}
+        //if (Input.GetKey(KeyCode.RightArrow))
+        //{
+        //    var axis = transform.up;
+        //    playerCamera.transform.RotateAround(Position, axis, cameraMove);
+        //}
 
-        if (Input.GetKey(KeyCode.UpArrow))
+        //if (Input.GetKey(KeyCode.UpArrow))
+        //{
+        //    var axis = transform.right * -1;
+        //    playerCamera.transform.RotateAround(Position, axis, cameraMove);
+        //}
+        //if (Input.GetKey(KeyCode.DownArrow))
+        //{
+        //    var axis = transform.right;
+        //    playerCamera.transform.RotateAround(Position, axis, cameraMove);
+        //}
+
+        //カメラ方向からx-z平面の単位ベクトルを取得
+        Vector3 cameraForward = Vector3.Scale(playerCamera.transform.forward, new Vector3(1, 0, 1)).normalized;
+
+        Vector3 moveForward = cameraForward * vec.z + playerCamera.transform.right * vec.x;
+
+        //方向
+        if (moveForward != Vector3.zero)
         {
-            var axis = transform.right * -1;
-            playerCamera.transform.RotateAround(Position, axis, cameraMove);
+            //float angle = Vector3.SignedAngle(transform.forward, moveForward.normalized, transform.up);
+            //var U_Angle = Mathf.Abs(angle);
+            //if (U_Angle > 0.5f)
+            //{
+            //    Debug.Log(U_Angle);
+            //    transform.Rotate(transform.up, U_Angle);
+            //}
+
+            transform.rotation = Quaternion.LookRotation(moveForward);
+
         }
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            var axis = transform.right;
-            playerCamera.transform.RotateAround(Position, axis, cameraMove);
-        }
+        var move = moveForward * movePower;
+        //移動
+        rigidbody.AddForce(move);
+        //transform.Translate(move);
     }
 }
