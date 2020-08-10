@@ -14,13 +14,15 @@ public class Player : BaseCompornent
     float cameraMove = 0.1f;
 
     Camera playerCamera = null;
-    Rigidbody rigidbody = null;
+    Rigidbody playerRigidbody = null;
+    Animator playerAnimator = null;
 
     // Start is called before the first frame update
     void Start()
     {
         playerCamera = Camera.main;
-        rigidbody = GetComponent<Rigidbody>();
+        playerRigidbody = GetComponent<Rigidbody>();
+        playerAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -44,6 +46,16 @@ public class Player : BaseCompornent
         if (Input.GetKey(KeyCode.D))
         {
             vec.x += 1;
+        }
+
+        //動いているなら
+        if(vec != Vector3.zero)
+        {
+            playerAnimator.SetBool("Run", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("Run", false);
         }
 
         ////カメラ操作
@@ -91,7 +103,7 @@ public class Player : BaseCompornent
         }
         var move = moveForward * movePower;
         //移動
-        rigidbody.AddForce(move);
+        playerRigidbody.AddForce(move);
         //transform.Translate(move);
     }
 }
