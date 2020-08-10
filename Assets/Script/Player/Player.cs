@@ -8,6 +8,9 @@ public class Player : BaseCompornent
     float movePower = 1.0f;
 
     [SerializeField]
+    float rotateSpeed = 1.0f;
+
+    [SerializeField]
     float cameraMove = 0.1f;
 
     Camera playerCamera = null;
@@ -82,7 +85,8 @@ public class Player : BaseCompornent
             //    transform.Rotate(transform.up, U_Angle);
             //}
 
-            transform.rotation = Quaternion.LookRotation(moveForward);
+            var moveQua = Quaternion.LookRotation(moveForward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, moveQua, Time.deltaTime * rotateSpeed);
 
         }
         var move = moveForward * movePower;
