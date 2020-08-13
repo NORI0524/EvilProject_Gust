@@ -17,6 +17,8 @@ public class Player : BaseCompornent
     Rigidbody playerRigidbody = null;
     Animator playerAnimator = null;
 
+    Random random;
+
     // Start is called before the first frame update
     void Start()
     {
