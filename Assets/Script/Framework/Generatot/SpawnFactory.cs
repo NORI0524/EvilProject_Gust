@@ -5,35 +5,44 @@ using UnityEngine;
 public class SpawnFactory : BaseCompornent
 {
     //オブジェクトの種類
-    public GameObject[] obj_Prefab = null;
+    [SerializeField] private GameObject[] obj_Prefab = null;
 
     //１画面に表示する最大数
-    public int ObjDispMax = 5;
+    [SerializeField] private int ObjDispMax = 5;
 
     //現在のオブジェクト数
-    private int currentNum;
+    [SerializeField] private int currentNum;
 
     //１度にスポーンさせる数
-    public int onceSpawnNum = 1;
+    [SerializeField] private int onceSpawnNum = 1;
 
     //スポーン頻度（確率：パーセント）
-    public float spawnFrequency = 100.0f;
+    [SerializeField] private float spawnFrequency = 100.0f;
 
     //スポーンするまでのスパン
-    public int spanSeconds = 2;
+    [SerializeField] private float spanSeconds = 2.0f;
+
+    //スポーンタイマー
     Timer spanTimer;
 
-    //スポーン用座標
-    public float randX_Min;
-    public float randX_Max;
-    public float randY_Min;
-    public float randY_Max;
-    public float dispZ;
+    //スポーンする範囲
+    [SerializeField] private float spawnDistance = 1.0f;
+
+
+    ////スポーン用座標2D
+    //public float randX_Min;
+    //public float randX_Max;
+    //public float randY_Min;
+    //public float randY_Max;
+    //public float dispZ;
+    ////Zソート用加算
+    //private const float zSortValue = 0.0005f;
+
 
     private bool isActive;
 
-    //Zソート用加算
-    private const float zSortValue = 0.0005f;
+    Random random = new Random();
+
 
     // Start is called before the first frame update
     void Start()
@@ -54,20 +63,24 @@ public class SpawnFactory : BaseCompornent
         if (currentNum >= ObjDispMax) return;
 
         //スポーンするかどうか
-        float random = Random.Range(0.0f, 100.0f);
-        if (random > spawnFrequency) return;
-
-        //スポーン処理
-        for(int cnt=0; cnt < onceSpawnNum; cnt++)
+        if(random.IsInsidePercent(spawnFrequency))
         {
-            int select = Random.Range(0, obj_Prefab.Length);
-            GameObject obj = Instantiate(obj_Prefab[select]) as GameObject;
+            //スポーン処理
+            for (int cnt = 0; cnt < onceSpawnNum; cnt++)
+            {
+                int select = Random.Range(0, obj_Prefab.Length);
+                GameObject obj = Instantiate(obj_Prefab[select]) as GameObject;
 
-            float px = Random.Range(randX_Min, randX_Max);
-            float py = Random.Range(randY_Min, randY_Max);
-            obj.transform.position = new Vector3(px, py, dispZ - (zSortValue * currentNum));
+                //指定範囲内にスポーン
+                var addPos = random.InsideCicleRange(spawnDistance);
+                obj.transform.Translate(addPos);
 
-            currentNum++;
+                //float px = Random.Range(randX_Min, randX_Max);
+                //float py = Random.Range(randY_Min, randY_Max);
+                //obj.transform.position = new Vector3(px, py, dispZ - (zSortValue * currentNum));
+
+                currentNum++;
+            }
         }
     }
 
@@ -79,7 +92,7 @@ public class SpawnFactory : BaseCompornent
     {
         spawnFrequency = Mathf.Clamp(value, 0.0f, 100.0f);
     }
-    public void SetSpawnSeconds(int value)
+    public void SetSpawnSeconds(float value)
     {
         spanSeconds = Mathf.Max(value, 0);
     }

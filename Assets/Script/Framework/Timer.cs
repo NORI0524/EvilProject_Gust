@@ -9,9 +9,9 @@ public class Timer
     private int minute;
     private float seconds;
 
-    private float f_initSeconds;
-    private int initMinute;
-    private float initSeconds;
+    private readonly float totalInitSeconds;
+    private readonly int initMinute;
+    private readonly float initSeconds;
 
     BitFlag flag = new BitFlag();
 
@@ -30,7 +30,7 @@ public class Timer
     public Timer(float _sec)
     {
         _sec = Mathf.Clamp(_sec, 0.0f, 3600.0f);
-        totalSeconds = f_initSeconds = _sec;
+        totalSeconds = totalInitSeconds = _sec;
         flag.FoldALLBit();
     }
 
@@ -39,7 +39,7 @@ public class Timer
         _sec = Mathf.Clamp(_sec, 0, 3600);
         minute = initMinute = _sec / 60;
         seconds = initSeconds = _sec % 60;
-        totalSeconds = f_initSeconds = seconds;
+        totalSeconds = totalInitSeconds = seconds;
         flag.FoldALLBit();
     }
     //59:59まで指定可能
@@ -47,7 +47,7 @@ public class Timer
     {
         minute = initMinute = Mathf.Clamp(_min, 0, 59);
         seconds = initSeconds = Mathf.Clamp(_sec, 0, 59);
-        totalSeconds = f_initSeconds = minute * 60 + seconds;
+        totalSeconds = totalInitSeconds = minute * 60 + seconds;
         flag.FoldALLBit();
     }
 
@@ -55,7 +55,7 @@ public class Timer
     {
         minute = initMinute = Mathf.Clamp(_min, 0, 59);
         seconds = initSeconds = Mathf.Clamp(_sec, 0.0f, 59.0f);
-        totalSeconds = f_initSeconds = minute * 60 + seconds;
+        totalSeconds = totalInitSeconds = minute * 60 + seconds;
         flag.FoldALLBit();
     }
 
@@ -85,7 +85,7 @@ public class Timer
         {
             seconds = initSeconds;
             minute = initMinute;
-            totalSeconds = f_initSeconds;
+            totalSeconds = totalInitSeconds;
             flag.AddBit(TimerState.Start);
         }
     }
@@ -104,6 +104,6 @@ public class Timer
     public int GetMinute() { return minute; }
 
     public float GetInitSeconds() { return initSeconds; }
-    public float GetToInitSeconds() { return f_initSeconds; }
+    public float GetToInitSeconds() { return totalInitSeconds; }
     public int GetInitMinute() { return initMinute; }
 }
