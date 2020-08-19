@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public static class SearchingGizmo
+public static class ExtensionGizmo
 {
     private static readonly int TRIANGLE_COUNT = 16;
-    private static readonly Color MESH_COLOR = new Color(1.0f, 0.0f, 0.0f, 0.5f);
+    private static readonly Color MESH_COLOR_R = new Color(1.0f, 0.0f, 0.0f, 0.5f);
+    private static readonly Color MESH_COLOR_G = new Color(0.0f, 1.0f, 0.0f, 0.5f);
+    private static readonly Color MESH_COLOR_B = new Color(0.0f, 0.0f, 1.0f, 0.5f);
 
     [DrawGizmo(GizmoType.NonSelected | GizmoType.Selected)]
     private static void DrawPointGizmos(SightComponent _object, GizmoType _gizmoType)
     {
         if (_object.SearchRadius <= 0.0f) return;
 
-        Gizmos.color = MESH_COLOR;
+        Gizmos.color = MESH_COLOR_R;
 
         Transform trans = _object.transform;
         //地面から少し浮かせた位置に設定
@@ -28,6 +30,25 @@ public static class SearchingGizmo
             Gizmos.DrawMesh(fanMesh, pos, rot, scale);
         }
     }
+
+    [DrawGizmo(GizmoType.NonSelected | GizmoType.Selected)]
+    private static void DrawPointGizmos(SpawnerComponent _object, GizmoType _gizmoType)
+    {
+        if (_object.spawnDistance <= 0.0f) return;
+
+        Gizmos.color = MESH_COLOR_B;
+
+        Transform trans = _object.transform;
+        //地面から少し浮かせた位置に設定
+        Vector3 pos = trans.position + Vector3.up * 0.01f;
+
+        Quaternion rot = trans.rotation;
+        Vector3 scale = Vector3.one * _object.spawnDistance;
+
+        Mesh fanMesh = CreateFanMesh(360.0f, TRIANGLE_COUNT);
+        Gizmos.DrawMesh(fanMesh, pos, rot, scale);
+    }
+
 
     private static Mesh CreateFanMesh(float _angle, int _triangleCount)
     {

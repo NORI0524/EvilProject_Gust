@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnFactory : BaseCompornent
+public class SpawnerComponent : BaseCompornent
 {
     //オブジェクトの種類
     [SerializeField] private GameObject[] obj_Prefab = null;
@@ -26,7 +26,7 @@ public class SpawnFactory : BaseCompornent
     Timer spanTimer;
 
     //スポーンする範囲
-    [SerializeField] private float spawnDistance = 1.0f;
+    [SerializeField] public float spawnDistance = 1.0f;
 
 
     ////スポーン用座標2D
@@ -70,6 +70,7 @@ public class SpawnFactory : BaseCompornent
             {
                 int select = Random.Range(0, obj_Prefab.Length);
                 GameObject obj = Instantiate(obj_Prefab[select]) as GameObject;
+                obj.transform.position = transform.position;
 
                 //指定範囲内にスポーン
                 var addPos = random.InsideCicleRange(spawnDistance);
