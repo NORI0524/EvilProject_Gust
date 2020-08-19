@@ -50,6 +50,9 @@ public class Player : BaseCompornent
             vec.x += 1;
         }
 
+        //正規化
+        vec.Normalize();
+
         //動いているなら
         if(vec != Vector3.zero)
         {
