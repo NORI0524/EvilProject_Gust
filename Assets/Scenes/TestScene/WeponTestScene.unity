@@ -285,11 +285,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 335b72359e4abfe4abe08982595c71eb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.591
+      value: -9.54
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 335b72359e4abfe4abe08982595c71eb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 22.246
+      value: 22.232
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 335b72359e4abfe4abe08982595c71eb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -347,6 +347,11 @@ PrefabInstance:
       propertyPath: m_Damage
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: 6680497245887004832, guid: 335b72359e4abfe4abe08982595c71eb,
+        type: 3}
+      propertyPath: power
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 7727746028786506971, guid: 335b72359e4abfe4abe08982595c71eb,
         type: 3}
       propertyPath: m_Enabled
@@ -373,6 +378,7 @@ GameObject:
   - component: {fileID: 901057700}
   - component: {fileID: 901057699}
   - component: {fileID: 901057703}
+  - component: {fileID: 901057704}
   m_Layer: 0
   m_Name: TargetCapsule
   m_TagString: Untagged
@@ -471,6 +477,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &901057704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901057698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f1607b42af5ba14da3669e620973788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 100
 --- !u!1 &1251267909
 GameObject:
   m_ObjectHideFlags: 0
