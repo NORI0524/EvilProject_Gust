@@ -21,15 +21,21 @@ public class damagetest : MonoBehaviour
     // ダメージ通知
     // dmg...攻撃者から送られるダメージ通知データ
     // rep...攻撃者へ返信する内容
-    public bool isDamage(DamageArg dmg, DamageReply rep)
+    public bool isDamage(int dmg)
     {
         // HPを減らす
-        hp -= dmg.atkPower;
+        //hp -= dmg.atkPower;
+        hp -= dmg;
 
         // 防御しない
-        rep.isGuard = false;
+        //rep.isGuard = false;
 
         return true;
+    }
+
+    private void Update()
+    {
+        Debug.Log(hp);
     }
 
 }

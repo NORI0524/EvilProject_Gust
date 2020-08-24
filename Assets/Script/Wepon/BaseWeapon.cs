@@ -33,8 +33,8 @@ public class BaseWeapon : MonoBehaviour
 
         // 相手にダメージ情報を通知する
         //var you=other.GetComponent<damagetest>().isDamage(dmg,rep);
+        var you=other.GetComponent<damagetest>().isDamage(dmg.atkPower);
         
-
         // デバッグ
         Debug.Log(dmg.atkPower);
     }
