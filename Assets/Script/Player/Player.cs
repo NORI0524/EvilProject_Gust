@@ -1,6 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
+
+public class PlayerState
+{
+    public static readonly uint None = 0;
+    public static readonly uint Wait = 1 << 0;
+    public static readonly uint Move = 1 << 1;
+    public static readonly uint Avoid = 1 << 2;
+    public static readonly uint Attack = 1 << 3;
+    public static readonly uint Attack2 = 1 << 4;
+    public static readonly uint Attack3 = 1 << 5;
+}
 
 public class Player : BaseCompornent
 {
@@ -19,11 +31,16 @@ public class Player : BaseCompornent
 
     Random random;
 
-    bool isAttack = false;
+    public BitFlag state = new BitFlag();
 
     // Start is called before the first frame update
     void Start()
     {
+        //プレイヤーの状態
+        state.FoldALLBit();
+        state.AddBit(PlayerState.Wait);
+
+
         playerCamera = Camera.main;
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
@@ -35,21 +52,25 @@ public class Player : BaseCompornent
         //移動の入力
         Vector3 vec = Vector3.zero;
 
-        if (Input.GetKey(KeyCode.W))
+
+        if(state.CheckBit(PlayerState.Attack) == false)
         {
-            vec.z += 1;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            vec.z -= 1;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            vec.x -= 1;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            vec.x += 1;
+            if (Input.GetKey(KeyCode.W))
+            {
+                vec.z += 1;
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                vec.z -= 1;
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                vec.x -= 1;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                vec.x += 1;
+            }
         }
 
         //正規化
@@ -58,26 +79,62 @@ public class Player : BaseCompornent
         //動いているなら
         if(vec != Vector3.zero)
         {
+            state.AddBit(PlayerState.Move);
             playerAnimator.SetBool("Run", true);
         }
         else
         {
+            state.FoldBit(PlayerState.Move);
             playerAnimator.SetBool("Run", false);
         }
 
-
-        if (Input.GetKey(KeyCode.Space))
+        //回避
+        if(Input.GetKey(KeyCode.LeftShift))
         {
-            isAttack = true;
-            playerAnimator.SetBool("Attack",true);
+            state.AddBit(PlayerState.Avoid);
+            state.FoldBit(PlayerState.Attack);
         }
 
-        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack_Right_to_Left"))
+        //if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Wait"))
+        //{
+        //    UnityEngine.Debug.Log("Wait!!");
+        //    state.FoldBit(PlayerState.Attack);
+        //}
+
+        //攻撃
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if(state.CheckBit(PlayerState.Attack) == false)
+            {
+                playerAnimator.SetBool("Attack", true);
+            }
+            else
+            {
+                if(state.CheckBit(PlayerState.Attack2) == false)
+                {
+                    playerAnimator.SetBool("Attack2", true);
+                }
+                else
+                {
+                    playerAnimator.SetBool("Attack3", true);
+                }
+            }
+        }
+
+        if (playerAnimator.IsCurrentAnimatorState("Attack_Right_to_Left"))
         {
             playerAnimator.SetBool("Attack", false);
         }
 
+        if (playerAnimator.IsCurrentAnimatorState("Attack_Left_to_Right"))
+        {
+            playerAnimator.SetBool("Attack2", false);
+        }
 
+        if (playerAnimator.IsCurrentAnimatorState("Attack_Right_to_foward"))
+        {
+            playerAnimator.SetBool("Attack3", false);
+        }
 
         ////カメラ操作
         //if (Input.GetKey(KeyCode.LeftArrow))
