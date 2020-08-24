@@ -19,6 +19,8 @@ public class Player : BaseCompornent
 
     Random random;
 
+    bool isAttack = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +64,20 @@ public class Player : BaseCompornent
         {
             playerAnimator.SetBool("Run", false);
         }
+
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            isAttack = true;
+            playerAnimator.SetBool("Attack",true);
+        }
+
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack_Right_to_Left"))
+        {
+            playerAnimator.SetBool("Attack", false);
+        }
+
+
 
         ////カメラ操作
         //if (Input.GetKey(KeyCode.LeftArrow))
