@@ -91,7 +91,7 @@ public class Player : BaseCompornent
         //回避
         if(state.CheckBit(PlayerState.Avoid) == false)
         {
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 playerAnimator.SetBool("Roll", true);
             }
