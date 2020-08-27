@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
-public class WaitAnimation : StateMachineBehaviour
+public class RollAnimation : StateMachineBehaviour
 {
     private BitFlag playerState = null;
 
@@ -16,10 +15,8 @@ public class WaitAnimation : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Debug.Log("Wait State !!");
-        playerState.AddBit(PlayerState.Wait);
-        playerState.FoldBit(PlayerState.Attack | PlayerState.Attack2 | PlayerState.Attack3);
-        playerState.FoldBit(PlayerState.Avoid);
+        Debug.Log("Roll State !!");
+        playerState.AddBit(PlayerState.Avoid);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -27,10 +24,4 @@ public class WaitAnimation : StateMachineBehaviour
     {
 
     }
-
-    // OnStateMove is called right after Animator.OnAnimatorMove()
-    //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that processes and affects root motion
-    //}
 }

@@ -89,10 +89,12 @@ public class Player : BaseCompornent
         }
 
         //回避
-        if(Input.GetKey(KeyCode.LeftShift))
+        if(state.CheckBit(PlayerState.Avoid) == false)
         {
-            state.AddBit(PlayerState.Avoid);
-            state.FoldBit(PlayerState.Attack);
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                playerAnimator.SetBool("Roll", true);
+            }
         }
 
         //if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Wait"))
@@ -134,6 +136,10 @@ public class Player : BaseCompornent
         if (playerAnimator.IsCurrentAnimatorState("Attack_Right_to_foward"))
         {
             playerAnimator.SetBool("Attack3", false);
+        }
+        if(playerAnimator.IsCurrentAnimatorState("Roll_Forward"))
+        {
+            playerAnimator.SetBool("Roll", false);
         }
 
         ////カメラ操作
