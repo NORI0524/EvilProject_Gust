@@ -16,11 +16,12 @@ public class BaseWeapon : testBase
         // 通知用データ
         DamageArg dmg = new DamageArg();
         dmg.atkPower = power;
+
         // 返信用データ
         DamageReply rep = new DamageReply();
 
         // 相手にダメージ情報を通知する
-        var you=other.GetComponent<damagetest>().isDamage(dmg,rep);
+        var isguard=other.GetComponent<damagetest>().isDamage(dmg,rep);
         
         // デバッグ
         Debug.Log(dmg.atkPower);
