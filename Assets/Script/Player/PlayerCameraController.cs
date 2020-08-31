@@ -22,7 +22,7 @@ public class PlayerCameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(1))
         {
             updateAngle(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         }
