@@ -14,6 +14,7 @@ public class PlayerState
     public static readonly uint Attack3 = 1 << 5;
 }
 
+[RequireComponent(typeof(HpComponent))]
 public class Player : BaseCompornent
 {
     [SerializeField]
