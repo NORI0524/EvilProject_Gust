@@ -18,7 +18,7 @@ public class WaitAnimation : StateMachineBehaviour
     {
         Debug.Log("Wait State !!");
         playerState.AddBit(PlayerState.Wait);
-        playerState.FoldBit(PlayerState.Attack | PlayerState.Attack2 | PlayerState.Attack3);
+        playerState.FoldBit(PlayerState.Attack | PlayerState.Attack2 | PlayerState.Attack3 | PlayerState.Attack_heavy | PlayerState.Attack_heavy2 | PlayerState.Attack_heavy3);
         playerState.FoldBit(PlayerState.Avoid);
     }
 

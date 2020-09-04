@@ -12,6 +12,9 @@ public class PlayerState
     public static readonly uint Attack = 1 << 3;
     public static readonly uint Attack2 = 1 << 4;
     public static readonly uint Attack3 = 1 << 5;
+    public static readonly uint Attack_heavy = 1 << 6;
+    public static readonly uint Attack_heavy2 = 1 << 7;
+    public static readonly uint Attack_heavy3 = 1 << 8;
 }
 
 [RequireComponent(typeof(HpComponent))]
@@ -104,8 +107,8 @@ public class Player : BaseCompornent
         //    state.FoldBit(PlayerState.Attack);
         //}
 
-        //攻撃
-        if (Input.GetKeyDown(KeyCode.Space))
+        //通常攻撃（左クリック）
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if(state.CheckBit(PlayerState.Attack) == false)
             {
@@ -124,6 +127,30 @@ public class Player : BaseCompornent
             }
         }
 
+        //派生攻撃（右クリック）
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            if (state.CheckBit(PlayerState.Attack2))
+            {
+                if (state.CheckBit(PlayerState.Attack_heavy) == false)
+                {
+                    playerAnimator.SetBool("Attack_heavy", true);
+                }
+                else
+                {
+                    if(state.CheckBit(PlayerState.Attack_heavy2) == false)
+                    {
+                        playerAnimator.SetBool("Attack_heavy2", true);
+                    }
+                    else
+                    {
+                        playerAnimator.SetBool("Attack_heavy3", true);
+                    }
+                }
+            }
+        }
+
+
         if (playerAnimator.IsCurrentAnimatorState("Attack_Right_to_Left"))
         {
             playerAnimator.SetBool("Attack", false);
@@ -141,6 +168,18 @@ public class Player : BaseCompornent
         if(playerAnimator.IsCurrentAnimatorState("Roll_Forward"))
         {
             playerAnimator.SetBool("Roll", false);
+        }
+        if(playerAnimator.IsCurrentAnimatorState("Attack_heavy"))
+        {
+            playerAnimator.SetBool("Attack_heavy", false);
+        }
+        if (playerAnimator.IsCurrentAnimatorState("Attack_heavy2"))
+        {
+            playerAnimator.SetBool("Attack_heavy2", false);
+        }
+        if (playerAnimator.IsCurrentAnimatorState("Attack_heavy3"))
+        {
+            playerAnimator.SetBool("Attack_heavy3", false);
         }
 
         ////カメラ操作
