@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class damagetest : testBase
 {
-    [SerializeField] int hp = 100;
+    HpComponent hp= new HpComponent();
+
+    // HP
+    [SerializeField] int HP = 100;
+
+    private void Start()
+    {
+        // Hpの設定
+        hp.Hp = HP;
+    }
 
     // ダメージ通知
     // dmg...攻撃者から送られるダメージ通知データ
@@ -12,7 +21,7 @@ public class damagetest : testBase
     public bool isDamage(DamageArg dmg, DamageReply rep)
     {
         // HPを減らす
-        hp -= dmg.atkPower;
+        hp.AddDamage(dmg.atkPower);
 
         // 防御しない
         rep.isGuard = false;
@@ -22,7 +31,7 @@ public class damagetest : testBase
 
     private void Update()
     {
-        Debug.Log(hp);
+        Debug.Log(hp.Hp);
     }
 
 }

@@ -285,11 +285,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 335b72359e4abfe4abe08982595c71eb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.23
+      value: -9.421
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 335b72359e4abfe4abe08982595c71eb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 22.149
+      value: 22.2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 335b72359e4abfe4abe08982595c71eb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -351,6 +351,11 @@ PrefabInstance:
         type: 3}
       propertyPath: power
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680497245887004832, guid: 335b72359e4abfe4abe08982595c71eb,
+        type: 3}
+      propertyPath: isAttack
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7727746028786506971, guid: 335b72359e4abfe4abe08982595c71eb,
         type: 3}
@@ -489,7 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f1607b42af5ba14da3669e620973788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
+  HP: 100
 --- !u!1 &957145732
 GameObject:
   m_ObjectHideFlags: 0
