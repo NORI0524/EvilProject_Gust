@@ -83,9 +83,7 @@ public class Timer
         //タイマーをループさせる場合
         if (flag.CheckBit(TimerState.Loop))
         {
-            seconds = initSeconds;
-            minute = initMinute;
-            totalSeconds = totalInitSeconds;
+            Reset();
             flag.AddBit(TimerState.Start);
         }
     }
@@ -93,6 +91,13 @@ public class Timer
     public void Start() { flag.AddBit(TimerState.Start); }
     public void Stop() { flag.AddBit(TimerState.Pause); }
     public void ReStart() { flag.FoldBit(TimerState.Pause); }
+
+    public void Reset()
+    {
+        seconds = initSeconds;
+        minute = initMinute;
+        totalSeconds = totalInitSeconds;
+    }
     public void EnabledLoop(){ flag.AddBit(TimerState.Loop); }
 
     public bool IsFinish() { return flag.CheckBit(TimerState.Finish); }

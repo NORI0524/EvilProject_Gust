@@ -13,12 +13,13 @@ public class HpComponent : MonoBehaviour
 
     private int initHp = 0;
 
-    BitFlag state = new BitFlag();
+    BitFlag state = null;
 
     // Start is called before the first frame update
     void Start()
     {
         initHp = hp;
+        state = new BitFlag();
         state.FoldALLBit();
     }
 
