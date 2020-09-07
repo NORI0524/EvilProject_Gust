@@ -22,7 +22,7 @@ public class TestScript : MonoBehaviour
             WeaponManager wpnmng = refObj.GetComponent<WeaponManager>();
 
             Debug.Log(wpnmng);
-            wpnmng.WeaponChange();
+            wpnmng.ChangeWeapon();
         }
     }
 }
