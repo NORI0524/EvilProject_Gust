@@ -7,7 +7,7 @@ public class BaseWeapon : testBase
     [SerializeField] int power = 1;          // 攻撃力
     [SerializeField] int criticalRate = 0;   // クリティカル率
 
-    // k改修の必要性アリ==========
+    // 改修の必要性アリ==========
     [SerializeField] bool isAttack = false; // 攻撃状態か否か
 
     // 攻撃状態のセッター
