@@ -12,27 +12,41 @@ enum GaugeType
 public class BaseGauge : MonoBehaviour
 {
     [SerializeField] private GameObject target = null;
+    [SerializeField] private GaugeType gaugeType = GaugeType.HpGauge;
 
     private Slider slider = null;
-
-    private SpComponent sp = null;
+    private BaseStatusComponent statusPoint = null;
 
     // Start is called before the first frame update
     void Start()
     {
         slider = gameObject.GetComponent<Slider>();
-        if (target != null)
+        if (target == null) return;
+
+        switch(gaugeType)
         {
-            sp = target.GetComponent<SpComponent>();
-            slider.value = 0;
-            slider.minValue = 0;
-            slider.maxValue = sp.MaxSp;
+            case GaugeType.HpGauge:
+                break;
+
+            case GaugeType.SpGauge:
+                statusPoint = target.GetComponent<SpComponent>();
+                break;
+
+            default:
+                break;
+        }
+
+        if(statusPoint != null)
+        {
+            slider.value = statusPoint.Value;
+            slider.minValue = statusPoint.MinValue;
+            slider.maxValue = statusPoint.MaxValue;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        slider.value = (float)sp.Sp;
+        slider.value = (float)statusPoint.Value;
     }
 }
