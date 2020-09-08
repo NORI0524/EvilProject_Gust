@@ -10,7 +10,7 @@ public class SpState
 
 public class SpComponent : MonoBehaviour
 {
-    [SerializeField] private int MaxSp = 100;
+    [SerializeField] private int maxSp = 100;
     [SerializeField] private float UltSeconds = 60;
     private int sp = 0;
 
@@ -51,6 +51,11 @@ public class SpComponent : MonoBehaviour
     {
         get { return sp; }
         set { sp = value; }
+    }
+
+    public int MaxSp
+    {
+        get { return maxSp; }
     }
 
     public void AddPoint(int point)
