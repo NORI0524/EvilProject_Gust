@@ -5,6 +5,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
+// 武器の種類
+public enum WeaponType
+{
+    DARK_SWORD,
+    AXE,
+    HAMMER,
+    MACE,
+    SKULLAXE
+}
+
 public class WeaponManager : MonoBehaviour
 {
     // 武器のオブジェクト
@@ -90,28 +100,43 @@ public class WeaponManager : MonoBehaviour
         currentWeapon.transform.position = initPos;
         // 武器を有効化
         currentWeapon.SetActive(true);
-
-    }
-
-    private void Update()
-    {
-        
-
     }
 
     // 武器変更の関数
-    // ...出現させる武器
-    public void ChangeWeapon()
+    // weapontype...WeaponType型
+    public void ChangeWeapon(WeaponType weapontype)
     {
-         // 元のオブジェクトの位置を記憶しておく
+        // 元のオブジェクトの位置を記憶しておく
         Vector3 weaponPos = currentWeapon.transform.position;
         // 武器を無効化する
         currentWeapon.SetActive(false);
+
+        // 仮
+        // 
+        if (weapontype == WeaponType.AXE)
+        {
+            currentWeapon = axeObj;
+        }
+        else if(weapontype == WeaponType.DARK_SWORD)
+        {
+            currentWeapon = darkswordObj;
+        }
+        else if (weapontype == WeaponType.HAMMER)
+        {
+            currentWeapon = hammerObj;
+        }
+        else if (weapontype == WeaponType.MACE)
+        {
+            currentWeapon = maceObj;
+        }
+        else if (weapontype == WeaponType.SKULLAXE)
+        {
+            currentWeapon = skullaxeObj;
+        }
 
         // 新しい武器の位置を変更する
         axeObj.transform.position = weaponPos;
         // 新しい武器を有効化する
         axeObj.SetActive(true);
-
     }
 }
