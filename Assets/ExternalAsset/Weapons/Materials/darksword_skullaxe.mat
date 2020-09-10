@@ -37,7 +37,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _ALPHA: 1
-    - _DisAmount: 0
+    - _DisAmount: 0.47
     - _DisLineWidth: 0
     - _EmissionLM: 0
     - _LIGHTMAP: 0
@@ -45,5 +45,5 @@ Material:
     - _Nscale: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DisLineColor: {r: 0.990566, g: 0.28502133, b: 0.28502133, a: 1}
-    - _DisLineColorEx: {r: 0, g: 0.9444442, b: 1, a: 1}
+    - _DisLineColor: {r: 1, g: 1, b: 1, a: 1}
+    - _DisLineColorEx: {r: 0.19339621, g: 1, b: 0.87093085, a: 1}

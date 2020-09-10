@@ -31,7 +31,7 @@ public class damagetest : testBase
 
     private void Update()
     {
-        Debug.Log(hp.Hp);
+       // Debug.Log(hp.Hp);
     }
 
 }

@@ -1,4 +1,5 @@
 ﻿//using RPGCharacterAnims;
+using RPGCharacterAnims;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,6 +19,9 @@ public enum WeaponType
 
 public class WeaponManager : MonoBehaviour
 {
+    // ディゾルブする秒数(仮）
+    [SerializeField] float dissolveSeconds = 1.0f;  
+
     //武器リスト
     [SerializeField] private List<GameObject> weaponList = null;
 
@@ -99,6 +103,13 @@ public class WeaponManager : MonoBehaviour
     {
         // 元のオブジェクトの位置を記憶しておく
         Vector3 weaponPos = currentWeapon.transform.position;
+
+        // ディゾルブをかける
+        if (weapontype==WeaponType.DARK_SWORD) {
+            var dissolvecontroller = weaponDict[weapontype].GetComponent<DissolveController>();
+            dissolvecontroller.Dissolve();
+        }
+        /*
         // 武器を無効化する
         currentWeapon.SetActive(false);
 
@@ -109,5 +120,6 @@ public class WeaponManager : MonoBehaviour
 
         // 新しい武器を有効化する
         currentWeapon.SetActive(true);
+        */
     }
 }

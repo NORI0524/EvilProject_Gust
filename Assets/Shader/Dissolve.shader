@@ -74,8 +74,8 @@
             #endif
 
             float3 DissolveLineIn = step(n.r - _DisLineWidth, _DisAmount);
-            float3 DissolveLineInExtra = step(n.r - (_DisLineWidth + 0.2), _DisAmount) - DissolveLineIn;
-
+            float3 DissolveLineInExtra = step(n.r - (_DisLineWidth + 0.1), _DisAmount) - DissolveLineIn;
+            
             float3 NoDissolve = float3(1, 1, 1) - DissolveLineIn - DissolveLineInExtra;
             c.rgb = (DissolveLineIn * _DisLineColor) + (DissolveLineInExtra * _DisLineColorEx) + (NoDissolve * c.rgb);
             o.Emission = (DissolveLineInExtra * _DisLineColorEx) + (DissolveLineIn * _DisLineColor);

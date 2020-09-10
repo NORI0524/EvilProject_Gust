@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 400000}
   - component: {fileID: 5549934432981687051}
   - component: {fileID: 6680497245887004832}
+  - component: {fileID: 4702125583979870434}
   m_Layer: 0
   m_Name: dark_sword
   m_TagString: Untagged
@@ -61,6 +62,19 @@ MonoBehaviour:
   power: 10
   criticalRate: 0
   isAttack: 1
+--- !u!114 &4702125583979870434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd4e3960470b33940827cb04666292c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dissolveSeconds: 1
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,7 +88,7 @@ GameObject:
   - component: {fileID: 2300000}
   - component: {fileID: 9500000}
   m_Layer: 0
-  m_Name: dark_sword
+  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
