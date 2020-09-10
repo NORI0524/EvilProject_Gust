@@ -86,4 +86,10 @@ public class Navigation : MonoBehaviour
             agent.SetDestination(Target[targetCount].transform.position);
         }
     }
+
+    // 移動を終了
+    public void EndNav()
+    {
+        agent.isStopped = true;
+    }
 }
