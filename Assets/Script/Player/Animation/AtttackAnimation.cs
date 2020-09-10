@@ -1,9 +1,23 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack_Second : StateMachineBehaviour
+
+enum AttackState
 {
+    Normal_First,
+    Normal_Second,
+    Normal_Third,
+    Heavy_First,
+    Heavy_Second,
+    Heavy_Third,
+}
+
+public class AtttackAnimation : StateMachineBehaviour
+{
+    [SerializeField] AttackState state = AttackState.Normal_First;
+
     private BitFlag playerState = null;
 
     private void Awake()
@@ -15,8 +29,31 @@ public class Attack_Second : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Debug.Log("Attack Second State !!");
-        playerState.AddBit(PlayerState.Attack2);
+        switch(state)
+        {
+            case AttackState.Normal_First:
+                playerState.AddBit(PlayerState.Attack);
+                break;
+            case AttackState.Normal_Second:
+                playerState.AddBit(PlayerState.Attack2);
+                break;
+            case AttackState.Normal_Third:
+                playerState.AddBit(PlayerState.Attack3);
+                break;
+            case AttackState.Heavy_First:
+                playerState.AddBit(PlayerState.Attack_heavy);
+                break;
+            case AttackState.Heavy_Second:
+                playerState.AddBit(PlayerState.Attack_heavy2);
+                break;
+            case AttackState.Heavy_Third:
+                playerState.AddBit(PlayerState.Attack_heavy3);
+                break;
+            default:
+                break;
+        }
+
+        Debug.Log(state);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
