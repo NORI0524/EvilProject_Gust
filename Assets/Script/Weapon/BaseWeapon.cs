@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseWeapon : testBase
+public class BaseWeapon : MonoBehaviour
 {
     [SerializeField] int power = 1;          // 攻撃力
     [SerializeField] int criticalRate = 0;   // クリティカル率
@@ -27,18 +27,12 @@ public class BaseWeapon : testBase
         //-------------------
         // ダメージ処理
         //-------------------
-        // 通知用データ
-        DamageArg dmg = new DamageArg();
-        dmg.atkPower = power;
-
-        // 返信用データ
-        DamageReply rep = new DamageReply();
 
         // 相手にダメージ情報を通知する
-        var isguard = other.GetComponent<damagetest>().isDamage(dmg, rep);
+        other.GetComponent<HpComponent>().AddDamage(power);
 
         // デバッグ
-        Debug.Log(dmg.atkPower);
+        Debug.Log(power);
 
     }
 }

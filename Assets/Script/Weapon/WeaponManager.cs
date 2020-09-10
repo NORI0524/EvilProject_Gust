@@ -18,6 +18,9 @@ public enum WeaponType
 
 public class WeaponManager : MonoBehaviour
 {
+    //指定の親オブジェクト（追従させるため）
+    [SerializeField] private GameObject parentObject = null;
+
     //武器リスト
     [SerializeField] private List<GameObject> weaponList = null;
 
@@ -29,6 +32,9 @@ public class WeaponManager : MonoBehaviour
 
     private void Start()
     {
+        //親オブジェクトが無ければ
+        if (parentObject == null) return;
+
         //武器リストが無ければ
         if (weaponList == null) return;
 
@@ -78,7 +84,7 @@ public class WeaponManager : MonoBehaviour
                 //既にあれば
                 if (weaponDict.ContainsKey(type)) continue;
 
-                var weaponObj = GameObject.Instantiate(weaponPref, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
+                var weaponObj = GameObject.Instantiate(weaponPref);
                 weaponObj.SetActive(false);
                 weaponDict.Add(type, weaponObj);
             }
@@ -86,9 +92,14 @@ public class WeaponManager : MonoBehaviour
 
         // 最初持っている武器の設定
         currentWeapon = weaponDict[WeaponType.DARK_SWORD];
-        // 仮のポジション
-        Vector3 initPos = new Vector3(-10.0f, 22.0f, -5.5f);
-        currentWeapon.transform.position = initPos;
+
+        //指定のオブジェクトの子として設定
+        currentWeapon.transform.parent = parentObject.transform;
+
+        currentWeapon.transform.localPosition = Vector3.zero;
+        currentWeapon.transform.localRotation = Quaternion.identity;
+        currentWeapon.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+
         // 武器を有効化
         currentWeapon.SetActive(true);
     }
@@ -97,15 +108,15 @@ public class WeaponManager : MonoBehaviour
     // weapontype...WeaponType型
     public void ChangeWeapon(WeaponType weapontype)
     {
-        // 元のオブジェクトの位置を記憶しておく
-        Vector3 weaponPos = currentWeapon.transform.position;
+        // 元のオブジェクトの移動行列を記憶
+        var trans = currentWeapon.transform.parent;
         // 武器を無効化する
         currentWeapon.SetActive(false);
 
         currentWeapon = weaponDict[weapontype];
 
         // 新しい武器の位置を変更する
-        currentWeapon.transform.position = weaponPos;
+        currentWeapon.transform.transform.parent = trans;
 
         // 新しい武器を有効化する
         currentWeapon.SetActive(true);

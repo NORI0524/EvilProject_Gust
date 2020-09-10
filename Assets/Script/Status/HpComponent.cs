@@ -7,37 +7,34 @@ public class HpState
     public static readonly uint Dead = 1 << 0;
 }
 
-public class HpComponent : MonoBehaviour
+public class HpComponent : BaseStatusComponent
 {
-    [SerializeField] private int hp;
-
-    private int initHp = 0;
-
-    BitFlag state = null;
-
     // Start is called before the first frame update
     void Start()
     {
-        initHp = hp;
-        state = new BitFlag();
+        Value = maxValue;
         state.FoldALLBit();
     }
 
     public int Hp
     {
-        get { return hp; }
-        set { hp = value; }
+        get { return Value; }
+        set { Value = value; }
     }
 
     public void AddDamage(int damage)
     {
         if (damage <= 0) return;
-        hp = Mathf.Max(hp - damage, 0);
+        Value = Mathf.Max(Value - damage, minValue);
+
+        if(Value <= 0)
+        {
+            state.AddBit(HpState.Dead);
+        }
     }
 
     public void AddHeal(int heal)
     {
-        if (heal <= 0) return;
-        hp = Mathf.Min(hp + heal, initHp);
+        AddValue(heal);
     }
 }
