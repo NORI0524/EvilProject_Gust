@@ -1,4 +1,4 @@
-﻿using RPGCharacterAnims;
+﻿//using RPGCharacterAnims;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,6 +8,7 @@ using UnityEngine.XR;
 // 武器の種類
 public enum WeaponType
 {
+    None,
     DARK_SWORD,
     AXE,
     HAMMER,
@@ -17,84 +18,74 @@ public enum WeaponType
 
 public class WeaponManager : MonoBehaviour
 {
-    // 武器のオブジェクト
-    GameObject darkswordObj;
-    GameObject axeObj;
-    GameObject hammerObj;
-    GameObject maceObj;
-    GameObject skullaxeObj;
+    //武器リスト
+    [SerializeField] private List<GameObject> weaponList = null;
+
+    //武器管理リスト
+    private Dictionary<WeaponType, GameObject> weaponDict = null;
 
     // 現在持っている武器
-    GameObject currentWeapon;
+    private GameObject currentWeapon = null;
 
     private void Start()
     {
-        //------------------------------------
-        // 使用する武器の一括ロード
-        //------------------------------------
-        // dark_wordのロード
-        GameObject dark_sword = (GameObject)Resources.Load("Prefabs/dark_sword");
-        if (dark_sword == null)
-        {
-            Debug.LogError("dark_swordがロードされませんでした");
-        }
-        // axeのロード
-        GameObject axe = (GameObject)Resources.Load("Prefabs/axe");
-        if (axe == null)
-        {
-            Debug.LogError("axeがロードされませんでした");
-        }
-        // hammerのロード
-        GameObject hammer = (GameObject)Resources.Load("Prefabs/hammer");
-        if (axe == null)
-        {
-            Debug.LogError("hammerがロードされませんでした");
-        }
-        // maceのロード
-        GameObject mace = (GameObject)Resources.Load("Prefabs/mace");
-        if (axe == null)
-        {
-            Debug.LogError("maceがロードされませんでした");
-        }
-        // skull_axeのロード
-        GameObject skull_axe = (GameObject)Resources.Load("Prefabs/skull_axe");
-        if (axe == null)
-        {
-            Debug.LogError("skull_axeがロードされませんでした");
-        }
+        //武器リストが無ければ
+        if (weaponList == null) return;
+
+        //武器管理リストを生成
+        weaponDict = new Dictionary<WeaponType, GameObject>();
 
         //------------------------------------
-        // 使用する武器のインスタンス化
+        // 使用する武器をインスタンス化し登録
         //------------------------------------
+        foreach (var weaponPref in weaponList)
         {
-            // dark_swordをインスタンス化
-            darkswordObj = (GameObject)Instantiate(dark_sword, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
-            // 無効化
-            darkswordObj.SetActive(false);
+            if (weaponPref == null)
+            {
+                Debug.LogError(weaponPref.name + "がロードされませんでした");
+                continue;
+            }
 
-            // axeをインスタンス化
-            axeObj = (GameObject)Instantiate(axe, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
-            // 無効化
-            axeObj.SetActive(false);
+            WeaponType type = WeaponType.None;
 
-            // hammerをインスタンス化
-            hammerObj = (GameObject)Instantiate(hammer, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
-            // 無効化
-            hammerObj.SetActive(false);
+            switch(weaponPref.name)
+            {
+                case "dark_sword":
+                    type = WeaponType.DARK_SWORD;
+                    break;
 
-            // maceをインスタンス化
-            maceObj = (GameObject)Instantiate(mace, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
-            // 無効化
-            maceObj.SetActive(false);
+                case "axe":
+                    type = WeaponType.AXE;
+                    break;
 
-            // skull_axeをインスタンス化
-            skullaxeObj = (GameObject)Instantiate(skull_axe, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
-            // 無効化
-            skullaxeObj.SetActive(false);
+                case "hammer":
+                    type = WeaponType.HAMMER;
+                    break;
+
+                case "mace":
+                    type = WeaponType.MACE;
+                    break;
+
+                case "skull_axe":
+                    type = WeaponType.SKULLAXE;
+                    break;
+
+                default:
+                    break;
+            }
+            if (type != WeaponType.None)
+            {
+                //既にあれば
+                if (weaponDict.ContainsKey(type)) continue;
+
+                var weaponObj = GameObject.Instantiate(weaponPref, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
+                weaponObj.SetActive(false);
+                weaponDict.Add(type, weaponObj);
+            }
         }
 
         // 最初持っている武器の設定
-        currentWeapon = darkswordObj;
+        currentWeapon = weaponDict[WeaponType.DARK_SWORD];
         // 仮のポジション
         Vector3 initPos = new Vector3(-10.0f, 22.0f, -5.5f);
         currentWeapon.transform.position = initPos;
@@ -111,32 +102,12 @@ public class WeaponManager : MonoBehaviour
         // 武器を無効化する
         currentWeapon.SetActive(false);
 
-        // 仮
-        // 
-        if (weapontype == WeaponType.AXE)
-        {
-            currentWeapon = axeObj;
-        }
-        else if(weapontype == WeaponType.DARK_SWORD)
-        {
-            currentWeapon = darkswordObj;
-        }
-        else if (weapontype == WeaponType.HAMMER)
-        {
-            currentWeapon = hammerObj;
-        }
-        else if (weapontype == WeaponType.MACE)
-        {
-            currentWeapon = maceObj;
-        }
-        else if (weapontype == WeaponType.SKULLAXE)
-        {
-            currentWeapon = skullaxeObj;
-        }
+        currentWeapon = weaponDict[weapontype];
 
         // 新しい武器の位置を変更する
-        axeObj.transform.position = weaponPos;
+        currentWeapon.transform.position = weaponPos;
+
         // 新しい武器を有効化する
-        axeObj.SetActive(true);
+        currentWeapon.SetActive(true);
     }
 }

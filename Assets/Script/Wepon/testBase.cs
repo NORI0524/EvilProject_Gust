@@ -15,5 +15,4 @@ public class testBase : MonoBehaviour
     {
         public bool isGuard;           // 防御成功の可否
     }
-
 }
