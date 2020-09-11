@@ -1,7 +1,9 @@
 ﻿//using RPGCharacterAnims;
+using RPGCharacterAnims;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.XR;
 
@@ -30,6 +32,11 @@ public class WeaponManager : MonoBehaviour
     // 現在持っている武器
     private GameObject currentWeapon = null;
 
+    // ディゾルブ用のフラグ
+    bool isDissolve = false;
+    private Renderer rend;
+    [SerializeField, Range(0.0f, 1.0f)] float disCnt = 0.0f;
+
     private void Start()
     {
         //親オブジェクトが無ければ
@@ -54,7 +61,7 @@ public class WeaponManager : MonoBehaviour
 
             WeaponType type = WeaponType.None;
 
-            switch(weaponPref.name)
+            switch (weaponPref.name)
             {
                 case "dark_sword":
                     type = WeaponType.DARK_SWORD;
@@ -93,27 +100,63 @@ public class WeaponManager : MonoBehaviour
         currentWeapon = weaponDict[WeaponType.DARK_SWORD];
 
         //初期設定
-        ChangeWeapon(WeaponType.None);
+        ChangeWeapon(WeaponType.DARK_SWORD);
     }
 
     // 武器変更の関数
     // weapontype...WeaponType型
-    public void ChangeWeapon(WeaponType weapontype)
+    public IEnumerator ChangeWeapon(WeaponType weapontype)
     {
-        if (currentWeapon == null) return;
+        if (currentWeapon == null) yield return new WaitForEndOfFrame();
+
+        // ディゾルブをかける
+        StartCoroutine(Dissolve());
+
+        // ディゾルブが終わるまで待機
+        while (!isDissolve)
+        {
+            yield return new WaitForEndOfFrame();
+        }
 
         // 武器を無効化する
         currentWeapon.SetActive(false);
 
-        if(weapontype != WeaponType.None)
+        if (weapontype != WeaponType.None)
         {
 
+            // 新しい武器をセット
             currentWeapon = weaponDict[weapontype];
+
+            // 新しい武器の位置を変更する
             WeaponChangingInit();
 
             // 新しい武器を有効化する
             currentWeapon.SetActive(true);
         }
+
+        // マテリアルリセット
+        rend.material.SetFloat("_DisAmount", 0f);
+
+        // フラグをリセット
+        isDissolve = false;
+    }
+
+    // ディゾルブ処理
+    public IEnumerator Dissolve()
+    {
+        for (float disAmount = 0f; disAmount <= 1;)
+        {
+            // 子オブジェクト（モデルオブジェクト）を取得
+            rend = currentWeapon.transform.GetChild(0).gameObject.GetComponent<Renderer>();
+
+            disAmount += Time.deltaTime;
+
+            // マテリアルにセット
+            rend.material.SetFloat("_DisAmount", disAmount);
+
+            yield return null;
+        }
+        isDissolve = true;
     }
 
     private void WeaponChangingInit()
