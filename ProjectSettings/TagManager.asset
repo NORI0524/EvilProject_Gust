@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Collide
   - Other
+  - Weapon
+  - Enemy
+  - Monitor
   layers:
   - Default
   - TransparentFX

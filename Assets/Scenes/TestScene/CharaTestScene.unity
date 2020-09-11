@@ -127,7 +127,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23640
+  m_Name: pb_Mesh24022
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -317,7 +317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ec1592f4cf8ec4eb3aec386e8ea1cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 500
+  maxValue: 500
+  minValue: 0
 --- !u!114 &75740912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,8 +331,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d78d0605f8c9d4284c2fc81d374659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minValue: 0
   maxValue: 100
+  minValue: 0
   UltSeconds: 60
 --- !u!114 &75740913
 MonoBehaviour:
@@ -476,7 +477,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23526
+  m_Name: pb_Mesh23908
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1607,7 +1608,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23538
+  m_Name: pb_Mesh23920
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1793,10 +1794,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1418490188}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f1607b42af5ba14da3669e620973788, type: 3}
+  m_Script: {fileID: 11500000, guid: 45ec1592f4cf8ec4eb3aec386e8ea1cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
+  maxValue: 100
+  minValue: 0
 --- !u!136 &1418490190
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2390,6 +2392,12 @@ MonoBehaviour:
   mouseXSensitivity: 5
   mouseYSensitivity: 5
   scrollSensitivity: 5
+--- !u!1 &1748868783 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100064, guid: 49f2055d53eeb4e5a92af590a44bddee,
+    type: 3}
+  m_PrefabInstance: {fileID: 1213014163}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1870724506
 GameObject:
   m_ObjectHideFlags: 0
@@ -2670,6 +2678,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1961231866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1961231868}
+  - component: {fileID: 1961231867}
+  m_Layer: 0
+  m_Name: WeaponManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1961231867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961231866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed546e728c877ce458e83a2445436a5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentObject: {fileID: 1748868783}
+  weaponList:
+  - {fileID: 100000, guid: f9beeb34d54ecdd4c80a88dfe4fe6a5a, type: 3}
+  - {fileID: 100000, guid: 07f44607be25d3c4e9d02eee49a0aac1, type: 3}
+  - {fileID: 100000, guid: 335b72359e4abfe4abe08982595c71eb, type: 3}
+  - {fileID: 100000, guid: a142c2e53075a764fa11207b71de11ba, type: 3}
+  - {fileID: 100000, guid: cdd25694e888802408bdcdd423f7d5c8, type: 3}
+--- !u!4 &1961231868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961231866}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.14337675, y: 0.6293506, z: 0.09717047}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2023885380
 GameObject:
@@ -3099,7 +3157,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23588
+  m_Name: pb_Mesh23970
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
