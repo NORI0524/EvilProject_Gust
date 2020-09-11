@@ -90,35 +90,37 @@ public class WeaponManager : MonoBehaviour
             }
         }
 
-        // 最初持っている武器の設定
-        currentWeapon = weaponDict[WeaponType.DARK_SWORD];
-
-        //指定のオブジェクトの子として設定
-        currentWeapon.transform.parent = parentObject.transform;
-
-        currentWeapon.transform.localPosition = Vector3.zero;
-        currentWeapon.transform.localRotation = Quaternion.identity;
-        currentWeapon.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-
-        // 武器を有効化
-        currentWeapon.SetActive(true);
+        //初期設定
+        ChangeWeapon(WeaponType.None);
     }
 
     // 武器変更の関数
     // weapontype...WeaponType型
     public void ChangeWeapon(WeaponType weapontype)
     {
-        // 元のオブジェクトの移動行列を記憶
-        var trans = currentWeapon.transform.parent;
+        if (currentWeapon == null) return;
+
         // 武器を無効化する
         currentWeapon.SetActive(false);
 
-        currentWeapon = weaponDict[weapontype];
+        if(weapontype != WeaponType.None)
+        {
 
-        // 新しい武器の位置を変更する
-        currentWeapon.transform.transform.parent = trans;
+            currentWeapon = weaponDict[weapontype];
+            WeaponChangingInit();
 
-        // 新しい武器を有効化する
-        currentWeapon.SetActive(true);
+            // 新しい武器を有効化する
+            currentWeapon.SetActive(true);
+        }
+    }
+
+    private void WeaponChangingInit()
+    {
+        //指定のオブジェクトの子として設定
+        currentWeapon.transform.parent = parentObject.transform;
+
+        currentWeapon.transform.localPosition = Vector3.zero;
+        currentWeapon.transform.localRotation = Quaternion.identity;
+        currentWeapon.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
     }
 }

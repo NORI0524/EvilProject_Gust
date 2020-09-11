@@ -33,6 +33,8 @@ public class Player : BaseCompornent
     Rigidbody playerRigidbody = null;
     Animator playerAnimator = null;
 
+    WeaponManager weaponManager = null;
+
     Random random;
 
     public BitFlag state = new BitFlag();
@@ -48,6 +50,8 @@ public class Player : BaseCompornent
         playerCamera = Camera.main;
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
+
+        weaponManager = GameObject.Find("WeaponManager").GetComponent<WeaponManager>();
     }
 
     // Update is called once per frame
