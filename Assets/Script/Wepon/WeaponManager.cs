@@ -20,9 +20,6 @@ public enum WeaponType
 
 public class WeaponManager : MonoBehaviour
 {
-    // ディゾルブする秒数(仮）
-    [SerializeField] float dissolveSeconds = 1.0f;
-
     //武器リスト
     [SerializeField] private List<GameObject> weaponList = null;
 
