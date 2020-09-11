@@ -44,5 +44,10 @@ public class TestScript : MonoBehaviour
             Debug.Log(wpnmng);
             StartCoroutine(wpnmng.ChangeWeapon(WeaponType.SKULLAXE));
         }
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            Debug.Log(wpnmng);
+            StartCoroutine(wpnmng.ChangeWeapon(WeaponType.None));
+        }
     }
 }

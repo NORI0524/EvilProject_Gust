@@ -116,7 +116,7 @@ public class Player : BaseCompornent
         {
             if(state.CheckBit(PlayerState.Attack) == false)
             {
-                weaponManager.ChangeWeapon(WeaponType.DARK_SWORD);
+                StartCoroutine(weaponManager.ChangeWeapon(WeaponType.DARK_SWORD));
                 playerAnimator.SetBool("Attack", true);
             }
             else
@@ -139,7 +139,7 @@ public class Player : BaseCompornent
             {
                 if (state.CheckBit(PlayerState.Attack_heavy) == false)
                 {
-                    weaponManager.ChangeWeapon(WeaponType.MACE);
+                    StartCoroutine(weaponManager.ChangeWeapon(WeaponType.MACE));
                     playerAnimator.SetBool("Attack_heavy", true);
                 }
                 else

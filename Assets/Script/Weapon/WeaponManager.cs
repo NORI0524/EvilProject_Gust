@@ -35,7 +35,7 @@ public class WeaponManager : MonoBehaviour
     // ディゾルブ用のフラグ
     bool isDissolve = false;
     private Renderer rend;
-    [SerializeField, Range(0.0f, 1.0f)] float disCnt = 0.0f;
+    [SerializeField] float DissolveSpeed = 1.0f;
 
     private void Start()
     {
@@ -160,7 +160,7 @@ public class WeaponManager : MonoBehaviour
             // 子オブジェクト（モデルオブジェクト）を取得
             rend = currentWeapon.transform.GetChild(0).gameObject.GetComponent<Renderer>();
 
-            disAmount += Time.deltaTime;
+            disAmount += Time.deltaTime * DissolveSpeed;
 
             // マテリアルにセット
             rend.material.SetFloat("_DisAmount", disAmount);
@@ -177,7 +177,7 @@ public class WeaponManager : MonoBehaviour
             // 子オブジェクト（モデルオブジェクト）を取得
             rend = currentWeapon.transform.GetChild(0).gameObject.GetComponent<Renderer>();
 
-            disAmount -= Time.deltaTime;
+            disAmount -= Time.deltaTime * DissolveSpeed;
 
             // マテリアルにセット
             rend.material.SetFloat("_DisAmount", disAmount);
