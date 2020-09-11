@@ -120,6 +120,8 @@ public class WeaponManager : MonoBehaviour
 
         // 武器を無効化する
         currentWeapon.SetActive(false);
+        // ブフラグをリセット
+        isDissolve = false;
 
         if (weapontype != WeaponType.None)
         {
@@ -132,6 +134,15 @@ public class WeaponManager : MonoBehaviour
 
             // 新しい武器を有効化する
             currentWeapon.SetActive(true);
+
+            // ディゾルブを逆再生
+            StartCoroutine(ReturnDissolve());
+
+            // ディゾルブが終わるまで待機
+            while (!isDissolve)
+            {
+                yield return new WaitForEndOfFrame();
+            }
         }
 
         // マテリアルリセット
@@ -158,6 +169,24 @@ public class WeaponManager : MonoBehaviour
         }
         isDissolve = true;
     }
+
+    public IEnumerator ReturnDissolve()
+    {
+        for (float disAmount = 1f; disAmount >=0;)
+        {
+            // 子オブジェクト（モデルオブジェクト）を取得
+            rend = currentWeapon.transform.GetChild(0).gameObject.GetComponent<Renderer>();
+
+            disAmount -= Time.deltaTime;
+
+            // マテリアルにセット
+            rend.material.SetFloat("_DisAmount", disAmount);
+
+            yield return null;
+        }
+        isDissolve = true;
+    }
+
 
     private void WeaponChangingInit()
     {
