@@ -29,7 +29,9 @@ public class BaseWeapon : MonoBehaviour
         //-------------------
 
         // 相手にダメージ情報を通知する
-        other.GetComponent<HpComponent>().AddDamage(power);
+        var target = other.GetComponent<HpComponent>();
+        if (target == null) return;
+        target.AddDamage(power);
 
         // デバッグ
         Debug.Log(power);
