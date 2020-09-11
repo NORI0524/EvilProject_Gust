@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     //[SerializeField] Monitor monitor;
     [SerializeField] Navigation nav;
-    [SerializeField] private Animator animator;
+    [SerializeField] Animator animator;
 
     public enum EnemyAIState
     {
