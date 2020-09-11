@@ -90,6 +90,8 @@ public class WeaponManager : MonoBehaviour
             }
         }
 
+        currentWeapon = weaponDict[WeaponType.DARK_SWORD];
+
         //初期設定
         ChangeWeapon(WeaponType.None);
     }
