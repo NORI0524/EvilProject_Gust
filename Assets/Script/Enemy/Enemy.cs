@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     //[SerializeField] Monitor monitor;
     [SerializeField] Navigation nav;
+    [SerializeField] private Animator animator;
 
     public enum EnemyAIState
     {
@@ -14,7 +15,8 @@ public class Enemy : MonoBehaviour
         SEARCH, // 索敵(首を回して)
         CHASE,  // 追いかける
         ATTACK, // 攻撃
-        IDOL    // 待機
+        IDOL,    // 待機
+        DAMAGE  // 被弾
     }
 
     public EnemyAIState aiState = EnemyAIState.WAIT;
@@ -24,6 +26,10 @@ public class Enemy : MonoBehaviour
     private bool isAIStateRunning = false;  // AITimerが動作しているかどうか
 
     private bool discover = false;
+    private bool damage = false;
+    private bool approach = false;  // 接近しているかどうか
+
+    private bool endDamageAnimation = true;
 
     protected void InitAI()
     {
@@ -71,16 +77,37 @@ public class Enemy : MonoBehaviour
             wait = false;
             return;
         }
-        if (aiState!=EnemyAIState.CHASE&&discover)
+        if (aiState != EnemyAIState.CHASE && discover && !damage && endDamageAnimation)
         {
+            // アニメーション
+            animator.SetTrigger("Running");
             nextState = EnemyAIState.CHASE;    // 敵を見つけたら追いかける処理
             Debug.Log("CHASE：追いかける");
         }
-        else if(aiState != EnemyAIState.MOVE&&!discover)
+        else if (aiState != EnemyAIState.MOVE && !discover && !damage)
         {
+            // アニメーション
+            animator.SetTrigger("Walking");
+            // 移動処理を停止
+            nav.EndNav();
             nextState = EnemyAIState.MOVE;
             Debug.Log("MOVE：ステージ内を移動");
         }
+        else if (aiState != EnemyAIState.DAMAGE && damage)
+        {
+            // アニメーション
+            animator.SetTrigger("Damage");
+            endDamageAnimation = false;
+            // 移動処理を停止
+            nav.EndNav();
+            nextState = EnemyAIState.DAMAGE;
+            Debug.Log("DAMAGE：武器に当たった");
+        }
+        /*else if (aiState != EnemyAIState.IDOL && approach)
+        {
+            animator.SetTrigger("Idle");
+            nextState = EnemyAIState.IDOL;
+        }*/
         // 追いかけている途中でターゲットを見失った場合
         // 左右に首を振って敵を探す処理
         /*else if (aiState == EnemyAIState.CHASE && !discover)
@@ -105,7 +132,10 @@ public class Enemy : MonoBehaviour
                 nav.StartTracking();
                 break;
             case EnemyAIState.SEARCH:
-               // nav.Search();
+                // nav.Search();
+                break;
+            case EnemyAIState.DAMAGE:
+                // ダメージ処理
                 break;
         }
     }
@@ -119,4 +149,37 @@ public class Enemy : MonoBehaviour
     {
         discover = false;
     }
+
+    public void EndHit()
+    {
+        endDamageAnimation = true;
+    }
+
+    public void Approach()
+    {
+        approach = true;
+    }
+
+    public void Depart()
+    {
+        approach = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            damage = true;
+            Debug.Log(other.tag);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            damage = false;
+        }
+    }
+
 }
