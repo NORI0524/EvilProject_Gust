@@ -74,7 +74,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd4e3960470b33940827cb04666292c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dissolveSeconds: 1
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,7 +87,7 @@ GameObject:
   - component: {fileID: 2300000}
   - component: {fileID: 9500000}
   m_Layer: 0
-  m_Name: Model
+  m_Name: dark_swordModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
