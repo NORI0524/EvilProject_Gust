@@ -33,6 +33,8 @@ public class Player : BaseCompornent
     Rigidbody playerRigidbody = null;
     Animator playerAnimator = null;
 
+    WeaponManager weaponManager = null;
+
     Random random;
 
     public BitFlag state = new BitFlag();
@@ -48,6 +50,8 @@ public class Player : BaseCompornent
         playerCamera = Camera.main;
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
+
+        weaponManager = GameObject.Find("WeaponManager").GetComponent<WeaponManager>();
     }
 
     // Update is called once per frame
@@ -112,6 +116,7 @@ public class Player : BaseCompornent
         {
             if(state.CheckBit(PlayerState.Attack) == false)
             {
+                StartCoroutine(weaponManager.ChangeWeapon(WeaponType.DARK_SWORD));
                 playerAnimator.SetBool("Attack", true);
             }
             else
@@ -134,6 +139,7 @@ public class Player : BaseCompornent
             {
                 if (state.CheckBit(PlayerState.Attack_heavy) == false)
                 {
+                    StartCoroutine(weaponManager.ChangeWeapon(WeaponType.MACE));
                     playerAnimator.SetBool("Attack_heavy", true);
                 }
                 else
