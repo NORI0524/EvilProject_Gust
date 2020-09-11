@@ -10009,6 +10009,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimingOfUpdate: 0
   EmitterScale: 0
-  effectAsset: {fileID: 11400000, guid: 10ce596c7f2922948b573876657cad15, type: 2}
+  effectAsset: {fileID: 11400000, guid: ee32acb52b0b8a34fbd185d23b57cd94, type: 2}
   playOnStart: 0
   isLooping: 0
