@@ -32,6 +32,9 @@ public class WeaponManager : MonoBehaviour
     // 現在持っている武器
     private GameObject currentWeapon = null;
 
+    //現在持っている武器のタイプ
+    private WeaponType currentWeaponType = WeaponType.None;
+
     // ディゾルブ用のフラグ
     bool isDissolve = false;
     private Renderer rend;
@@ -97,10 +100,11 @@ public class WeaponManager : MonoBehaviour
             }
         }
 
+        //初期状態
         currentWeapon = weaponDict[WeaponType.DARK_SWORD];
+        currentWeapon.SetActive(false);
+        currentWeaponType = WeaponType.None;
 
-        //初期設定
-        ChangeWeapon(WeaponType.DARK_SWORD);
     }
 
     // 武器変更の関数
@@ -109,31 +113,39 @@ public class WeaponManager : MonoBehaviour
     {
         if (currentWeapon == null) yield return new WaitForEndOfFrame();
 
-        // ディゾルブをかける
-        StartCoroutine(Dissolve());
-
-        // ディゾルブが終わるまで待機
-        while (!isDissolve)
+        if(currentWeaponType != WeaponType.None)
         {
-            yield return new WaitForEndOfFrame();
+            // ブフラグをリセット
+            isDissolve = false;
+
+            // ディゾルブをかける
+            StartCoroutine(Dissolve());
+
+            // ディゾルブが終わるまで待機
+            while (!isDissolve)
+            {
+                yield return new WaitForEndOfFrame();
+            }
         }
 
         // 武器を無効化する
         currentWeapon.SetActive(false);
-        // ブフラグをリセット
-        isDissolve = false;
+
 
         if (weapontype != WeaponType.None)
         {
-
             // 新しい武器をセット
             currentWeapon = weaponDict[weapontype];
+            currentWeaponType = weapontype;
 
             // 新しい武器の位置を変更する
             WeaponChangingInit();
 
             // 新しい武器を有効化する
             currentWeapon.SetActive(true);
+
+            // フラグをリセット
+            isDissolve = false;
 
             // ディゾルブを逆再生
             StartCoroutine(ReturnDissolve());
@@ -145,11 +157,11 @@ public class WeaponManager : MonoBehaviour
             }
         }
 
-        // マテリアルリセット
-        rend.material.SetFloat("_DisAmount", 0f);
-
-        // フラグをリセット
-        isDissolve = false;
+        if(rend != null)
+        {
+            // マテリアルリセット
+            rend.material.SetFloat("_DisAmount", 0f);
+        }
     }
 
     // ディゾルブ処理

@@ -9,11 +9,14 @@ public class WaitAnimation : StateMachineBehaviour
 
     private WeaponManager weaponManager = null;
 
+    private Player playerCtrl = null;
+
     private void Awake()
     {
         playerState = new BitFlag();
         var obj = GameObject.Find("unitychan_dynamic");
-        playerState = obj.GetComponent<Player>().state;
+        playerCtrl = obj.GetComponent<Player>();
+        playerState = playerCtrl.state;
         weaponManager = GameObject.Find("WeaponManager").GetComponent<WeaponManager>();
     }
 
@@ -24,7 +27,7 @@ public class WaitAnimation : StateMachineBehaviour
         playerState.AddBit(PlayerState.Wait);
         playerState.FoldBit(PlayerState.Attack | PlayerState.Attack2 | PlayerState.Attack3 | PlayerState.Attack_heavy | PlayerState.Attack_heavy2 | PlayerState.Attack_heavy3);
         playerState.FoldBit(PlayerState.Avoid);
-        weaponManager.ChangeWeapon(WeaponType.None);
+        playerCtrl.StartCoroutine(weaponManager.ChangeWeapon(WeaponType.None));
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

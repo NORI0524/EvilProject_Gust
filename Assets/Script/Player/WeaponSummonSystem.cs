@@ -18,11 +18,7 @@ public class WeaponSummonSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E))
-        {
-            playerSp.AddPoint(addSp);
-        }
-
+        //武器召喚発動
         if(Input.GetKeyDown(KeyCode.Q))
         {
             playerSp.TriggerUltimate();
@@ -32,5 +28,15 @@ public class WeaponSummonSystem : MonoBehaviour
         {
 
         }
+    }
+
+    public void AddSp()
+    {
+        playerSp.AddPoint(addSp);
+    }
+
+    public bool IsSummon()
+    {
+        return playerSp.IsUltimate();
     }
 }
