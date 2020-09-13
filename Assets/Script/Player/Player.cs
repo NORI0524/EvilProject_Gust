@@ -34,8 +34,11 @@ public class Player : BaseCompornent
     Animator playerAnimator = null;
 
     WeaponManager weaponManager = null;
+    WeaponSummonSystem weaponSummonSys = null;
 
     Random random;
+
+    GameObject summonWeapon = null;
 
     public BitFlag state = new BitFlag();
 
@@ -52,11 +55,16 @@ public class Player : BaseCompornent
         playerAnimator = GetComponent<Animator>();
 
         weaponManager = GameObject.Find("WeaponManager").GetComponent<WeaponManager>();
+        weaponSummonSys = GetComponent<WeaponSummonSystem>();
+
+        summonWeapon = GameObject.Find("SummonWeapon");
     }
 
     // Update is called once per frame
     void Update()
     {
+        summonWeapon.SetActive(weaponSummonSys.IsSummon());
+
         //移動の入力
         Vector3 vec = Vector3.zero;
 
@@ -118,6 +126,9 @@ public class Player : BaseCompornent
             {
                 StartCoroutine(weaponManager.ChangeWeapon(WeaponType.DARK_SWORD));
                 playerAnimator.SetBool("Attack", true);
+
+                var anime = summonWeapon.GetComponentInChildren<Animator>();
+                anime.SetBool("isAttack", true);
             }
             else
             {
@@ -139,7 +150,7 @@ public class Player : BaseCompornent
             {
                 if (state.CheckBit(PlayerState.Attack_heavy) == false)
                 {
-                    StartCoroutine(weaponManager.ChangeWeapon(WeaponType.MACE));
+                    StartCoroutine(weaponManager.ChangeWeapon(WeaponType.HAMMER));
                     playerAnimator.SetBool("Attack_heavy", true);
                 }
                 else
@@ -160,6 +171,8 @@ public class Player : BaseCompornent
         if (playerAnimator.IsCurrentAnimatorState("Attack_Right_to_Left"))
         {
             playerAnimator.SetBool("Attack", false);
+            var anime = summonWeapon.GetComponentInChildren<Animator>();
+            anime.SetBool("isAttack", false);
         }
 
         if (playerAnimator.IsCurrentAnimatorState("Attack_Left_to_Right"))

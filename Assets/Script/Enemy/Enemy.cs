@@ -167,7 +167,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Weapon")
         {
             damage = true;
             Debug.Log(other.tag);
@@ -176,7 +176,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Weapon")
         {
             damage = false;
         }

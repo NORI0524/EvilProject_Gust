@@ -32,8 +32,16 @@ public class WeaponManager : MonoBehaviour
     // 現在持っている武器
     private GameObject currentWeapon = null;
 
+    //召喚する武器
+    private GameObject player = null;
+    private GameObject summonWeapon = null;
+
+    private WeaponSummonSystem weaponSummonSys = null;
+
+
     //現在持っている武器のタイプ
     private WeaponType currentWeaponType = WeaponType.None;
+
 
     // ディゾルブ用のフラグ
     bool isDissolve = false;
@@ -105,6 +113,13 @@ public class WeaponManager : MonoBehaviour
         currentWeapon.SetActive(false);
         currentWeaponType = WeaponType.None;
 
+        //召喚武器初期化（仮）
+        //player = GameObject.Find("unitychan_dynamic");
+        //weaponSummonSys = player.GetComponent<WeaponSummonSystem>();
+        //summonWeapon = GameObject.Instantiate(weaponDict[WeaponType.HAMMER]);
+        //summonWeapon.SetActive(false);
+        //summonWeapon.transform.parent = player.transform;
+        //summonWeapon.transform.localPosition = new Vector3(1.0f, 0.5f, -0.5f);
     }
 
     // 武器変更の関数
@@ -119,7 +134,12 @@ public class WeaponManager : MonoBehaviour
             isDissolve = false;
 
             // ディゾルブをかける
-            StartCoroutine(Dissolve());
+            StartCoroutine(Dissolve(currentWeapon));
+
+            //if(weaponSummonSys.IsSummon())
+            //{
+            //    StartCoroutine(Dissolve(summonWeapon));
+            //}
 
             // ディゾルブが終わるまで待機
             while (!isDissolve)
@@ -131,6 +151,12 @@ public class WeaponManager : MonoBehaviour
         // 武器を無効化する
         currentWeapon.SetActive(false);
 
+        //var anime = summonWeapon.GetComponentInChildren<Animator>();
+        //if(anime != null)
+        //{
+        //    anime.SetBool("isAttack", false);
+        //}
+        //summonWeapon.SetActive(false);
 
         if (weapontype != WeaponType.None)
         {
@@ -148,7 +174,14 @@ public class WeaponManager : MonoBehaviour
             isDissolve = false;
 
             // ディゾルブを逆再生
-            StartCoroutine(ReturnDissolve());
+            StartCoroutine(ReturnDissolve(currentWeapon));
+
+            //if (weaponSummonSys.IsSummon())
+            //{
+            //    summonWeapon.SetActive(true);
+            //    anime.SetBool("isAttack", true);
+            //    StartCoroutine(ReturnDissolve(summonWeapon));
+            //}
 
             // ディゾルブが終わるまで待機
             while (!isDissolve)
@@ -165,12 +198,12 @@ public class WeaponManager : MonoBehaviour
     }
 
     // ディゾルブ処理
-    public IEnumerator Dissolve()
+    public IEnumerator Dissolve(GameObject _weapon)
     {
         for (float disAmount = 0f; disAmount <= 1;)
         {
             // 子オブジェクト（モデルオブジェクト）を取得
-            rend = currentWeapon.transform.GetChild(0).gameObject.GetComponent<Renderer>();
+            rend = _weapon.transform.GetChild(0).gameObject.GetComponent<Renderer>();
 
             disAmount += Time.deltaTime * DissolveSpeed;
 
@@ -182,12 +215,12 @@ public class WeaponManager : MonoBehaviour
         isDissolve = true;
     }
 
-    public IEnumerator ReturnDissolve()
+    public IEnumerator ReturnDissolve(GameObject _weapon)
     {
         for (float disAmount = 1f; disAmount >=0;)
         {
             // 子オブジェクト（モデルオブジェクト）を取得
-            rend = currentWeapon.transform.GetChild(0).gameObject.GetComponent<Renderer>();
+            rend = _weapon.transform.GetChild(0).gameObject.GetComponent<Renderer>();
 
             disAmount -= Time.deltaTime * DissolveSpeed;
 
