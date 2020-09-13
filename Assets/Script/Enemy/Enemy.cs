@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     //[SerializeField] Monitor monitor;
     [SerializeField] Navigation nav;
-    [SerializeField] private Animator animator;
+    [SerializeField] Animator animator;
 
     public enum EnemyAIState
     {
@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
 
     private bool discover = false;
     private bool damage = false;
+    private bool approach = false;  // 接近しているかどうか
 
     private bool endDamageAnimation = true;
 
@@ -72,7 +73,6 @@ public class Enemy : MonoBehaviour
     {
         if (wait)
         {
-            animator.SetTrigger("Idle");
             nextState = EnemyAIState.WAIT;
             wait = false;
             return;
@@ -103,6 +103,11 @@ public class Enemy : MonoBehaviour
             nextState = EnemyAIState.DAMAGE;
             Debug.Log("DAMAGE：武器に当たった");
         }
+        /*else if (aiState != EnemyAIState.IDOL && approach)
+        {
+            animator.SetTrigger("Idle");
+            nextState = EnemyAIState.IDOL;
+        }*/
         // 追いかけている途中でターゲットを見失った場合
         // 左右に首を振って敵を探す処理
         /*else if (aiState == EnemyAIState.CHASE && !discover)
@@ -148,6 +153,16 @@ public class Enemy : MonoBehaviour
     public void EndHit()
     {
         endDamageAnimation = true;
+    }
+
+    public void Approach()
+    {
+        approach = true;
+    }
+
+    public void Depart()
+    {
+        approach = false;
     }
 
     private void OnTriggerEnter(Collider other)

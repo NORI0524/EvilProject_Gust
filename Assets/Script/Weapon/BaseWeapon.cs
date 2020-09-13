@@ -17,22 +17,41 @@ public class BaseWeapon : MonoBehaviour
     }
     //===========================
 
+    WeaponSummonSystem weaponSummonSys = null;
+
+    private void Start()
+    {
+        weaponSummonSys = GameObject.Find("unitychan_dynamic").GetComponent<WeaponSummonSystem>();
+    }
+
 
     // 当たり判定
     private void OnTriggerEnter(Collider other)
     {
-        if (isAttack == false)
-        { return; }
+        //if (isAttack == false)
+        //{ return; }
 
         //-------------------
         // ダメージ処理
         //-------------------
 
         // 相手にダメージ情報を通知する
-        other.GetComponent<HpComponent>().AddDamage(power);
+        var target = other.GetComponent<HpComponent>();
+        if (target == null) return;
+
+        target.AddDamage(power);
+
+        //-------------------
+        // 攻撃した時にSpを増加
+        //-------------------
+        if(weaponSummonSys.IsSummon() == false)
+        {
+            weaponSummonSys.AddSp();
+        }
 
         // デバッグ
-        Debug.Log(power);
+        Debug.Log("武器の攻撃力：" + power);
+        Debug.Log("敵のHP:" + target.Hp);
 
     }
 }

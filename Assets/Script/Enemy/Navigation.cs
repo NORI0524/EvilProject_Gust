@@ -17,7 +17,8 @@ public class Navigation : MonoBehaviour
     [SerializeField]
     Transform Player = default;    // プレイヤーの座標
     [SerializeField]
-    float dist = 5.0f;    // 索敵範囲(範囲外に出たら追尾終了)
+    float dist = 7.0f;    // 索敵範囲(範囲外に出たら追尾終了)
+    float approarchDist = 3.0f; // この距離まで近づいたら止まる
 
     // フラグ
     bool tracking = false;  // プレイヤーを追尾しているかどうか
@@ -25,19 +26,20 @@ public class Navigation : MonoBehaviour
     bool moving = false;    // ステージ内を移動するかどうか
 
     private Vector3 saveTargetPos;  // 見失う直前のプレイヤーの座標を保存
-    
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         e_con = GetComponent<Enemy>();
     }
-    
+
     void Update()
     {
         if (tracking)
         {
             float distance = Vector3.Distance(this.transform.position, Player.transform.position);
             if (distance >= dist) { e_con.EndDiscover(); }
+            //if (distance <= approarchDist) { e_con.Approach(); EndNav(); } else { e_con.Depart(); }
         }
 
         if (moving)
@@ -58,12 +60,12 @@ public class Navigation : MonoBehaviour
     // 追尾
     public void StartTracking()
     {
+        agent.isStopped = false;
         moving = false;
 
         agent.speed = 2.0f;
         agent.angularSpeed = 150;
         tracking = true;
-        agent.isStopped = false;
         if (agent.pathStatus != NavMeshPathStatus.PathInvalid)
         {
             // ターゲットの座標を設定
@@ -74,11 +76,11 @@ public class Navigation : MonoBehaviour
     // ステージ内の移動
     public void StartMoving()
     {
+        tracking = false;
         moving = true;
 
         agent.speed = 1.0f;
         agent.angularSpeed = 120;
-        tracking = false;
         agent.isStopped = false;
         if (agent.pathStatus != NavMeshPathStatus.PathInvalid)
         {

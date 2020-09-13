@@ -4,7 +4,8 @@
 [Bb]uild/
 [Bb]uilds/
 [Ll]ogs/
-[Rr]elease
+[Rr]elease/
+
 
 # Never ignore Asset meta data
 ![Aa]ssets/**/*.meta

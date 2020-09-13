@@ -22,27 +22,32 @@ public class TestScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Debug.Log(wpnmng);
-            wpnmng.ChangeWeapon(WeaponType.DARK_SWORD);
+            StartCoroutine(wpnmng.ChangeWeapon(WeaponType.DARK_SWORD));
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             Debug.Log(wpnmng);
-            wpnmng.ChangeWeapon(WeaponType.AXE);
+            StartCoroutine(wpnmng.ChangeWeapon(WeaponType.AXE));
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             Debug.Log(wpnmng);
-            wpnmng.ChangeWeapon(WeaponType.HAMMER);
+            StartCoroutine(wpnmng.ChangeWeapon(WeaponType.HAMMER));
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             Debug.Log(wpnmng);
-            wpnmng.ChangeWeapon(WeaponType.MACE);
+            StartCoroutine(wpnmng.ChangeWeapon(WeaponType.MACE));
         }
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             Debug.Log(wpnmng);
-            wpnmng.ChangeWeapon(WeaponType.SKULLAXE);
+            StartCoroutine(wpnmng.ChangeWeapon(WeaponType.SKULLAXE));
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            Debug.Log(wpnmng);
+            StartCoroutine(wpnmng.ChangeWeapon(WeaponType.None));
         }
     }
 }
