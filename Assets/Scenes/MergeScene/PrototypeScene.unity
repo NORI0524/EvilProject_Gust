@@ -138,6 +138,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Titan
       objectReference: {fileID: 0}
+    - target: {fileID: 4489002025067551094, guid: 9f65b6aef05affd42819874a9341a793,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4489002025067551099, guid: 9f65b6aef05affd42819874a9341a793,
         type: 3}
       propertyPath: m_IsTrigger
@@ -1133,6 +1138,57 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1078911318}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1343068948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1343068950}
+  - component: {fileID: 1343068949}
+  m_Layer: 0
+  m_Name: EnemyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1343068949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343068948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 085361beca4374f408fccb8df5ffc98c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obj_Prefab:
+  - {fileID: 1933728624}
+  ObjDispMax: 20
+  currentNum: 1
+  onceSpawnNum: 1
+  spawnFrequency: 100
+  spanSeconds: 10
+  spawnDistance: 15
+--- !u!4 &1343068950
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343068948}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.26, y: 3.7305315, z: 6.89}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1403830348
 Mesh:
   m_ObjectHideFlags: 0
@@ -1998,6 +2054,12 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!1 &1933728624 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4489002025067551094, guid: 9f65b6aef05affd42819874a9341a793,
+    type: 3}
+  m_PrefabInstance: {fileID: 37337096}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2038974502
 GameObject:
   m_ObjectHideFlags: 0
