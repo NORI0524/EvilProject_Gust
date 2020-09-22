@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security;
 using UnityEngine;
 
 public class BaseStatusComponent : MonoBehaviour
@@ -25,10 +26,31 @@ public class BaseStatusComponent : MonoBehaviour
         get { return maxValue; }
     }
 
-    protected void AddValue(int add)
+    public void AddValue(int add)
     {
         if (add <= 0) return;
         Value = Mathf.Min(Value + add, MaxValue);
+    }
+
+    public void SubValue(int sub)
+    {
+        if (sub <= 0) return;
+        Value = Mathf.Max(Value - sub, minValue);
+    }
+
+    public void MultiplyValue(float rate = 1.0f)
+    {
+        Value = Mathf.RoundToInt(Value * rate);
+    }
+
+    public bool IsMax()
+    {
+        return Value >= MaxValue;
+    }
+
+    public bool IsMin()
+    {
+        return Value <= MinValue;
     }
 
 }

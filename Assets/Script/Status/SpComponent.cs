@@ -45,7 +45,7 @@ public class SpComponent : BaseStatusComponent
     public void AddPoint(int point)
     {
         AddValue(point);
-        if(Value == MaxValue)
+        if(IsMax())
         {
             state.AddBit(SpState.Max);
         }

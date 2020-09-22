@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnerComponent : BaseCompornent
+public class SpawnerComponent : BaseComponent
 {
     //オブジェクトの種類
     [SerializeField] private GameObject[] obj_Prefab = null;

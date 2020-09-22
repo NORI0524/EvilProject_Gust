@@ -24,9 +24,7 @@ public class HpComponent : BaseStatusComponent
 
     public void AddDamage(int damage)
     {
-        if (damage <= 0) return;
-        Value = Mathf.Max(Value - damage, minValue);
-
+        SubValue(damage);
         if(Value <= 0)
         {
             state.AddBit(HpState.Dead);

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Transparent : BaseCompornent
+public class Transparent : BaseComponent
 {
     private bool isFinish;
     private float frame;

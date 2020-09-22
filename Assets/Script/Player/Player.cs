@@ -18,7 +18,7 @@ public class PlayerState
 }
 
 [RequireComponent(typeof(HpComponent))]
-public class Player : BaseCompornent
+public class Player : BaseComponent
 {
     [SerializeField]
     float movePower = 1.0f;
