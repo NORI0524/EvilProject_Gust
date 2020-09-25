@@ -9,6 +9,8 @@ public class HpState
 
 public class HpComponent : BaseStatusComponent
 {
+    [SerializeField,Tooltip("無敵の有効/無効")] private bool isNoDamage = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +24,16 @@ public class HpComponent : BaseStatusComponent
         set { Value = value; }
     }
 
+    public bool IsNoDamage
+    {
+        get { return isNoDamage; }
+        set { isNoDamage = value; }
+    }
+
     public void AddDamage(int damage)
     {
+        if (isNoDamage) return;
+
         SubValue(damage);
         if(Value <= 0)
         {
@@ -34,5 +44,10 @@ public class HpComponent : BaseStatusComponent
     public void AddHeal(int heal)
     {
         AddValue(heal);
+    }
+
+    public bool IsDead()
+    {
+        return state.CheckBit(HpState.Dead);
     }
 }

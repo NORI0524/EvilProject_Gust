@@ -15,4 +15,14 @@ public static class ExtensionTransform
         transform.localRotation = Quaternion.identity;
         transform.localScale = Vector3.one;
     }
+
+    public static void Set(this Transform transform, Transform target)
+    {
+        transform.position = target.position;
+        transform.rotation = target.rotation;
+        transform.localPosition = target.localPosition;
+        transform.localRotation = target.localRotation;
+        transform.localScale = target.localScale;
+        transform.parent = target.parent;
+    }
 }

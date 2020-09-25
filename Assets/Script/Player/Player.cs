@@ -36,6 +36,8 @@ public class Player : BaseComponent
     WeaponManager weaponManager = null;
     WeaponSummonSystem weaponSummonSys = null;
 
+    HpComponent hp = null;
+
     Random random;
 
     GameObject summonWeapon = null;
@@ -58,6 +60,8 @@ public class Player : BaseComponent
         weaponSummonSys = GetComponent<WeaponSummonSystem>();
 
         summonWeapon = GameObject.Find("SummonWeapon");
+
+        hp = GetComponent<HpComponent>();
     }
 
     // Update is called once per frame
@@ -87,6 +91,11 @@ public class Player : BaseComponent
             {
                 vec.x += 1;
             }
+        }
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            hp.AddDamage(100);
         }
 
         //正規化
