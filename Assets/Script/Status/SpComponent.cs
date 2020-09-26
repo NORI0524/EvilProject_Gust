@@ -37,7 +37,7 @@ public class SpComponent : BaseStatusComponent
         if(ultTimer.IsFinish())
         {
             Value = 0;
-            state.FoldBit(SpState.Ultimate);
+            state.FoldBit(SpState.Ultimate | SpState.Max);
             Debug.Log("Ultimate End !!");
         }
     }

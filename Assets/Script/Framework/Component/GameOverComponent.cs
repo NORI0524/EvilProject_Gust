@@ -32,7 +32,7 @@ public class GameOverComponent : MonoBehaviour
                 var restart = targetObject.GetComponent<RestartComponent>();
                 restart.Restart();
                 isGameOver = false;
-                gameObject.SetActive(false);
+                gameoverObject.SetActive(false);
             }
         }
 

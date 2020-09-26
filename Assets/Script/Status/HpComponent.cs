@@ -14,8 +14,7 @@ public class HpComponent : BaseStatusComponent
     // Start is called before the first frame update
     void Start()
     {
-        Value = maxValue;
-        state.FoldALLBit();
+        Restart();
     }
 
     public int Hp
@@ -49,5 +48,11 @@ public class HpComponent : BaseStatusComponent
     public bool IsDead()
     {
         return state.CheckBit(HpState.Dead);
+    }
+
+    public void Restart()
+    {
+        Value = maxValue;
+        state.FoldALLBit();
     }
 }

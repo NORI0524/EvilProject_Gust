@@ -7,6 +7,8 @@ public class WeaponSummonSystem : MonoBehaviour
     //攻撃するたびに
     [SerializeField] private int addSp;
 
+    [SerializeField] private GameObject effectObject = null;
+
     private SpComponent playerSp = null;
 
     // Start is called before the first frame update
@@ -24,9 +26,9 @@ public class WeaponSummonSystem : MonoBehaviour
             playerSp.TriggerUltimate();
         }
 
-        if(playerSp.IsUltimate())
+        if(effectObject != null)
         {
-
+            effectObject.SetActive(playerSp.IsUltimate());
         }
     }
 
