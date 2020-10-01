@@ -490,7 +490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: d4cbe8bec9ae6154c9c0a678c58d0567, type: 2}
-  IsFade: 0
+  IsFade: 1
 --- !u!1 &1284865412
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,6 +613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f214e99b2a12084e85a8b2a3c04d02d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fademateiral: {fileID: 2100000, guid: d4cbe8bec9ae6154c9c0a678c58d0567, type: 2}
 --- !u!4 &1773681594
 Transform:
   m_ObjectHideFlags: 0
