@@ -72,28 +72,27 @@ public class Player : BaseComponent
         //移動の入力
         Vector3 vec = Vector3.zero;
 
-
         if(state.CheckBit(PlayerState.Attack) == false)
         {
-            if (Input.GetKey(KeyCode.W))
+            if (GameKeyConfig.Forward.GetKey())
             {
                 vec.z += 1;
             }
-            if (Input.GetKey(KeyCode.S))
+            if (GameKeyConfig.Back.GetKey())
             {
                 vec.z -= 1;
             }
-            if (Input.GetKey(KeyCode.A))
+            if (GameKeyConfig.Left.GetKey())
             {
                 vec.x -= 1;
             }
-            if (Input.GetKey(KeyCode.D))
+            if (GameKeyConfig.Right.GetKey())
             {
                 vec.x += 1;
             }
         }
 
-        if (Input.GetKey(KeyCode.E))
+        if (GameKeyConfig.Item.GetKeyDown())
         {
             hp.AddDamage(100);
         }
@@ -116,7 +115,7 @@ public class Player : BaseComponent
         //回避
         if(state.CheckBit(PlayerState.Avoid) == false)
         {
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (GameKeyConfig.Avoid.GetKeyDown())
             {
                 playerAnimator.SetBool("Roll", true);
             }
@@ -129,7 +128,7 @@ public class Player : BaseComponent
         //}
 
         //通常攻撃（左クリック）
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (GameKeyConfig.Attack_Light.GetKeyDown())
         {
             if(state.CheckBit(PlayerState.Attack) == false)
             {
@@ -153,7 +152,7 @@ public class Player : BaseComponent
         }
 
         //派生攻撃（右クリック）
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (GameKeyConfig.Attack_Strong.GetKeyDown())
         {
             if (state.CheckBit(PlayerState.Attack2))
             {

@@ -16,6 +16,10 @@ public static class ExtensionTransform
         transform.localScale = Vector3.one;
     }
 
+    /// <summary>
+    /// 指定のTransformをセット（Transformのsetterが無かった...）
+    /// </summary>
+    /// <param name="target"></param>
     public static void Set(this Transform transform, Transform target)
     {
         transform.position = target.position;

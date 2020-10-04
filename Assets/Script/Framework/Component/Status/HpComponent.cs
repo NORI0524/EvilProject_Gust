@@ -10,7 +10,7 @@ public class HpState
 public class HpComponent : BaseStatusComponent
 {
     [SerializeField,Tooltip("無敵の有効/無効")] private bool isNoDamage = false;
-
+    [SerializeField, RangeDelta(0,5,1)] private float value = 0;
     // Start is called before the first frame update
     void Start()
     {

@@ -7,7 +7,7 @@ public class BaseStatusComponent : MonoBehaviour
 {
     protected int currentValue = 0;
     [SerializeField] protected int maxValue = 100;
-    [SerializeField] protected int minValue = 0;
+    protected int minValue = 0;
 
     protected BitFlag state = new BitFlag();
 
@@ -52,5 +52,4 @@ public class BaseStatusComponent : MonoBehaviour
     {
         return Value <= MinValue;
     }
-
 }
