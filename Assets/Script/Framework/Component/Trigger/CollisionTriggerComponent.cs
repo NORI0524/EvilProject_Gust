@@ -6,9 +6,9 @@ using System.Dynamic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
 public class CollisionTriggerComponent : MonoBehaviour
 {
-
     [Serializable] public class CallBackFunction : UnityEvent<GameObject> { }
 
 

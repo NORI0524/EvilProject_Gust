@@ -26,6 +26,7 @@ public class BaseGauge : MonoBehaviour
         switch(gaugeType)
         {
             case GaugeType.HpGauge:
+                statusPoint = target.GetComponent<HpComponent>();
                 break;
 
             case GaugeType.SpGauge:
