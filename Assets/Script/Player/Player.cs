@@ -240,14 +240,6 @@ public class Player : BaseComponent
         //方向
         if (moveForward != Vector3.zero)
         {
-            //float angle = Vector3.SignedAngle(transform.forward, moveForward.normalized, transform.up);
-            //var U_Angle = Mathf.Abs(angle);
-            //if (U_Angle > 0.5f)
-            //{
-            //    Debug.Log(U_Angle);
-            //    transform.Rotate(transform.up, U_Angle);
-            //}
-
             var moveQua = Quaternion.LookRotation(moveForward);
             transform.rotation = Quaternion.Slerp(transform.rotation, moveQua, Time.deltaTime * rotateSpeed);
 
