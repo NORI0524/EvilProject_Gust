@@ -13,11 +13,16 @@ public class sceneChangeManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            StartCoroutine(ChangeScene());
+            StartCoroutine(ChangeScene("Scenes/TestScene/EnemyTestScene"));
         }
     }
 
-    public IEnumerator ChangeScene()
+    /// <summary>
+    /// シーン偏移
+    /// </summary>
+    /// <param name="filepas">ビルドセッティングで設定したファイルパス</param>
+    /// <returns></returns>
+    public IEnumerator ChangeScene(string filepas)
     {
         // sceneが切り替わっても破棄されないようにする
         DontDestroyOnLoad(this.gameObject);
@@ -29,7 +34,7 @@ public class sceneChangeManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        SceneManager.LoadScene("Scenes/TestScene/EnemyTestScene");
+        SceneManager.LoadScene(filepas);
 
         StartCoroutine(FadeIn());
         while (isFade)
