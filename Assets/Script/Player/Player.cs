@@ -38,8 +38,6 @@ public class Player : BaseComponent
 
     HpComponent hp = null;
 
-    Random random;
-
     GameObject summonWeapon = null;
 
     public BitFlag state = new BitFlag();

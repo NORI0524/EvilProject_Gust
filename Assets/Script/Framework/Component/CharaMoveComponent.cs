@@ -13,6 +13,16 @@ public class CharaMoveComponent : MonoBehaviour
     [SerializeField, Tooltip("移動量")] float movePower = 1.0f;
     [SerializeField] string animationBoolName = "Run";
 
+    private bool isMove = false;
+
+    public bool IsMove
+    {
+        get
+        {
+            return isMove;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,13 +60,13 @@ public class CharaMoveComponent : MonoBehaviour
         //動いているなら
         if (vec != Vector3.zero)
         {
-            rigidbody.SetFreezeRotationY(false);
+            isMove = true;
             if (animator != null)
                 animator.SetBool(animationBoolName, true);
         }
         else
         {
-            rigidbody.SetFreezeRotationY(true);
+            isMove = false;
             if (animator != null)
                 animator.SetBool(animationBoolName, false);
         }
