@@ -776,6 +776,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 905836131}
+    - target: {fileID: 371053424641489077, guid: ab14aacc0384ce740acc4ca946ceefaf,
+        type: 3}
+      propertyPath: gaugeType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6152980512241525041, guid: ab14aacc0384ce740acc4ca946ceefaf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -834,12 +839,12 @@ PrefabInstance:
     - target: {fileID: 6152980512241525041, guid: ab14aacc0384ce740acc4ca946ceefaf,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -625
+      value: -188
       objectReference: {fileID: 0}
     - target: {fileID: 6152980512241525041, guid: ab14aacc0384ce740acc4ca946ceefaf,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -412
+      value: -339
       objectReference: {fileID: 0}
     - target: {fileID: 6152980512241525041, guid: ab14aacc0384ce740acc4ca946ceefaf,
         type: 3}
@@ -2226,7 +2231,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxValue: 500
-  minValue: 0
+  isNoDamage: 0
+  value: 0
 --- !u!1 &2038974502
 GameObject:
   m_ObjectHideFlags: 0
