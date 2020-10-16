@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using UnityEngine;
 
-public class SceneFadeOutSteam : BaseCompornent
+public class SceneFadeOutSteam : BaseComponent
 {
     [SerializeField] GameObject prefab = null;
 

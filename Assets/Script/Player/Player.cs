@@ -18,7 +18,7 @@ public class PlayerState
 }
 
 [RequireComponent(typeof(HpComponent))]
-public class Player : BaseCompornent
+public class Player : BaseComponent
 {
     [SerializeField]
     float movePower = 1.0f;
@@ -36,7 +36,7 @@ public class Player : BaseCompornent
     WeaponManager weaponManager = null;
     WeaponSummonSystem weaponSummonSys = null;
 
-    Random random;
+    HpComponent hp = null;
 
     GameObject summonWeapon = null;
 
@@ -58,6 +58,8 @@ public class Player : BaseCompornent
         weaponSummonSys = GetComponent<WeaponSummonSystem>();
 
         summonWeapon = GameObject.Find("SummonWeapon");
+
+        hp = GetComponent<HpComponent>();
     }
 
     // Update is called once per frame
@@ -68,25 +70,29 @@ public class Player : BaseCompornent
         //移動の入力
         Vector3 vec = Vector3.zero;
 
-
         if(state.CheckBit(PlayerState.Attack) == false)
         {
-            if (Input.GetKey(KeyCode.W))
+            if (GameKeyConfig.Forward.GetKey())
             {
                 vec.z += 1;
             }
-            if (Input.GetKey(KeyCode.S))
+            if (GameKeyConfig.Back.GetKey())
             {
                 vec.z -= 1;
             }
-            if (Input.GetKey(KeyCode.A))
+            if (GameKeyConfig.Left.GetKey())
             {
                 vec.x -= 1;
             }
-            if (Input.GetKey(KeyCode.D))
+            if (GameKeyConfig.Right.GetKey())
             {
                 vec.x += 1;
             }
+        }
+
+        if (GameKeyConfig.Item.GetKeyDown())
+        {
+            hp.AddDamage(100);
         }
 
         //正規化
@@ -107,7 +113,7 @@ public class Player : BaseCompornent
         //回避
         if(state.CheckBit(PlayerState.Avoid) == false)
         {
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (GameKeyConfig.Avoid.GetKeyDown())
             {
                 playerAnimator.SetBool("Roll", true);
             }
@@ -120,7 +126,7 @@ public class Player : BaseCompornent
         //}
 
         //通常攻撃（左クリック）
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (GameKeyConfig.Attack_Light.GetKeyDown())
         {
             if(state.CheckBit(PlayerState.Attack) == false)
             {
@@ -144,7 +150,7 @@ public class Player : BaseCompornent
         }
 
         //派生攻撃（右クリック）
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (GameKeyConfig.Attack_Strong.GetKeyDown())
         {
             if (state.CheckBit(PlayerState.Attack2))
             {
@@ -232,14 +238,6 @@ public class Player : BaseCompornent
         //方向
         if (moveForward != Vector3.zero)
         {
-            //float angle = Vector3.SignedAngle(transform.forward, moveForward.normalized, transform.up);
-            //var U_Angle = Mathf.Abs(angle);
-            //if (U_Angle > 0.5f)
-            //{
-            //    Debug.Log(U_Angle);
-            //    transform.Rotate(transform.up, U_Angle);
-            //}
-
             var moveQua = Quaternion.LookRotation(moveForward);
             transform.rotation = Quaternion.Slerp(transform.rotation, moveQua, Time.deltaTime * rotateSpeed);
 

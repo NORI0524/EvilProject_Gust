@@ -165,7 +165,7 @@ public class WeaponManager : MonoBehaviour
             currentWeaponType = weapontype;
 
             // 新しい武器の位置を変更する
-            WeaponChangingInit();
+            currentWeapon.SetParent(parentObject);
 
             // 新しい武器を有効化する
             currentWeapon.SetActive(true);
@@ -230,16 +230,5 @@ public class WeaponManager : MonoBehaviour
             yield return null;
         }
         isDissolve = true;
-    }
-
-
-    private void WeaponChangingInit()
-    {
-        //指定のオブジェクトの子として設定
-        currentWeapon.transform.parent = parentObject.transform;
-
-        currentWeapon.transform.localPosition = Vector3.zero;
-        currentWeapon.transform.localRotation = Quaternion.identity;
-        currentWeapon.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
     }
 }

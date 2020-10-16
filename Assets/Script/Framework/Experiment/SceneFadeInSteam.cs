@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneFadeInSteam : BaseCompornent
+public class SceneFadeInSteam : BaseComponent
 {
 
     [SerializeField] GameObject prefab = null;
