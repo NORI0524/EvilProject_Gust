@@ -14,7 +14,7 @@ public class WeaponSummonSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerSp = GameObject.Find("unitychan_dynamic").GetComponent<SpComponent>();
+        playerSp = GameObject.Find(gameObject.name).GetComponent<SpComponent>();
     }
 
     // Update is called once per frame
