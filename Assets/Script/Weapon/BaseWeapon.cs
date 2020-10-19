@@ -21,7 +21,7 @@ public class BaseWeapon : MonoBehaviour
 
     private void Start()
     {
-        weaponSummonSys = GameObject.Find("unitychan_dynamic").GetComponent<WeaponSummonSystem>();
+        weaponSummonSys = GameObject.Find(gameObject.name).GetComponent<WeaponSummonSystem>();
     }
 
 

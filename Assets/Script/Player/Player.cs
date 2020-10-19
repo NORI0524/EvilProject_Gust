@@ -174,6 +174,12 @@ public class Player : BaseComponent
         }
 
 
+
+        /////////
+        //いらん
+        ////////////////////////////
+
+
         if (playerAnimator.IsCurrentAnimatorState("Attack_Right_to_Left"))
         {
             playerAnimator.SetBool("Attack", false);
