@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// オブジェクトを操作するコンポーネント
+/// （ルートアニメーションによる移動も可能）
+/// </summary>
 [RequireComponent(typeof(Rigidbody))]
 public class CharaMoveComponent : MonoBehaviour
 {
