@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 400000}
   - component: {fileID: 5549934432981687051}
   - component: {fileID: 4702125583979870434}
+  - component: {fileID: 8294626048487965458}
   m_Layer: 0
   m_Name: dark_sword
   m_TagString: Weapon
@@ -58,6 +59,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd4e3960470b33940827cb04666292c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8294626048487965458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad20c117300d8140b291dd220215c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxValue: 100
+  damageValue: 30
+  criticalRate: 0
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0
