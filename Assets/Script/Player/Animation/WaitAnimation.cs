@@ -9,13 +9,13 @@ public class WaitAnimation : StateMachineBehaviour
 
     private WeaponManager weaponManager = null;
 
-    private Player playerCtrl = null;
+    private PlayerController playerCtrl = null;
 
     private void Awake()
     {
         playerState = new BitFlag();
         var obj = GameObject.Find("unitychan_dynamic");
-        playerCtrl = obj.GetComponent<Player>();
+        playerCtrl = obj.GetComponent<PlayerController>();
         playerState = playerCtrl.state;
         weaponManager = GameObject.Find("WeaponManager").GetComponent<WeaponManager>();
     }

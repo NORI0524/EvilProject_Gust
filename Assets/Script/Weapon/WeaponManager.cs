@@ -74,7 +74,7 @@ public class WeaponManager : MonoBehaviour
 
             switch (weaponPref.name)
             {
-                case "dark_sword":
+                case "sword":
                     type = WeaponType.DARK_SWORD;
                     break;
 
