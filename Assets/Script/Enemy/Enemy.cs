@@ -118,7 +118,7 @@ public class Enemy : MonoBehaviour
             animator.SetTrigger("Attack");
             endAttackAnimation = false;
 
-            armCollider = GameObject.Find("Wrist_R").GetComponent<SphereCollider>();
+            armCollider = GetComponentInChildren< SphereCollider>();
             armCollider.enabled = true;
 
             nextState = EnemyAIState.ATTACK;
@@ -177,7 +177,6 @@ public class Enemy : MonoBehaviour
     public void Attack()
     {
         attack = true;
-        Debug.Log("AttackがTrueになりました");
     }
 
     public void nAttack()

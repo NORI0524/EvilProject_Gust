@@ -5,10 +5,13 @@ using UnityEngine;
 public class CapsuleController : MonoBehaviour
 {
     float moveSpeed = 0.1f;
+    private bool dead;
+
+    HpComponent hp;
     // Start is called before the first frame update
     void Start()
     {
-
+        hp = GetComponent<HpComponent>();
     }
 
     // Update is called once per frame
@@ -28,6 +31,15 @@ public class CapsuleController : MonoBehaviour
         if (RLKey != 0)
         {
             transform.position += new Vector3(RLKey * moveSpeed, 0, 0);
+        }
+
+        if (hp.IsDead())
+        {
+            if (!dead)
+            {
+                Debug.Log("Playerは死にました");
+                dead = true;
+            }
         }
     }
 }
