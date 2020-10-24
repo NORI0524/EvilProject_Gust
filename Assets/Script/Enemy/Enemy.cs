@@ -28,8 +28,12 @@ public class Enemy : MonoBehaviour
     private bool discover = false;
     private bool damage = false;
     private bool approach = false;  // 接近しているかどうか
+    private bool attack = false;    // 攻撃(接近したら)
 
-    private bool endDamageAnimation = true;
+    private bool endDamageAnimation = true; // 被弾アニメーションが終了しているかどうか
+    private bool endAttackAnimation = true; // 攻撃アニメーションが終了しているかどうか
+
+    private SphereCollider armCollider;
 
     protected void InitAI()
     {
@@ -77,44 +81,49 @@ public class Enemy : MonoBehaviour
             wait = false;
             return;
         }
-        if (aiState != EnemyAIState.CHASE && discover && !damage && endDamageAnimation)
+        // 追いかける
+        if (aiState != EnemyAIState.CHASE && discover && !damage && endDamageAnimation && endAttackAnimation && !attack)
         {
+            nav.StartNav();
             // アニメーション
             animator.SetTrigger("Running");
             nextState = EnemyAIState.CHASE;    // 敵を見つけたら追いかける処理
             Debug.Log("CHASE：追いかける");
         }
-        else if (aiState != EnemyAIState.MOVE && !discover && !damage)
+        // 移動
+        else if (aiState != EnemyAIState.MOVE && !discover && !damage && !attack && endDamageAnimation && endAttackAnimation)
         {
+            nav.StartNav();
             // アニメーション
             animator.SetTrigger("Walking");
             // 移動処理を停止
-            nav.EndNav();
             nextState = EnemyAIState.MOVE;
             Debug.Log("MOVE：ステージ内を移動");
         }
+        // 被弾
         else if (aiState != EnemyAIState.DAMAGE && damage)
         {
+            // 移動処理を停止
+            nav.EndNav();
             // アニメーション
             animator.SetTrigger("Damage");
             endDamageAnimation = false;
-            // 移動処理を停止
-            nav.EndNav();
             nextState = EnemyAIState.DAMAGE;
             Debug.Log("DAMAGE：武器に当たった");
         }
-        /*else if (aiState != EnemyAIState.IDOL && approach)
+        // 攻撃
+        else if (attack && endAttackAnimation)
         {
-            animator.SetTrigger("Idle");
-            nextState = EnemyAIState.IDOL;
-        }*/
-        // 追いかけている途中でターゲットを見失った場合
-        // 左右に首を振って敵を探す処理
-        /*else if (aiState == EnemyAIState.CHASE && !discover)
-        {
-            nextState = EnemyAIState.SEARCH;
-        }*/
-        //else { nextState = EnemyAIState.MOVE; } // 敵を見つけてなかったら移動処理
+            nav.EndNav();
+            animator.SetTrigger("Attack");
+            endAttackAnimation = false;
+
+            armCollider = GameObject.Find("Wrist_R").GetComponent<SphereCollider>();
+            armCollider.enabled = true;
+
+            nextState = EnemyAIState.ATTACK;
+            Debug.Log("接近したので攻撃");
+        }
     }
 
     protected void Update()
@@ -137,7 +146,12 @@ public class Enemy : MonoBehaviour
             case EnemyAIState.DAMAGE:
                 // ダメージ処理
                 break;
+            case EnemyAIState.ATTACK:
+                // 攻撃処理
+                break;
         }
+
+        if (Input.GetKeyDown(KeyCode.A)) { animator.SetTrigger("Attack"); }
     }
 
     public void Discover()
@@ -155,9 +169,20 @@ public class Enemy : MonoBehaviour
         endDamageAnimation = true;
     }
 
-    public void Approach()
+    public void EndAttack()
     {
-        approach = true;
+        endAttackAnimation = true;
+    }
+
+    public void Attack()
+    {
+        attack = true;
+        Debug.Log("AttackがTrueになりました");
+    }
+
+    public void nAttack()
+    {
+        attack = false;
     }
 
     public void Depart()
@@ -170,7 +195,6 @@ public class Enemy : MonoBehaviour
         if (other.tag == "Weapon")
         {
             damage = true;
-            Debug.Log(other.tag);
         }
     }
 

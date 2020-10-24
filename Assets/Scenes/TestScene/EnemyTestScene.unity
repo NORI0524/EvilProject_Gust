@@ -7342,6 +7342,16 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1250469445}
+    - target: {fileID: 4489002025067551089, guid: 9f65b6aef05affd42819874a9341a793,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 46
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489002025067551093, guid: 9f65b6aef05affd42819874a9341a793,
+        type: 3}
+      propertyPath: m_StoppingDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4489002025067551094, guid: 9f65b6aef05affd42819874a9341a793,
         type: 3}
       propertyPath: m_Name

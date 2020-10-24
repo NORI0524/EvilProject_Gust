@@ -18,7 +18,7 @@ public class Navigation : MonoBehaviour
     Transform Player = default;    // プレイヤーの座標
     [SerializeField]
     float dist = 7.0f;    // 索敵範囲(範囲外に出たら追尾終了)
-    float approarchDist = 3.0f; // この距離まで近づいたら止まる
+    float approarchDist = 2.0f; // この距離まで近づいたら止まる
 
     // フラグ
     bool tracking = false;  // プレイヤーを追尾しているかどうか
@@ -35,11 +35,12 @@ public class Navigation : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(agent.isStopped);
         if (tracking)
         {
             float distance = Vector3.Distance(this.transform.position, Player.transform.position);
             if (distance >= dist) { e_con.EndDiscover(); }
-            //if (distance <= approarchDist) { e_con.Approach(); EndNav(); } else { e_con.Depart(); }
+            if (distance <= approarchDist) { e_con.Attack(); EndNav(); } else { e_con.nAttack(); }
         }
 
         if (moving)
@@ -60,12 +61,11 @@ public class Navigation : MonoBehaviour
     // 追尾
     public void StartTracking()
     {
-        agent.isStopped = false;
+        tracking = true;
         moving = false;
 
         agent.speed = 2.0f;
         agent.angularSpeed = 150;
-        tracking = true;
         if (agent.pathStatus != NavMeshPathStatus.PathInvalid)
         {
             // ターゲットの座標を設定
@@ -81,12 +81,17 @@ public class Navigation : MonoBehaviour
 
         agent.speed = 1.0f;
         agent.angularSpeed = 120;
-        agent.isStopped = false;
         if (agent.pathStatus != NavMeshPathStatus.PathInvalid)
         {
             // 目的地の座標を設定
             agent.SetDestination(Target[targetCount].transform.position);
         }
+    }
+
+    // 移動開始
+    public void StartNav()
+    {
+        agent.isStopped = false;
     }
 
     // 移動を終了
