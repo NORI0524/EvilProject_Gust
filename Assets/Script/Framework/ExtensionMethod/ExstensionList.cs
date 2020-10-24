@@ -6,8 +6,5 @@ using UnityEngine;
 
 public static class ExtensionList
 {
-    public static void hoge <T>(this List<T> _list)
-    {
 
-    }
 }
