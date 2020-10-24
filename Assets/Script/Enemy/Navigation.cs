@@ -10,14 +10,13 @@ public class Navigation : MonoBehaviour
     Enemy e_con;
 
     // MOVE
+    [SerializeField] private float moveSpeed = 1.0f; // 移動速度
     [SerializeField] public GameObject[] Target;    // 目的地の配列
     private int targetCount = 0; // 現在の目的地番号
 
     //CHASE
-    [SerializeField]
-    Transform Player = default;    // プレイヤーの座標
-    [SerializeField]
-    float dist = 7.0f;    // 索敵範囲(範囲外に出たら追尾終了)
+    [SerializeField] Transform Player = default;    // プレイヤーの座標
+    [SerializeField] float dist = 7.0f;    // 索敵範囲(範囲外に出たら追尾終了)
     float approarchDist = 2.0f; // この距離まで近づいたら止まる
 
     // フラグ
@@ -33,7 +32,7 @@ public class Navigation : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         e_con = GetComponent<Enemy>();
-
+        
         if (Target.Length > 0) { haveTarget = true; } else { haveTarget = false; }
     }
 
@@ -42,7 +41,10 @@ public class Navigation : MonoBehaviour
         if (tracking)
         {
             float distance = Vector3.Distance(this.transform.position, Player.transform.position);
-            if (distance >= dist) { e_con.EndDiscover(); }
+            if (distance >= dist)
+            {
+                e_con.EndDiscover();
+            }
             if (distance <= approarchDist) { e_con.Attack(); EndNav(); } else { e_con.nAttack(); }
         }
 
@@ -51,7 +53,7 @@ public class Navigation : MonoBehaviour
             if (moving)
             {
                 // 目的地にたどり着いたら次の目的地を設定する
-                if (this.transform.position.x == Target[targetCount].transform.position.x 
+                if (this.transform.position.x == Target[targetCount].transform.position.x
                     && this.transform.position.z == Target[targetCount].transform.position.z)
                 {
                     targetCount++;
@@ -86,7 +88,7 @@ public class Navigation : MonoBehaviour
         tracking = false;
         moving = true;
 
-        agent.speed = 1.0f;
+        agent.speed = moveSpeed;
         agent.angularSpeed = 120;
         if (agent.pathStatus != NavMeshPathStatus.PathInvalid)
         {

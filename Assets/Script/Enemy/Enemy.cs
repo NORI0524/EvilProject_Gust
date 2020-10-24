@@ -15,8 +15,9 @@ public class Enemy : MonoBehaviour
         SEARCH, // 索敵(首を回して)
         CHASE,  // 追いかける
         ATTACK, // 攻撃
-        IDOL,    // 待機
-        DAMAGE  // 被弾
+        IDLE,    // 待機
+        DAMAGE,  // 被弾
+        DEATH    // 死亡
     }
 
     public EnemyAIState aiState = EnemyAIState.WAIT;
@@ -34,7 +35,13 @@ public class Enemy : MonoBehaviour
     private bool endAttackAnimation = true; // 攻撃アニメーションが終了しているかどうか
 
     private SphereCollider armCollider;
+    private HpComponent hp;
 
+    private void Start()
+    {
+        armCollider = GetComponentInChildren<SphereCollider>();
+        hp = GetComponent<HpComponent>();
+    }
     protected void InitAI()
     {
 
@@ -75,54 +82,64 @@ public class Enemy : MonoBehaviour
 
     protected void AIMainRoutine()
     {
-        if (wait)
+        if (aiState!=EnemyAIState.DEATH)
         {
-            nextState = EnemyAIState.WAIT;
-            wait = false;
-            return;
-        }
-        // 追いかける
-        if (aiState != EnemyAIState.CHASE && discover && !damage && endDamageAnimation && endAttackAnimation && !attack)
-        {
-            nav.StartNav();
-            // アニメーション
-            animator.SetTrigger("Running");
-            nextState = EnemyAIState.CHASE;    // 敵を見つけたら追いかける処理
-            Debug.Log("CHASE：追いかける");
-        }
-        // 移動
-        else if (aiState != EnemyAIState.MOVE && !discover && !damage && !attack && endDamageAnimation && endAttackAnimation)
-        {
-            nav.StartNav();
-            // アニメーション
-            animator.SetTrigger("Walking");
-            // 移動処理を停止
-            nextState = EnemyAIState.MOVE;
-            Debug.Log("MOVE：ステージ内を移動");
-        }
-        // 被弾
-        else if (aiState != EnemyAIState.DAMAGE && damage)
-        {
-            // 移動処理を停止
-            nav.EndNav();
-            // アニメーション
-            animator.SetTrigger("Damage");
-            endDamageAnimation = false;
-            nextState = EnemyAIState.DAMAGE;
-            Debug.Log("DAMAGE：武器に当たった");
-        }
-        // 攻撃
-        else if (attack && endAttackAnimation)
-        {
-            nav.EndNav();
-            animator.SetTrigger("Attack");
-            endAttackAnimation = false;
+            if (wait)
+            {
+                nextState = EnemyAIState.WAIT;
+                wait = false;
+                return;
+            }
+            // 追いかける
+            if (aiState != EnemyAIState.CHASE && discover && !damage && endDamageAnimation && endAttackAnimation && !attack)
+            {
+                nav.StartNav();
+                // アニメーション
+                animator.SetBool("Idle", false);
+                animator.SetTrigger("Running");
+                nextState = EnemyAIState.CHASE;    // 敵を見つけたら追いかける処理
+                Debug.Log("CHASE：追いかける");
+            }
+            // 移動
+            else if (aiState != EnemyAIState.MOVE && !discover && !damage && !attack && endDamageAnimation && endAttackAnimation)
+            {
+                nav.StartNav();
+                // アニメーション
+                animator.SetTrigger("Walking");
+                nextState = EnemyAIState.MOVE;
+                Debug.Log("MOVE：ステージ内を移動");
+            }
+            // 被弾
+            else if (aiState != EnemyAIState.DAMAGE && damage)
+            {
+                // 移動処理を停止
+                nav.EndNav();
+                // アニメーション
+                animator.SetTrigger("Damage");
+                endDamageAnimation = false;
+                nextState = EnemyAIState.DAMAGE;
+                Debug.Log("DAMAGE：武器に当たった");
+            }
+            // 攻撃
+            else if (attack && endAttackAnimation)
+            {
+                nav.EndNav();
+                animator.SetTrigger("Attack");
+                endAttackAnimation = false;
 
-            armCollider = GetComponentInChildren< SphereCollider>();
-            armCollider.enabled = true;
+                armCollider.enabled = true;
+                Invoke("ColliderReset", 0.3f);
 
-            nextState = EnemyAIState.ATTACK;
-            Debug.Log("接近したので攻撃");
+                nextState = EnemyAIState.ATTACK;
+                Debug.Log("接近したので攻撃");
+            }
+        }
+        // 死亡
+        if (hp.IsDead() && aiState != EnemyAIState.DEATH)
+        {
+            nav.EndNav();
+            animator.SetTrigger("Death");
+            nextState = EnemyAIState.DEATH;
         }
     }
 
@@ -151,7 +168,9 @@ public class Enemy : MonoBehaviour
                 break;
         }
 
-        if (Input.GetKeyDown(KeyCode.A)) { animator.SetTrigger("Attack"); }
+        if (Input.GetKey(KeyCode.S)) {
+            Debug.Log(aiState);
+        }
     }
 
     public void Discover()
@@ -205,4 +224,8 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void ColliderReset()
+    {
+        armCollider.enabled = false;
+    }
 }
