@@ -1517,6 +1517,7 @@ GameObject:
   - component: {fileID: 4489002025067551101}
   - component: {fileID: 4489002025067551091}
   - component: {fileID: 4489002025067551099}
+  - component: {fileID: 8718259289216357436}
   m_Layer: 0
   m_Name: Titan
   m_TagString: Enemy
@@ -1575,7 +1576,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 32
+  m_Constraints: 46
   m_CollisionDetection: 0
 --- !u!195 &4489002025067551093
 NavMeshAgent:
@@ -1591,7 +1592,7 @@ NavMeshAgent:
   m_Acceleration: 1
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1611,6 +1612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d976cbca0c5beb458fcb5b2e911dbc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 1
   Target:
   - {fileID: 0}
   - {fileID: 0}
@@ -1647,6 +1649,21 @@ CapsuleCollider:
   m_Height: 2.352199
   m_Direction: 1
   m_Center: {x: -0.008896053, y: 1.1920707, z: 0}
+--- !u!114 &8718259289216357436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4489002025067551094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ec1592f4cf8ec4eb3aec386e8ea1cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxValue: 100
+  isNoDamage: 0
+  value: 0
 --- !u!1 &4489002025067551096
 GameObject:
   m_ObjectHideFlags: 0
@@ -1691,6 +1708,7 @@ GameObject:
   - component: {fileID: 4489002025067906394}
   - component: {fileID: 1846143552}
   - component: {fileID: 1846143550}
+  - component: {fileID: 2189407943294772117}
   m_Layer: 0
   m_Name: Wrist_R
   m_TagString: Arm
@@ -1740,6 +1758,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81241c975e56b7d4787b5bd4db5e0687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2189407943294772117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4489002025067551098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad20c117300d8140b291dd220215c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxValue: 100
+  damageValue: 10
+  criticalRate: 0
 --- !u!1 &4489002025067551100
 GameObject:
   m_ObjectHideFlags: 0

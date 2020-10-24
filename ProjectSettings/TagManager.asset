@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - Monitor
   - Arm
+  - testEnemy
   layers:
   - Default
   - TransparentFX
