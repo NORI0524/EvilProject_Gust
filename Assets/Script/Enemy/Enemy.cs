@@ -82,7 +82,7 @@ public class Enemy : MonoBehaviour
 
     protected void AIMainRoutine()
     {
-        if (aiState!=EnemyAIState.DEATH)
+        if (!hp.IsDead())
         {
             if (wait)
             {
@@ -97,7 +97,7 @@ public class Enemy : MonoBehaviour
                 // アニメーション
                 animator.SetBool("Idle", false);
                 animator.SetTrigger("Running");
-                nextState = EnemyAIState.CHASE;    // 敵を見つけたら追いかける処理
+                nextState = EnemyAIState.CHASE;
                 Debug.Log("CHASE：追いかける");
             }
             // 移動
@@ -110,9 +110,9 @@ public class Enemy : MonoBehaviour
                 Debug.Log("MOVE：ステージ内を移動");
             }
             // 被弾
-            else if (aiState != EnemyAIState.DAMAGE && damage)
+            else if (endDamageAnimation && damage)
             {
-                // 移動処理を停止
+                endAttackAnimation = true;
                 nav.EndNav();
                 // アニメーション
                 animator.SetTrigger("Damage");
@@ -121,7 +121,7 @@ public class Enemy : MonoBehaviour
                 Debug.Log("DAMAGE：武器に当たった");
             }
             // 攻撃
-            else if (attack && endAttackAnimation)
+            else if (attack && endAttackAnimation && endDamageAnimation)
             {
                 nav.EndNav();
                 animator.SetTrigger("Attack");
@@ -137,6 +137,8 @@ public class Enemy : MonoBehaviour
         // 死亡
         if (hp.IsDead() && aiState != EnemyAIState.DEATH)
         {
+            EndAttack();
+            EndHit();
             nav.EndNav();
             animator.SetTrigger("Death");
             nextState = EnemyAIState.DEATH;
@@ -162,13 +164,15 @@ public class Enemy : MonoBehaviour
                 break;
             case EnemyAIState.DAMAGE:
                 // ダメージ処理
+                Debug.Log(damage);
                 break;
             case EnemyAIState.ATTACK:
                 // 攻撃処理
                 break;
         }
 
-        if (Input.GetKey(KeyCode.S)) {
+        if (Input.GetKey(KeyCode.S))
+        {
             Debug.Log(aiState);
         }
     }
@@ -216,12 +220,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    public void DamageReset()
     {
-        if (other.tag == "Weapon")
-        {
-            damage = false;
-        }
+        damage = false;
     }
 
     private void ColliderReset()

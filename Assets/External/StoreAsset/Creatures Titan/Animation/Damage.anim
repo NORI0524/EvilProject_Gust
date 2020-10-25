@@ -31671,11 +31671,18 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.73333335
-    functionName: EndHit()
+  - time: 0.7
+    functionName: DamageReset
     data: 
     objectReferenceParameter: {fileID: 4489002025067551094, guid: 9f65b6aef05affd42819874a9341a793,
       type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.73333335
+    functionName: EndHit
+    data: 
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
