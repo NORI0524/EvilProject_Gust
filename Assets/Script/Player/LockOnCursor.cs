@@ -31,6 +31,7 @@ public class LockOnCursor : MonoBehaviour
             if (LockonTarget != null)
             {
                 Debug.Log(LockonTarget.position);
+                Debug.Log(LockonTarget.name);
                 Vector3 targetPoint = Camera.main.WorldToScreenPoint(LockonTarget.position);
                 rectTransform.position = targetPoint;
             }

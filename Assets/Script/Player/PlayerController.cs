@@ -43,7 +43,7 @@ public class PlayerController : BaseComponent
             Debug.LogError("animatorがありません。");
         }
 
-        //weaponManager = GameObject.Find("WeaponManager").GetComponent<WeaponManager>();
+        weaponManager = GameObject.Find("WeaponManager").GetComponent<WeaponManager>();
         weaponSummonSys = GetComponent<WeaponSummonSystem>();
 
         //summonWeapon = GameObject.Find("SummonWeapon");
@@ -74,14 +74,12 @@ public class PlayerController : BaseComponent
         //通常攻撃（左クリック）
         if (GameKeyConfig.Attack_Light.GetKeyDown())
         {
-            //StartCoroutine(weaponManager.ChangeWeapon(WeaponType.DARK_SWORD));
             animator.SetTrigger("Attack");
         }
 
         //派生攻撃（右クリック）
         if (GameKeyConfig.Attack_Strong.GetKeyDown())
         {
-            //StartCoroutine(weaponManager.ChangeWeapon(WeaponType.HAMMER));
             animator.SetTrigger("Attack2nd");
         }
     }
