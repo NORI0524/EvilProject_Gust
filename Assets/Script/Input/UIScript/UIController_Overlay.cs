@@ -5,9 +5,9 @@ using UnityEngine;
 public class UIController_Overlay : MonoBehaviour
 {
     [SerializeField]
-    private Canvas canvas;
+    private Canvas canvas;     // どのCanvasを使っているか
     [SerializeField]
-    private Transform targetTfm;
+    private Transform target;  
 
     private RectTransform canvasRectTfm;
     private RectTransform myRectTfm;
@@ -29,12 +29,12 @@ public class UIController_Overlay : MonoBehaviour
         {
 
             case RenderMode.ScreenSpaceOverlay:
-                myRectTfm.position = RectTransformUtility.WorldToScreenPoint(Camera.main, targetTfm.position+ offset);
+                myRectTfm.position = RectTransformUtility.WorldToScreenPoint(Camera.main, target.position+ offset);
 
                 break;
 
             case RenderMode.ScreenSpaceCamera:
-                Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(Camera.main, targetTfm.position + offset);
+                Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(Camera.main, target.position + offset);
                 RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTfm, screenPos, Camera.main, out pos);
                 myRectTfm.localPosition = pos;
                 break;
