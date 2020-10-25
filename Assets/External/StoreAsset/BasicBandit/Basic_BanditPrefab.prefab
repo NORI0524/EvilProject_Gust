@@ -391,6 +391,7 @@ Transform:
   - {fileID: 4000013031264250}
   - {fileID: 4000010647601270}
   - {fileID: 4000011838858692}
+  - {fileID: 72536056778634393}
   m_Father: {fileID: 4000010349493738}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2769,3 +2770,33 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &7496734384801985006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 72536056778634393}
+  m_Layer: 0
+  m_Name: WeponObject
+  m_TagString: Weapon
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &72536056778634393
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7496734384801985006}
+  m_LocalRotation: {x: 0.17815155, y: -0.08497092, z: 0.5891471, w: 0.78354824}
+  m_LocalPosition: {x: 0.324, y: 0.031, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4000012991189820}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 22.29, y: 4.7590003, z: 74.817}

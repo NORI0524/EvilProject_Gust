@@ -11,11 +11,13 @@ using UnityEngine.XR;
 public enum WeaponType
 {
     None,
-    DARK_SWORD,
+    SWORD,
+    HEAVYSWORD,
     AXE,
     HAMMER,
     MACE,
-    SKULLAXE
+    SKULLAXE,
+    SPEAR
 }
 
 public class WeaponManager : MonoBehaviour
@@ -74,16 +76,16 @@ public class WeaponManager : MonoBehaviour
 
             switch (weaponPref.name)
             {
-                case "dark_sword":
-                    type = WeaponType.DARK_SWORD;
+                case "Sword":
+                    type = WeaponType.SWORD;
                     break;
 
-                case "axe":
-                    type = WeaponType.AXE;
+                case "HeavySword":
+                    type = WeaponType.HEAVYSWORD;
                     break;
 
-                case "hammer":
-                    type = WeaponType.HAMMER;
+                case "Spear":
+                    type = WeaponType.SPEAR;
                     break;
 
                 case "mace":
@@ -103,13 +105,14 @@ public class WeaponManager : MonoBehaviour
                 if (weaponDict.ContainsKey(type)) continue;
 
                 var weaponObj = GameObject.Instantiate(weaponPref);
+                weaponObj.SetParent(parentObject);
                 weaponObj.SetActive(false);
                 weaponDict.Add(type, weaponObj);
             }
         }
 
         //初期状態
-        currentWeapon = weaponDict[WeaponType.DARK_SWORD];
+        currentWeapon = weaponDict[WeaponType.SWORD];
         currentWeapon.SetActive(false);
         currentWeaponType = WeaponType.None;
 
@@ -165,7 +168,7 @@ public class WeaponManager : MonoBehaviour
             currentWeaponType = weapontype;
 
             // 新しい武器の位置を変更する
-            currentWeapon.SetParent(parentObject);
+            //currentWeapon.SetParent(parentObject);
 
             // 新しい武器を有効化する
             currentWeapon.SetActive(true);
@@ -203,12 +206,15 @@ public class WeaponManager : MonoBehaviour
         for (float disAmount = 0f; disAmount <= 1;)
         {
             // 子オブジェクト（モデルオブジェクト）を取得
-            rend = _weapon.transform.GetChild(0).gameObject.GetComponent<Renderer>();
+            rend = _weapon.transform.GetChild(0).GetComponent<Renderer>();
 
             disAmount += Time.deltaTime * DissolveSpeed;
 
             // マテリアルにセット
-            rend.material.SetFloat("_DisAmount", disAmount);
+            foreach (var material in rend.materials)
+            {
+                material.SetFloat("_DisAmount", disAmount);
+            }
 
             yield return null;
         }
@@ -220,12 +226,15 @@ public class WeaponManager : MonoBehaviour
         for (float disAmount = 1f; disAmount >=0;)
         {
             // 子オブジェクト（モデルオブジェクト）を取得
-            rend = _weapon.transform.GetChild(0).gameObject.GetComponent<Renderer>();
+            rend = _weapon.transform.GetChild(0).GetComponent<Renderer>();
 
             disAmount -= Time.deltaTime * DissolveSpeed;
 
             // マテリアルにセット
-            rend.material.SetFloat("_DisAmount", disAmount);
+            foreach (var material in rend.materials)
+            {
+                material.SetFloat("_DisAmount", disAmount);
+            }
 
             yield return null;
         }

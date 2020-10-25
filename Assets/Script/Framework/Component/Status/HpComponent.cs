@@ -5,8 +5,13 @@ public class HpState
 {
     public static readonly uint None = 0;
     public static readonly uint Dead = 1 << 0;
+    public static readonly uint Damage = 1 << 1;
 }
 
+/// <summary>
+/// HPのコンポーネント
+/// （耐久値のあるオブジェクト全てに付与させる）
+/// </summary>
 public class HpComponent : BaseStatusComponent
 {
     [SerializeField,Tooltip("無敵の有効/無効")] private bool isNoDamage = false;
@@ -34,6 +39,7 @@ public class HpComponent : BaseStatusComponent
         if (isNoDamage) return;
 
         SubValue(damage);
+        state.AddBit(HpState.Damage);
         if(Value <= 0)
         {
             state.AddBit(HpState.Dead);
@@ -48,6 +54,18 @@ public class HpComponent : BaseStatusComponent
     public bool IsDead()
     {
         return state.CheckBit(HpState.Dead);
+    }
+
+    public bool IsDamageTrigger()
+    {
+        var isDamage = state.CheckBit(HpState.Damage);
+
+        if (isDamage)
+        {
+            state.FoldBit(HpState.Damage);
+        }
+
+        return isDamage;
     }
 
     public void Restart()
