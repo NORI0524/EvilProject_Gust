@@ -76,7 +76,7 @@ public class WeaponManager : MonoBehaviour
 
             switch (weaponPref.name)
             {
-                case "Sword":
+                case "sword_origin":
                     type = WeaponType.SWORD;
                     break;
 
