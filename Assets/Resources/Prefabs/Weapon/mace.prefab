@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 400000}
   - component: {fileID: 3609358939082980010}
   - component: {fileID: 597025400229564287}
+  - component: {fileID: 5366209606114507477}
+  - component: {fileID: 8627387627654196625}
   m_Layer: 0
   m_Name: mace
   m_TagString: Weapon
@@ -61,6 +63,52 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.34638426
   m_Center: {x: 0, y: 1.0114534, z: 0}
+--- !u!114 &5366209606114507477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcc052cab61a5ca4188573b9699dd13a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8627387627654196625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 013b407c328d532479b278b991dc61ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <enterFunction>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5366209606114507477}
+        m_MethodName: Add
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  <stayFunction>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <exitFunction>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  gameKey: 0
+  tagList: []
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0

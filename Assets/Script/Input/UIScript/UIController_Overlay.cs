@@ -7,7 +7,7 @@ public class UIController_Overlay : MonoBehaviour
     [SerializeField]
     private Canvas canvas;     // どのCanvasを使っているか
     [SerializeField]
-    private Transform target;  
+    private Transform target;
 
     private RectTransform canvasRectTfm;
     private RectTransform myRectTfm;

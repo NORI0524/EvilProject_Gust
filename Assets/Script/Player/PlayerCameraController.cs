@@ -22,8 +22,12 @@ public class PlayerCameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        updateAngle(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        updateDistance(Input.GetAxis("Mouse ScrollWheel"));
+        //マウスのミドルボタンで変更（デバッグのため）
+        if(Input.GetKey(KeyCode.Mouse2))
+        {
+            updateAngle(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+            updateDistance(Input.GetAxis("Mouse ScrollWheel"));
+        }
 
         var lookAtPos = target.transform.position + offset;
         updatePosition(lookAtPos);

@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4696488503743962243}
   - component: {fileID: 4968860818324660948}
   - component: {fileID: 2849700865873844856}
+  - component: {fileID: 418902212580648420}
+  - component: {fileID: 4793778212265008449}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Weapon
@@ -41,7 +43,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7297565230111170155}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.2
   m_Height: 0.9147067
@@ -62,6 +64,53 @@ MonoBehaviour:
   maxValue: 100
   damageValue: 10
   criticalRate: 0
+--- !u!114 &418902212580648420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7297565230111170155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcc052cab61a5ca4188573b9699dd13a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4793778212265008449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7297565230111170155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 013b407c328d532479b278b991dc61ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <enterFunction>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 418902212580648420}
+        m_MethodName: Add
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  <stayFunction>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <exitFunction>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  gameKey: 0
+  tagList:
+  - Enemy
 --- !u!1001 &7111235788925476816
 PrefabInstance:
   m_ObjectHideFlags: 0
