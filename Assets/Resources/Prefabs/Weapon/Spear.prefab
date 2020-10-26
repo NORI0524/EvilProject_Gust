@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5559788870188712592}
   - component: {fileID: 1924583042374631312}
   - component: {fileID: 5317333893341248548}
+  - component: {fileID: 8936265013226165578}
+  - component: {fileID: 4109229247144988667}
   m_Layer: 0
   m_Name: Spear
   m_TagString: Weapon
@@ -56,11 +58,58 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 893124431597647270}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.44
   m_Center: {x: 0, y: 1.3767452, z: 0}
+--- !u!114 &8936265013226165578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893124431597647270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 013b407c328d532479b278b991dc61ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <enterFunction>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4109229247144988667}
+        m_MethodName: Add
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  <stayFunction>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <exitFunction>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  gameKey: 0
+  tagList:
+  - Enemy
+--- !u!114 &4109229247144988667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893124431597647270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcc052cab61a5ca4188573b9699dd13a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6209270102029876517
 PrefabInstance:
   m_ObjectHideFlags: 0
