@@ -134,7 +134,7 @@ public class WeaponManager : MonoBehaviour
         if(currentWeaponType != WeaponType.None)
         {
             // ブフラグをリセット
-            isDissolve = false;
+            //isDissolve = false;
 
             // ディゾルブをかける
             StartCoroutine(Dissolve(currentWeapon));
@@ -174,7 +174,7 @@ public class WeaponManager : MonoBehaviour
             currentWeapon.SetActive(true);
 
             // フラグをリセット
-            isDissolve = false;
+            //isDissolve = false;
 
             // ディゾルブを逆再生
             StartCoroutine(ReturnDissolve(currentWeapon));
@@ -203,6 +203,7 @@ public class WeaponManager : MonoBehaviour
     // ディゾルブ処理
     public IEnumerator Dissolve(GameObject _weapon)
     {
+        isDissolve = false;
         for (float disAmount = 0f; disAmount <= 1;)
         {
             // 子オブジェクト（モデルオブジェクト）を取得
@@ -223,6 +224,7 @@ public class WeaponManager : MonoBehaviour
 
     public IEnumerator ReturnDissolve(GameObject _weapon)
     {
+        isDissolve = false;
         for (float disAmount = 1f; disAmount >=0;)
         {
             // 子オブジェクト（モデルオブジェクト）を取得

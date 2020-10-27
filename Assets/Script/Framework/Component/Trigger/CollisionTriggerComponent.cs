@@ -27,26 +27,38 @@ public class CollisionTriggerComponent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        enterFunction.Invoke(other.gameObject);
+        foreach(var targetTag in tagList)
+        {
+            if (!other.CompareTag(targetTag)) continue;
+            enterFunction.Invoke(other.gameObject);
+        }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if(gameKey == GameKeyConfig.None)
+        foreach (var targetTag in tagList)
         {
-            stayFunction.Invoke(other.gameObject);
-        }
-        else
-        {
-            if (gameKey.GetKeyDown())
+            if (!other.CompareTag(targetTag)) continue;
+            if (gameKey == GameKeyConfig.None)
             {
                 stayFunction.Invoke(other.gameObject);
+            }
+            else
+            {
+                if (gameKey.GetKeyDown())
+                {
+                    stayFunction.Invoke(other.gameObject);
+                }
             }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        exitFunction.Invoke(other.gameObject);
+        foreach (var targetTag in tagList)
+        {
+            if (!other.CompareTag(targetTag)) continue;
+            exitFunction.Invoke(other.gameObject);
+        }
     }
 }
