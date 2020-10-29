@@ -5,55 +5,51 @@ using UnityEngine;
 public class DissolveComponent : MonoBehaviour
 {
 
-    [SerializeField] float Speed = 1.0f;
-    [SerializeField] float ReturnSpeed = 1.0f;
+    [SerializeField, Range(0.0f, 10.0f)] float Speed = 1.0f;
+    [SerializeField, Range(0.0f, 10.0f)] float ReturnSpeed = 1.0f;
 
-    private Renderer renderer = null;
-    private bool isFinish = false;
-
-    private void Start()
+    private void Awake()
     {
         // 子オブジェクト（モデルオブジェクト）を取得
-        renderer = transform.GetChild(0).GetComponent<Renderer>();
+        Renderer = transform.GetChild(0).GetComponent<Renderer>();
     }
 
-    public bool IsFinish
-    {
-        get { return isFinish; }
-    }
+    public bool IsFinish { get; private set; } = false;
+
+    public Renderer Renderer { get; private set; } = null;
 
     public IEnumerator Dissolve()
     {
-        isFinish = false;
+        IsFinish = false;
         for (float disAmount = 0f; disAmount <= 1;)
         {
             disAmount += Time.deltaTime * Speed;
 
             // マテリアルにセット
-            foreach (var material in renderer.materials)
+            foreach (var material in Renderer.materials)
             {
                 material.SetFloat("_DisAmount", disAmount);
             }
 
             yield return null;
         }
-        isFinish = true;
+        IsFinish = true;
     }
 
-    public IEnumerator ReturnDissolve(GameObject _weapon)
+    public IEnumerator ReturnDissolve()
     {
         for (float disAmount = 1f; disAmount >= 0;)
         {
             disAmount -= Time.deltaTime * ReturnSpeed;
 
             // マテリアルにセット
-            foreach (var material in renderer.materials)
+            foreach (var material in Renderer.materials)
             {
                 material.SetFloat("_DisAmount", disAmount);
             }
 
             yield return null;
         }
-        isFinish = true;
+        IsFinish = true;
     }
 }
