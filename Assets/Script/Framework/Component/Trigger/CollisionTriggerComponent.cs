@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Dynamic;
+using UniJSON;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -27,18 +28,27 @@ public class CollisionTriggerComponent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        foreach(var targetTag in tagList)
+        if (enterFunction.GetPersistentEventCount() == 0) return;
+        if(tagList.Count == 0)
         {
-            if (!other.CompareTag(targetTag)) continue;
             enterFunction.Invoke(other.gameObject);
+        }
+        else
+        {
+            foreach (var targetTag in tagList)
+            {
+                if (!other.CompareTag(targetTag)) continue;
+                enterFunction.Invoke(other.gameObject);
+            }
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        foreach (var targetTag in tagList)
+        if (stayFunction.GetPersistentEventCount() == 0) return;
+
+        if(tagList.Count == 0)
         {
-            if (!other.CompareTag(targetTag)) continue;
             if (gameKey == GameKeyConfig.None)
             {
                 stayFunction.Invoke(other.gameObject);
@@ -51,14 +61,40 @@ public class CollisionTriggerComponent : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            foreach (var targetTag in tagList)
+            {
+                if (gameKey == GameKeyConfig.None)
+                {
+                    stayFunction.Invoke(other.gameObject);
+                }
+                else
+                {
+                    if (gameKey.GetKeyDown())
+                    {
+                        stayFunction.Invoke(other.gameObject);
+                    }
+                }
+            }
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        foreach (var targetTag in tagList)
+        if (exitFunction.GetPersistentEventCount() == 0) return;
+
+        if(tagList.Count == 0)
         {
-            if (!other.CompareTag(targetTag)) continue;
             exitFunction.Invoke(other.gameObject);
+        }
+        else
+        {
+            foreach (var targetTag in tagList)
+            {
+                if (!other.CompareTag(targetTag)) continue;
+                exitFunction.Invoke(other.gameObject);
+            }
         }
     }
 }
