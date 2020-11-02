@@ -13,7 +13,11 @@ GameObject:
   - component: {fileID: 2849700865873844856}
   - component: {fileID: 418902212580648420}
   - component: {fileID: 4793778212265008449}
+<<<<<<< HEAD
+  - component: {fileID: -4771370375979212602}
+=======
   - component: {fileID: 4518345850514081151}
+>>>>>>> bd3a043de76b8924ea4c229010f12ca358ef71c0
   m_Layer: 0
   m_Name: sword_origin
   m_TagString: Weapon
@@ -112,7 +116,11 @@ MonoBehaviour:
   gameKey: 0
   tagList:
   - Enemy
+<<<<<<< HEAD
+--- !u!114 &-4771370375979212602
+=======
 --- !u!114 &4518345850514081151
+>>>>>>> bd3a043de76b8924ea4c229010f12ca358ef71c0
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,6 +129,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7297565230111170155}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
+  m_Script: {fileID: 11500000, guid: b648876ac0ab63c47b5a34f09ab25a9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePrefab: {fileID: 0}
+=======
   m_Script: {fileID: 11500000, guid: 47a1276eff269174ab88ce9b8ca609eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -195,6 +209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37d6e77be2babd64ba4c2c1fdc5fa7cc, type: 3}
+>>>>>>> bd3a043de76b8924ea4c229010f12ca358ef71c0
 --- !u!1001 &7111235788925476816
 PrefabInstance:
   m_ObjectHideFlags: 0
