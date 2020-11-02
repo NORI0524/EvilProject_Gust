@@ -30,6 +30,7 @@ public class WeaponManager : MonoBehaviour
 
     //武器管理リスト
     private Dictionary<WeaponType, GameObject> weaponDict = null;
+    private Dictionary<WeaponType, DissolveComponent> dissolveDict = null;
 
     // 現在持っている武器
     private GameObject currentWeapon = null;
@@ -44,12 +45,6 @@ public class WeaponManager : MonoBehaviour
     //現在持っている武器のタイプ
     private WeaponType currentWeaponType = WeaponType.None;
 
-
-    // ディゾルブ用のフラグ
-    bool isDissolve = false;
-    private Renderer rend;
-    [SerializeField] float DissolveSpeed = 1.0f;
-
     private void Start()
     {
         //親オブジェクトが無ければ
@@ -60,6 +55,7 @@ public class WeaponManager : MonoBehaviour
 
         //武器管理リストを生成
         weaponDict = new Dictionary<WeaponType, GameObject>();
+        dissolveDict = new Dictionary<WeaponType, DissolveComponent>();
 
         //------------------------------------
         // 使用する武器をインスタンス化し登録
@@ -108,6 +104,13 @@ public class WeaponManager : MonoBehaviour
                 weaponObj.SetParent(parentObject);
                 weaponObj.SetActive(false);
                 weaponDict.Add(type, weaponObj);
+
+                //武器ごとのディゾルブのデータを取得
+                var dissolve = weaponObj.GetComponent<DissolveComponent>();
+                if(dissolve != null)
+                {
+                    dissolveDict.Add(type, dissolve);
+                }
             }
         }
 
@@ -133,11 +136,9 @@ public class WeaponManager : MonoBehaviour
 
         if(currentWeaponType != WeaponType.None)
         {
-            // ブフラグをリセット
-            //isDissolve = false;
-
+            var currentDissolve = dissolveDict[currentWeaponType];
             // ディゾルブをかける
-            StartCoroutine(Dissolve(currentWeapon));
+            StartCoroutine(currentDissolve.Dissolve());
 
             //if(weaponSummonSys.IsSummon())
             //{
@@ -145,7 +146,7 @@ public class WeaponManager : MonoBehaviour
             //}
 
             // ディゾルブが終わるまで待機
-            while (!isDissolve)
+            while (!currentDissolve.IsFinish)
             {
                 yield return new WaitForEndOfFrame();
             }
@@ -173,11 +174,10 @@ public class WeaponManager : MonoBehaviour
             // 新しい武器を有効化する
             currentWeapon.SetActive(true);
 
-            // フラグをリセット
-            //isDissolve = false;
+            var currentDissolve = dissolveDict[currentWeaponType];
 
             // ディゾルブを逆再生
-            StartCoroutine(ReturnDissolve(currentWeapon));
+            StartCoroutine(currentDissolve.ReturnDissolve());
 
             //if (weaponSummonSys.IsSummon())
             //{
@@ -187,59 +187,10 @@ public class WeaponManager : MonoBehaviour
             //}
 
             // ディゾルブが終わるまで待機
-            while (!isDissolve)
+            while (!currentDissolve.IsFinish)
             {
                 yield return new WaitForEndOfFrame();
             }
         }
-
-        if(rend != null)
-        {
-            // マテリアルリセット
-            rend.material.SetFloat("_DisAmount", 0f);
-        }
-    }
-
-    // ディゾルブ処理
-    public IEnumerator Dissolve(GameObject _weapon)
-    {
-        isDissolve = false;
-        for (float disAmount = 0f; disAmount <= 1;)
-        {
-            // 子オブジェクト（モデルオブジェクト）を取得
-            rend = _weapon.transform.GetChild(0).GetComponent<Renderer>();
-
-            disAmount += Time.deltaTime * DissolveSpeed;
-
-            // マテリアルにセット
-            foreach (var material in rend.materials)
-            {
-                material.SetFloat("_DisAmount", disAmount);
-            }
-
-            yield return null;
-        }
-        isDissolve = true;
-    }
-
-    public IEnumerator ReturnDissolve(GameObject _weapon)
-    {
-        isDissolve = false;
-        for (float disAmount = 1f; disAmount >=0;)
-        {
-            // 子オブジェクト（モデルオブジェクト）を取得
-            rend = _weapon.transform.GetChild(0).GetComponent<Renderer>();
-
-            disAmount -= Time.deltaTime * DissolveSpeed;
-
-            // マテリアルにセット
-            foreach (var material in rend.materials)
-            {
-                material.SetFloat("_DisAmount", disAmount);
-            }
-
-            yield return null;
-        }
-        isDissolve = true;
     }
 }
