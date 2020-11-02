@@ -1448,7 +1448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slowAnimSpeed: 0.1
-  slowTime: 1
+  slowTime: 0.3
 --- !u!1 &1345530821
 GameObject:
   m_ObjectHideFlags: 0

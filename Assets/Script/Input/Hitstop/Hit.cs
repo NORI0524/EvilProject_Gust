@@ -9,7 +9,6 @@ public class Hit : MonoBehaviour
     [Header("エフェクト")]
     [SerializeField] private GameObject damagePrefab = null;
     HitStopSlowAnim slowAnim;
-    bool flg = true;
     void Start()
     {
        slowAnim = new HitStopSlowAnim();
