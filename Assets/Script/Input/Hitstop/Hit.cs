@@ -1,17 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-/*
- 
- */
+﻿using UnityEngine;
+
 public class Hit : MonoBehaviour
 {
     [Header("エフェクト")]
     [SerializeField] private GameObject damagePrefab = null;
-    HitStopSlowAnim slowAnim;
+    HitStopSlowAnim slowAnim = null;
     void Start()
     {
-       slowAnim = new HitStopSlowAnim();
+
     }
 
     void Update()
@@ -20,12 +16,16 @@ public class Hit : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Enemy") == false) return;
+
         if (damagePrefab != null)
         {
             Instantiate(damagePrefab, other.transform.position, Quaternion.identity);
         }
 
         slowAnim = other.GetComponent<HitStopSlowAnim>();
+        if (slowAnim == null) return;
+
         if (slowAnim.IsSlowDown() == false)
         {
             slowAnim.SlowDown();
