@@ -20,18 +20,73 @@ public class PlayerCameraController : MonoBehaviour
     [SerializeField] private float mouseYSensitivity = 5.0f;
     [SerializeField] private float scrollSensitivity = 5.0f;
 
+    private GameObject player = null;
+    private LockOnTargetDetector lockOnTargetDetector = null;
+    private GameObject lockOnTarget = null;
+
+    [SerializeField] protected LockOnCursor lockonCursor;
+
+
+    // デバッグ用
+    [SerializeField] private bool IsLockOn = false;
+
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        lockOnTargetDetector = player.GetComponentInChildren<LockOnTargetDetector>();
+
+    }
+
     void LateUpdate()
     {
-        //マウスのミドルボタンで変更（デバッグのため）
-        if(Input.GetKey(KeyCode.Mouse2))
+        if (IsLockOn == false)
         {
-            updateAngle(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-            updateDistance(Input.GetAxis("Mouse ScrollWheel"));
-        }
+            //マウスのミドルボタンで変更（デバッグのため）
+            if (Input.GetKey(KeyCode.Mouse2))
+            {
+                updateAngle(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+                updateDistance(Input.GetAxis("Mouse ScrollWheel"));
+            }
 
-        var lookAtPos = target.transform.position + offset;
-        updatePosition(lookAtPos);
-        transform.LookAt(lookAtPos);
+            var lookAtPos = target.transform.position + offset;
+            updatePosition(lookAtPos);
+            transform.LookAt(lookAtPos);
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Debug.Log(lockOnTarget);
+                if (lockOnTarget == null)
+                {
+                    // ロックオンターゲットを取得
+                    GameObject target = lockOnTargetDetector.GetTargetClosestPlayer();
+
+                    Debug.Log(target);
+                    if (target != null)
+                    {
+                        lockOnTarget = target;
+                        lockonCursor.OnlockonStart(target.transform);
+                    }
+                }
+                else
+                {
+                    // すでにターゲットが設定されていた場合は解除
+                    // 視点リセット
+                    transform.LookAt(player.transform.eulerAngles);
+
+                    lockOnTarget = null;
+                    lockonCursor.OnlockonEnd();
+                }
+            }
+
+            if (lockOnTarget)
+            {
+                lockOnTargetObject(lockOnTarget);
+            }
+
+        }
     }
 
     void updateAngle(float x, float y)
@@ -58,4 +113,10 @@ public class PlayerCameraController : MonoBehaviour
             lookAtPos.y + distance * Mathf.Cos(dp),
             lookAtPos.z + distance * Mathf.Sin(dp) * Mathf.Sin(da));
     }
+
+    private void lockOnTargetObject(GameObject target)
+    {
+        transform.LookAt(target.transform, Vector3.up);
+    }
+
 }
