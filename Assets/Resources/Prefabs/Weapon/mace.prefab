@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5366209606114507477}
   - component: {fileID: 8627387627654196625}
   - component: {fileID: 712034636120110509}
+  - component: {fileID: -2792486243597611839}
   m_Layer: 0
   m_Name: mace
   m_TagString: Weapon
@@ -124,6 +125,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 4
   ReturnSpeed: 4
+--- !u!114 &-2792486243597611839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468696e358882344ea16a6bfe4ee1e37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetObject: {fileID: 3113226837820075593, guid: d1432a49fbe4fd5488fc2d6dd180536b,
+    type: 3}
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0
