@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4793778212265008449}
   - component: {fileID: 4518345850514081151}
   - component: {fileID: 4794824590316972502}
+  - component: {fileID: -3571164902292290079}
   m_Layer: 0
   m_Name: sword_origin
   m_TagString: Weapon
@@ -140,6 +141,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damagePrefab: {fileID: 0}
+--- !u!114 &-3571164902292290079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7297565230111170155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468696e358882344ea16a6bfe4ee1e37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetObject: {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc,
+    type: 3}
 --- !u!1001 &7111235788925476816
 PrefabInstance:
   m_ObjectHideFlags: 0
