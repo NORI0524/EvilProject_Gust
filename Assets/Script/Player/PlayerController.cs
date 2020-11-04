@@ -23,6 +23,8 @@ public class PlayerController : BaseComponent
     Animator animator = null;
     Animator weaponAnimator = null;
 
+    CharaMoveComponent charaMove = null;
+
     WeaponSummonSystem weaponSummonSys = null;
 
     HpComponent hp = null;
@@ -43,6 +45,8 @@ public class PlayerController : BaseComponent
             Debug.LogError("animatorがありません。");
         }
 
+        charaMove = GetComponent<CharaMoveComponent>();
+
         weaponSummonSys = GetComponent<WeaponSummonSystem>();
 
         summonWeapon = GameObject.Find("SummonWeapon");
@@ -61,6 +65,7 @@ public class PlayerController : BaseComponent
         if(hp.IsDead())
         {
             animator.SetBool("Death", true);
+            charaMove.enabled = false;
         }
 
         //ダメージ付与

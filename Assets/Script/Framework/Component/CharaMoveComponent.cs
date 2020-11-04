@@ -31,6 +31,10 @@ public class CharaMoveComponent : MonoBehaviour
     void Start()
     {
         camera = Camera.main;
+        if(camera == null)
+        {
+            camera = GameObject.Find("MainCamera").GetComponent<Camera>();
+        }
         rigidbody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
     }

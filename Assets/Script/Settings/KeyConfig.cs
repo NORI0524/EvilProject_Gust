@@ -33,5 +33,4 @@ public enum GameKeyConfig
 public enum DebugKeyConfig
 {
     Restart = KeyCode.R,    //GameOver時にRでリスタート
-
 }
