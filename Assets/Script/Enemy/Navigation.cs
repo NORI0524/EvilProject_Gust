@@ -65,6 +65,8 @@ public class Navigation : MonoBehaviour
                 }
             }
         }
+
+        if (Input.GetKey(KeyCode.M)) agent.isStopped = true;
     }
 
     // 追尾

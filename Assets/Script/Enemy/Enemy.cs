@@ -119,7 +119,8 @@ public class Enemy : MonoBehaviour
 
                 nav.EndNav();
                 // アニメーション
-                animator.SetTrigger("Damage");
+                //animator.SetTrigger("Damage");
+                animator.Play("Damage");
                 ////Debug.Log(this.gameObject.name + " : " + hp.Hp);
                 nextState = EnemyAIState.DAMAGE;
                 ////Debug.Log("DAMAGE：武器に当たった");
@@ -132,8 +133,7 @@ public class Enemy : MonoBehaviour
                 animator.SetTrigger("Attack");
 
                 if (!armCollider) { Debug.Log("攻撃用コライダーが見つかりません"); }
-                //armCollider.enabled = true;
-                Invoke("ColliderReset", 3.0f);
+                Invoke("ColliderStart", 0.5f);
 
                 nextState = EnemyAIState.ATTACK;
                 ////Debug.Log("接近したので攻撃");
@@ -239,8 +239,15 @@ public class Enemy : MonoBehaviour
         damage = false;
     }
 
+    private void ColliderStart()
+    {
+        armCollider.enabled = true;
+        Debug.Log("攻撃開始");
+        Invoke("ColliderReset", 0.2f);
+    }
     private void ColliderReset()
     {
         armCollider.enabled = false;
+        Debug.Log("攻撃終了");
     }
 }

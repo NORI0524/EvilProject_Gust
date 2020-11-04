@@ -1516,6 +1516,7 @@ GameObject:
   - component: {fileID: 4489002025067551089}
   - component: {fileID: 4489002025067551099}
   - component: {fileID: 8718259289216357436}
+  - component: {fileID: 750869653741763364}
   m_Layer: 0
   m_Name: Titan
   m_TagString: Enemy
@@ -1572,7 +1573,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 1
-  m_Acceleration: 8
+  m_Acceleration: 1
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -1661,6 +1662,20 @@ MonoBehaviour:
   maxValue: 100
   isNoDamage: 0
   value: 0
+--- !u!114 &750869653741763364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4489002025067551094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4221472bdc09d7f44ae1793171e10ab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowAnimSpeed: 0.1
+  slowTime: 1
 --- !u!1 &4489002025067551096
 GameObject:
   m_ObjectHideFlags: 0
