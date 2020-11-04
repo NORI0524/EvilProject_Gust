@@ -14,6 +14,7 @@ public class ColliderHit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!other.CompareTag("Enemy")) return;
         var pos = this.transform.position;
         var hitPos = other.ClosestPointOnBounds(pos);
         var hitVec = pos - hitPos;
