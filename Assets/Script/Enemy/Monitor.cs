@@ -10,11 +10,11 @@ public class Monitor : MonoBehaviour
     private LayerMask obstacleLayer;    // 障害物を指定
     [SerializeField]
     private GameObject player;
-    [SerializeField]
+    //[SerializeField]
     private Navigation nav;
     [SerializeField]
     private SphereCollider searchArea;
-    [SerializeField]
+    //[SerializeField]
     private Enemy e_con;
 
     [SerializeField]
@@ -54,7 +54,7 @@ public class Monitor : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
