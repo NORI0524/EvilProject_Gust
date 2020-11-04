@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponCircle : MonoBehaviour
+public class Weaponcircle : MonoBehaviour
 {
     // 回転の速さ
     [SerializeField] float Angle = 2f;

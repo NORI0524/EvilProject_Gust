@@ -10,7 +10,7 @@ using UnityEngine;
  */
 
 
-public class WeaponDelete : MonoBehaviour
+public class Weapondelete : MonoBehaviour
 {
 
     bool TimeFlg = false;

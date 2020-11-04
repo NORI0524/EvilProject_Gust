@@ -13,13 +13,15 @@ public class NumDisplay : MonoBehaviour
     private int SORT_MAX = 30000;
     [SerializeField] GameObject NumObj = null;
     [SerializeField] int num = 3000;     //表示する値
+    GameObject obj = null;
 
     // Start is called before the first frame update
     void Start()
     {
-       
+        obj = transform.root.gameObject;
+
         //初期化
-        Init(num, new Vector3(0, 0, 0));
+        Init(num, obj.transform.position);
         
     }
 
@@ -27,7 +29,7 @@ public class NumDisplay : MonoBehaviour
     {
         //必要な情報を格納
         this.point = point;
-
+        this.transform.position = pos;
         //表示用のダメージを作る
         CreateNum(point);
 
@@ -59,11 +61,9 @@ public class NumDisplay : MonoBehaviour
             // prefabの生成
             GameObject numObj = Instantiate(NumObj) as GameObject;
 
-            Vector3 Position = Vector3.zero;
-
             //子供として登録
             numObj.transform.parent =transform;
-            numObj.transform.position = Position;
+            numObj.transform.position = obj.transform.position;
 
             //現在チェックしている桁の数字を割り出す
             int digNum = GetPointDigit(point, i + 1);

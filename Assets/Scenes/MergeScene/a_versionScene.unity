@@ -600,7 +600,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &503719166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -616,7 +616,7 @@ MonoBehaviour:
   obj_Prefab:
   - {fileID: 366978879}
   ObjDispMax: 2
-  currentNum: 0
+  currentNum: 1
   onceSpawnNum: 1
   spawnFrequency: 100
   spanSeconds: 10
@@ -1288,11 +1288,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4959745112369274902, guid: b8ead4026543e96448f7fbdd3db61a64,
         type: 3}
-      propertyPath: weaponList.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4959745112369274902, guid: b8ead4026543e96448f7fbdd3db61a64,
-        type: 3}
       propertyPath: parentObject
       value: 
       objectReference: {fileID: 105531016}
@@ -1526,7 +1521,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1232696555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1542,7 +1537,7 @@ MonoBehaviour:
   obj_Prefab:
   - {fileID: 1606233773}
   ObjDispMax: 2
-  currentNum: 0
+  currentNum: 1
   onceSpawnNum: 1
   spawnFrequency: 100
   spanSeconds: 20
@@ -1861,6 +1856,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: quin2_beach
+      objectReference: {fileID: 0}
+    - target: {fileID: 576177077094193741, guid: 590347cb8a635c246aa262d8b5c16332,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 576177077094193742, guid: 590347cb8a635c246aa262d8b5c16332,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 46
       objectReference: {fileID: 0}
     - target: {fileID: 576177077094291113, guid: 590347cb8a635c246aa262d8b5c16332,
         type: 3}
@@ -2196,6 +2201,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Titan
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489002025067551094, guid: 9f65b6aef05affd42819874a9341a793,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4489002025067551101, guid: 9f65b6aef05affd42819874a9341a793,
         type: 3}
