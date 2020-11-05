@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 418902212580648420}
   - component: {fileID: 4793778212265008449}
   - component: {fileID: 4518345850514081151}
-  - component: {fileID: 4794824590316972502}
   - component: {fileID: -3571164902292290079}
   m_Layer: 0
   m_Name: sword_origin
@@ -67,6 +66,7 @@ MonoBehaviour:
   maxValue: 100
   damageValue: 10
   criticalRate: 0
+  isHitStop: 1
 --- !u!114 &418902212580648420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,19 +128,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 3.5
   ReturnSpeed: 3.5
---- !u!114 &4794824590316972502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7297565230111170155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b648876ac0ab63c47b5a34f09ab25a9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damagePrefab: {fileID: 0}
 --- !u!114 &-3571164902292290079
 MonoBehaviour:
   m_ObjectHideFlags: 0
