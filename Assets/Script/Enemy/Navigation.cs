@@ -32,7 +32,7 @@ public class Navigation : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         e_con = GetComponent<Enemy>();
-        
+
         if (Target.Length > 0) { haveTarget = true; } else { haveTarget = false; }
     }
 
@@ -45,7 +45,7 @@ public class Navigation : MonoBehaviour
             {
                 e_con.EndDiscover();
             }
-            if (distance <= approarchDist) { e_con.Attack(); EndNav(); } else { e_con.nAttack(); }
+            //if (distance <= approarchDist) { e_con.Attack(); EndNav(); } else { e_con.nAttack(); }
         }
 
         if (haveTarget)
@@ -53,8 +53,8 @@ public class Navigation : MonoBehaviour
             if (moving)
             {
                 // 目的地にたどり着いたら次の目的地を設定する
-                if (this.transform.position.x == Target[targetCount].transform.position.x
-                    && this.transform.position.z == Target[targetCount].transform.position.z)
+                if (Mathf.Abs(this.transform.position.x - Target[targetCount].transform.position.x) < 5
+                    && Mathf.Abs(this.transform.position.z - Target[targetCount].transform.position.z) < 5)
                 {
                     targetCount++;
                     if (targetCount > Target.Length - 1)
@@ -65,6 +65,8 @@ public class Navigation : MonoBehaviour
                 }
             }
         }
+
+        if (Input.GetKey(KeyCode.M)) agent.isStopped = true;
     }
 
     // 追尾

@@ -1551,7 +1551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxValue: 100
-  damageValue: 100
+  damageValue: 1
   criticalRate: 0
 --- !u!114 &1531511358
 MonoBehaviour:
