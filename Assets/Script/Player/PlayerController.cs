@@ -49,8 +49,8 @@ public class PlayerController : BaseComponent
 
         weaponSummonSys = GetComponent<WeaponSummonSystem>();
 
-        //summonWeapon = GameObject.Find("SummonWeapon");
-        //weaponAnimator = summonWeapon.GetComponentInChildren<Animator>();
+        summonWeapon = GameObject.Find("SummonWeapon");
+        weaponAnimator = summonWeapon.GetComponentInChildren<Animator>();
 
         hp = GetComponent<HpComponent>();
     }
@@ -58,11 +58,11 @@ public class PlayerController : BaseComponent
     // Update is called once per frame
     void Update()
     {
-        //var isSummon = weaponSummonSys.IsSummon();
-        //summonWeapon.SetActive(isSummon);
+        var isSummon = weaponSummonSys.IsSummon();
+        summonWeapon.SetActive(isSummon);
 
         //死亡
-        if(hp.IsDead())
+        if (hp.IsDead())
         {
             animator.SetBool("Death", true);
             charaMove.enabled = false;
@@ -88,20 +88,20 @@ public class PlayerController : BaseComponent
         {
             animator.SetTrigger("Attack");
 
-            //if(isSummon)
-            //{
-            //    weaponAnimator.SetTrigger("Attack");
-            //}
+            if (isSummon)
+            {
+                weaponAnimator.SetTrigger("Attack");
+            }
         }
 
         //派生攻撃（右クリック）
         if (GameKeyConfig.Attack_Strong.GetKeyDown())
         {
             animator.SetTrigger("Attack2nd");
-            //if(isSummon)
-            //{
-            //    weaponAnimator.SetTrigger("Attack");
-            //}
+            if (isSummon)
+            {
+                weaponAnimator.SetTrigger("Attack");
+            }
         }
 
         //派生攻撃２（同時クリック）
