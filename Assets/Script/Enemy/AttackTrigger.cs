@@ -5,7 +5,6 @@ using UnityEditor;
 
 public class AttackTrigger : MonoBehaviour
 {
-    [SerializeField]
     private SphereCollider searchArea;
 
     private Enemy e_con;
@@ -15,6 +14,7 @@ public class AttackTrigger : MonoBehaviour
     private void Start()
     {
         e_con = transform.parent.GetComponent<Enemy>();
+        searchArea = this.gameObject.GetComponent<SphereCollider>();
     }
 
     private void OnTriggerStay(Collider other)
