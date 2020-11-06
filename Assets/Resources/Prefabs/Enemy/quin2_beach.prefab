@@ -6607,6 +6607,7 @@ GameObject:
   - component: {fileID: -1075479690958250892}
   - component: {fileID: 576177077094193744}
   - component: {fileID: 576177077131421218}
+  - component: {fileID: 4853245774486102291}
   m_Layer: 0
   m_Name: quin2_beach
   m_TagString: Enemy
@@ -6691,7 +6692,6 @@ MonoBehaviour:
   moveSpeed: 2
   Target:
   - {fileID: 0}
-  Player: {fileID: 0}
   dist: 7
 --- !u!114 &576177077094291112
 MonoBehaviour:
@@ -6768,6 +6768,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slowAnimSpeed: 0.1
   slowTime: 1
+--- !u!114 &4853245774486102291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576177077094193741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc717e7dcf3dea446b5cfa659cf61a49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &576177077094193743
 GameObject:
   m_ObjectHideFlags: 0
@@ -11234,7 +11246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxValue: 100
   damageValue: 10
-  criticalRate: 0
+  isHitStop: 0
 --- !u!135 &8179749861830471260
 SphereCollider:
   m_ObjectHideFlags: 0
