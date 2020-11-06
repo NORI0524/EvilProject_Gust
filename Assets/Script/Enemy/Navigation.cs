@@ -15,7 +15,7 @@ public class Navigation : MonoBehaviour
     private int targetCount = 0; // 現在の目的地番号
 
     //CHASE
-    [SerializeField] Transform Player = default;    // プレイヤーの座標
+    Transform player = default;    // プレイヤーの座標
     [SerializeField] float dist = 7.0f;    // 索敵範囲(範囲外に出たら追尾終了)
     float approarchDist = 2.0f; // この距離まで近づいたら止まる
 
@@ -32,6 +32,7 @@ public class Navigation : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         e_con = GetComponent<Enemy>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
 
         if (Target.Length > 0) { haveTarget = true; } else { haveTarget = false; }
     }
@@ -40,7 +41,7 @@ public class Navigation : MonoBehaviour
     {
         if (tracking)
         {
-            float distance = Vector3.Distance(this.transform.position, Player.transform.position);
+            float distance = Vector3.Distance(this.transform.position, player.transform.position);
             if (distance >= dist)
             {
                 e_con.EndDiscover();
@@ -80,7 +81,7 @@ public class Navigation : MonoBehaviour
         if (agent.pathStatus != NavMeshPathStatus.PathInvalid)
         {
             // ターゲットの座標を設定
-            agent.SetDestination(Player.transform.position);
+            agent.SetDestination(player.transform.position);
         }
     }
 

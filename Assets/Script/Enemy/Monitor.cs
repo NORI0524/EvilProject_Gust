@@ -8,13 +8,9 @@ public class Monitor : MonoBehaviour
 {
     [SerializeField]
     private LayerMask obstacleLayer;    // 障害物を指定
-    [SerializeField]
     private GameObject player;
-    //[SerializeField]
     private Navigation nav;
-    [SerializeField]
     private SphereCollider searchArea;
-    //[SerializeField]
     private Enemy e_con;
 
     [SerializeField]
@@ -24,6 +20,8 @@ public class Monitor : MonoBehaviour
     {
         nav = transform.parent.GetComponent<Navigation>();
         e_con = transform.parent.GetComponent<Enemy>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        searchArea = this.gameObject.GetComponent<SphereCollider>();
     }
 
     private void Update()
