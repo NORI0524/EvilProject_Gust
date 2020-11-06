@@ -120,10 +120,10 @@ public class Enemy : MonoBehaviour
                 nav.EndNav();
                 // アニメーション
                 //animator.SetTrigger("Damage");
-                animator.Play("Damage");
-                ////Debug.Log(this.gameObject.name + " : " + hp.Hp);
+                Debug.Log(this.gameObject.name + " : " + hp.Hp);
                 nextState = EnemyAIState.DAMAGE;
                 ////Debug.Log("DAMAGE：武器に当たった");
+                animator.Play("Damage");
             }
             // 攻撃
             else if (attack && endAttackAnimation && endDamageAnimation)
@@ -192,13 +192,15 @@ public class Enemy : MonoBehaviour
     public void StartHit()
     {
         endDamageAnimation = false;
-        HitCollider.enabled = false;
+        //HitCollider.enabled = false;
+        Invoke("EndHit",0.3f);
     }
 
     public void EndHit()
     {
         endDamageAnimation = true;
         HitCollider.enabled = true;
+        damage = false;
     }
 
     public void StartAttack()
@@ -232,11 +234,6 @@ public class Enemy : MonoBehaviour
         {
             damage = true;
         }
-    }
-
-    public void DamageReset()
-    {
-        damage = false;
     }
 
     private void ColliderStart()
