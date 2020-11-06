@@ -20,11 +20,13 @@ public class LockOnCamera : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
+            Debug.Log(lockOnTarget);
             if (lockOnTarget == null)
             {
                 // ロックオンターゲットを取得
                 GameObject target = lockOnTargetDetector.GetTargetClosestPlayer();
 
+                Debug.Log(target);
                 if (target != null)
                 {
                     lockOnTarget = target;

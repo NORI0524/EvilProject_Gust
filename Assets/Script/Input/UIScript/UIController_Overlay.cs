@@ -46,4 +46,20 @@ public class UIController_Overlay : MonoBehaviour
         }
 
     }
+
+    public Canvas targetCanvas
+    {
+        set
+        {
+            canvas = value;
+        }
+    }
+
+    public Transform targetTransform
+    {
+        set
+        {
+            target = value;
+        }
+    }
 }
