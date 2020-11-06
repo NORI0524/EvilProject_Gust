@@ -45,4 +45,12 @@ public class BaseGauge : MonoBehaviour
             fillImage.fillAmount = (float)statusPoint.Value / statusPoint.MaxValue;
         }
     }
+
+    public GameObject targetObject
+    {
+        set
+        {
+            target = value;
+        }
+    }
 }
