@@ -64,8 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxValue: 100
-  damageValue: 10
-  criticalRate: 0
+  damageValue: 5
   isHitStop: 1
 --- !u!114 &418902212580648420
 MonoBehaviour:
