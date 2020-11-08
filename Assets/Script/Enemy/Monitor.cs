@@ -6,22 +6,18 @@ using UnityEditor;
 [RequireComponent(typeof(Collider))]
 public class Monitor : MonoBehaviour
 {
-    [SerializeField]
-    private LayerMask obstacleLayer;    // 障害物を指定
+    [SerializeField] private LayerMask obstacleLayer;    // 障害物を指定
     private GameObject player;
     private Navigation nav;
-    private SphereCollider searchArea;
     private Enemy e_con;
 
-    [SerializeField]
-    private float searchAngle = 130f;
+    [SerializeField] private float searchAngle = 130f;
 
     public void Start()
     {
         nav = transform.parent.GetComponent<Navigation>();
         e_con = transform.parent.GetComponent<Enemy>();
         player = GameObject.FindGameObjectWithTag("Player");
-        searchArea = this.gameObject.GetComponent<SphereCollider>();
     }
 
     private void Update()
@@ -63,6 +59,7 @@ public class Monitor : MonoBehaviour
     //　サーチする角度表示
     private void OnDrawGizmos()
     {
+        SphereCollider searchArea = GetComponent<SphereCollider>();
         Handles.color = new Vector4(1, 0, 0, 0.2f);
         Handles.DrawSolidArc(transform.position, Vector3.up, Quaternion.Euler(0f, -searchAngle, 0f) * transform.forward, searchAngle * 2f, searchArea.radius);
     }

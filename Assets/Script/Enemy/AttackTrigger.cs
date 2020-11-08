@@ -5,8 +5,6 @@ using UnityEditor;
 
 public class AttackTrigger : MonoBehaviour
 {
-    private SphereCollider searchArea;
-
     private Enemy e_con;
     [SerializeField]
     private float searchAngle = 50f;
@@ -14,7 +12,6 @@ public class AttackTrigger : MonoBehaviour
     private void Start()
     {
         e_con = transform.parent.GetComponent<Enemy>();
-        searchArea = this.gameObject.GetComponent<SphereCollider>();
     }
 
     private void OnTriggerStay(Collider other)
@@ -44,6 +41,7 @@ public class AttackTrigger : MonoBehaviour
     //　サーチする角度表示
     private void OnDrawGizmos()
     {
+        SphereCollider searchArea = this.gameObject.GetComponent<SphereCollider>();
         Handles.color = new Vector4(0, 1, 0, 0.2f);
         Handles.DrawSolidArc(transform.position, Vector3.up, Quaternion.Euler(0f, -searchAngle, 0f) * transform.forward, searchAngle * 2f, searchArea.radius);
     }

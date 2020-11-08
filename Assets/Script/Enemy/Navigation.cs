@@ -76,7 +76,7 @@ public class Navigation : MonoBehaviour
         tracking = true;
         moving = false;
 
-        agent.speed = 16.0f;
+        agent.speed = moveSpeed*1.5f;
         agent.angularSpeed = 150;
         if (agent.pathStatus != NavMeshPathStatus.PathInvalid)
         {
@@ -110,12 +110,14 @@ public class Navigation : MonoBehaviour
     // 移動開始
     public void StartNav()
     {
+        agent.acceleration = 2.0f;
         agent.isStopped = false;
     }
 
     // 移動を終了
     public void EndNav()
     {
+        agent.acceleration = 10.0f;
         agent.isStopped = true;
     }
 }
