@@ -319,6 +319,7 @@ MonoBehaviour:
   target: {fileID: 0}
   fillImage: {fileID: 306478958498915743}
   gaugeType: 0
+  isDeadVisible: 1
 --- !u!114 &6433158245449553946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,6 +334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
   target: {fileID: 0}
+  drawRange: 4
 --- !u!1 &1660522349623020766
 GameObject:
   m_ObjectHideFlags: 0
