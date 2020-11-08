@@ -45,6 +45,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float attackAnimationTime = 1.5f;
     [SerializeField] private float attackColliderStartTime = 0.5f;
     [SerializeField] private float attackColliderLifeTime = 1.0f;
+    [SerializeField] private float attackColTime = 120.0f;
 
     float animationWait = 0.0f;
     float colliderWait = 0.0f;
@@ -200,7 +201,7 @@ public class Enemy : MonoBehaviour
             case EnemyAIState.ATTACK:
                 animationWait++;
                 if (animationWait > 230.0f) { ReturnWaitState(); } //
-                if (animationWait > 50.0f) { ColliderReset(); }    // 攻撃コライダーON
+                if (animationWait > attackColTime) { ColliderReset(); }    // 攻撃コライダーON
                 // 攻撃処理
                 break;
         }
