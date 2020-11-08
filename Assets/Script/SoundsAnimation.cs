@@ -8,11 +8,14 @@ public class SoundsAnimation : StateMachineBehaviour
 
     [SerializeField] private float delay = 0.0f;
 
+    [SerializeField, Range(0.0f, 1.0f)] private float volume = 1.0f;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         var audioSource = animator.gameObject.GetComponent<AudioSource>();
         audioSource.clip = animationAudio;
+        audioSource.volume = volume;
         audioSource.PlayDelayed(delay);
     }
 
