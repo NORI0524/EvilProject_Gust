@@ -37,6 +37,7 @@ public class Enemy : MonoBehaviour
     private SphereCollider armCollider;
     private CapsuleCollider HitCollider;
     private HpComponent hp;
+    private EnemyUIGenerator ui;
 
     [SerializeField] private GameObject attackEffect;
     [SerializeField] private bool effect;
@@ -54,6 +55,7 @@ public class Enemy : MonoBehaviour
         armCollider = GetComponentInChildren<SphereCollider>();
         HitCollider = GetComponent<CapsuleCollider>();
         hp = GetComponent<HpComponent>();
+        ui = GetComponent<EnemyUIGenerator>();
     }
     protected void InitAI()
     {
@@ -166,6 +168,7 @@ public class Enemy : MonoBehaviour
             EndHit();
             ColliderReset();
             HitCollider.enabled = false;
+            DestroyUI();
             nextState = EnemyAIState.DEATH;
         }
     }
@@ -273,6 +276,11 @@ public class Enemy : MonoBehaviour
     public void Depart()
     {
         approach = false;
+    }
+
+    public void DestroyUI()
+    {
+        ui.enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)
