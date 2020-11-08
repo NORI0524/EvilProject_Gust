@@ -37,6 +37,7 @@ public class Enemy : MonoBehaviour
     private SphereCollider armCollider;
     private CapsuleCollider HitCollider;
     private HpComponent hp;
+    [SerializeField]private GameObject attackEffect;
 
     private void Start()
     {
@@ -206,11 +207,17 @@ public class Enemy : MonoBehaviour
     public void StartAttack()
     {
         endAttackAnimation = false;
+        attackEffect.SetActive(true);
     }
 
     public void EndAttack()
     {
         endAttackAnimation = true;
+    }
+
+    public void EndEffect()
+    {
+        attackEffect.SetActive(false);
     }
 
     public void Attack()
@@ -240,11 +247,13 @@ public class Enemy : MonoBehaviour
     {
         armCollider.enabled = true;
         Debug.Log("攻撃開始");
-        Invoke("ColliderReset", 0.2f);
+        //attackEffect.SetActive(true);
+        Invoke("ColliderReset", 0.25f);
     }
     private void ColliderReset()
     {
         armCollider.enabled = false;
+        //attackEffect.SetActive(false);
         Debug.Log("攻撃終了");
     }
 }
