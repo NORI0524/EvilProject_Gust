@@ -12,7 +12,7 @@ public enum WeaponType
 {
     None,
     SWORD,
-    HEAVYSWORD,
+    LARGESWORD,
     AXE,
     HAMMER,
     MACE,
@@ -76,8 +76,8 @@ public class WeaponManager : MonoBehaviour
                     type = WeaponType.SWORD;
                     break;
 
-                case "HeavySword":
-                    type = WeaponType.HEAVYSWORD;
+                case "LargeSword":
+                    type = WeaponType.LARGESWORD;
                     break;
 
                 case "Spear":

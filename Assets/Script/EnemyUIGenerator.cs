@@ -12,6 +12,8 @@ public class EnemyUIGenerator : MonoBehaviour
 
     private GameObject gaugeUI = null;
 
+    private HpComponent hp = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,10 +41,15 @@ public class EnemyUIGenerator : MonoBehaviour
 
         //指定のCanvasに追加
         targetCanvas.gameObject.AddChild(gaugeUI);
+
+
+        hp = GetComponent<HpComponent>();
     }
 
     private void Update()
     {
+        if (hp.IsDead()) return;
+
         var disVec = transform.position - Camera.main.transform.position;
         bool isDraw = disVec.sqrMagnitude <= drawRange.Pow2();
         gaugeUI.SetActive(isDraw);
