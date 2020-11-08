@@ -1620,6 +1620,7 @@ MonoBehaviour:
   attackAnimationTime: 2
   attackColliderStartTime: 0.5
   attackColliderLifeTime: 0.25
+  attackColTime: 80
 --- !u!54 &4489002025067551089
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1691,7 +1692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc717e7dcf3dea446b5cfa659cf61a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawRange: 1
+  drawRange: 30
 --- !u!1 &4489002025067551096
 GameObject:
   m_ObjectHideFlags: 0
