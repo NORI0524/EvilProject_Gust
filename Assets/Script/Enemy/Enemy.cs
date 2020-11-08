@@ -135,7 +135,6 @@ public class Enemy : MonoBehaviour
                     animator.SetTrigger("Damage");
                 }
                 animationWait = 0.0f; colliderWait = 0.0f;
-                Debug.Log("1");
                 nav.EndNav();
                 EndAttack();
                 StartHit();
@@ -151,7 +150,6 @@ public class Enemy : MonoBehaviour
                 HitCollider.enabled = true;
                 attackcount++;
                 animationWait = 0.0f;
-                Debug.Log("0");
                 nav.EndNav();
                 StartAttack();
                 animator.SetTrigger("Attack");
@@ -204,7 +202,7 @@ public class Enemy : MonoBehaviour
                 break;
         }
 
-        if (Input.GetKeyUp(KeyCode.Space)) { Debug.Log(animationWait); }
+        //if (Input.GetKeyUp(KeyCode.Space)) { Debug.Log(animationWait); }
     }
 
     public void Discover()
