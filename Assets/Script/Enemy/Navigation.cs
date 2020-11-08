@@ -46,7 +46,6 @@ public class Navigation : MonoBehaviour
             {
                 e_con.EndDiscover();
             }
-            //if (distance <= approarchDist) { e_con.Attack(); EndNav(); } else { e_con.nAttack(); }
         }
 
         if (haveTarget)
