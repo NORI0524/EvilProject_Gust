@@ -166,6 +166,7 @@ public class Enemy : MonoBehaviour
             nav.EndNav();
             EndAttack();
             EndHit();
+            ColliderReset();
             HitCollider.enabled = false;
             nextState = EnemyAIState.DEATH;
         }
