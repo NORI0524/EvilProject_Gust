@@ -624,6 +624,11 @@ PrefabInstance:
       propertyPath: Target.Array.data[0]
       value: 
       objectReference: {fileID: 1989910879}
+    - target: {fileID: 4853245774486102291, guid: 590347cb8a635c246aa262d8b5c16332,
+        type: 3}
+      propertyPath: drawRange
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 590347cb8a635c246aa262d8b5c16332, type: 3}
 --- !u!1001 &1438699256
