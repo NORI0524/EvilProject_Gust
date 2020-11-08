@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 3718467360543260713}
   - component: {fileID: 4909404145347777887}
   - component: {fileID: 8648662310646693421}
+  - component: {fileID: 915084206717599630}
   m_Layer: 0
   m_Name: LargeSword
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,6 +127,20 @@ MonoBehaviour:
   gameKey: 0
   tagList:
   - Enemy
+--- !u!114 &915084206717599630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593158949311616401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468696e358882344ea16a6bfe4ee1e37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetObject: {fileID: 842707152850100172, guid: dc795e0e18f6dea49816e6f53933e63c,
+    type: 3}
 --- !u!1001 &3301381275208173237
 PrefabInstance:
   m_ObjectHideFlags: 0
