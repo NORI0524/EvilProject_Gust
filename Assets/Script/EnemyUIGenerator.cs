@@ -8,6 +8,10 @@ using UnityEngine.UI;
 /// </summary>
 public class EnemyUIGenerator : MonoBehaviour
 {
+    [SerializeField] private float drawRange = 1.0f;
+
+    private GameObject gaugeUI = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +20,7 @@ public class EnemyUIGenerator : MonoBehaviour
 
         if (enemyGaugeUI == null) return;
 
-        var gaugeUI = Instantiate(enemyGaugeUI) as GameObject;
+        gaugeUI = Instantiate(enemyGaugeUI) as GameObject;
 
         //オブジェクト名をそのまま反映
         var texts = gaugeUI.GetComponentsInChildren<Text>();
@@ -35,5 +39,13 @@ public class EnemyUIGenerator : MonoBehaviour
 
         //指定のCanvasに追加
         targetCanvas.gameObject.AddChild(gaugeUI);
+    }
+
+    private void Update()
+    {
+        var disVec = transform.position - Camera.main.transform.position;
+        bool isDraw = disVec.sqrMagnitude <= drawRange.Pow2();
+        gaugeUI.SetActive(isDraw);
+        if (isDraw == false) return;
     }
 }

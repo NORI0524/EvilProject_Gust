@@ -1826,6 +1826,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1139570042, guid: 8631115b44bfa7347b4ef6b035ad2206, type: 3}
+      propertyPath: drawRange
+      value: 9.71
+      objectReference: {fileID: 0}
     - target: {fileID: 4966795402037793257, guid: 8631115b44bfa7347b4ef6b035ad2206,
         type: 3}
       propertyPath: m_Name

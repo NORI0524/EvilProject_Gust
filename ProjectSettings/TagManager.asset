@@ -11,6 +11,7 @@ TagManager:
   - Monitor
   - Arm
   - testEnemy
+  - AttackEffect
   layers:
   - Default
   - TransparentFX

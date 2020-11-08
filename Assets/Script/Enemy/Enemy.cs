@@ -38,6 +38,13 @@ public class Enemy : MonoBehaviour
     private CapsuleCollider HitCollider;
     private HpComponent hp;
 
+    [SerializeField]private GameObject attackEffect;
+    [SerializeField] private bool effect;
+
+    [SerializeField] private float attackAnimationTime = 1.5f;
+    [SerializeField] private float attackColliderStartTime=0.5f;
+    [SerializeField] private float attackColliderLifeTime=1.0f;
+
     private void Start()
     {
         armCollider = GetComponentInChildren<SphereCollider>();
@@ -133,7 +140,7 @@ public class Enemy : MonoBehaviour
                 animator.SetTrigger("Attack");
 
                 if (!armCollider) { Debug.Log("攻撃用コライダーが見つかりません"); }
-                Invoke("ColliderStart", 0.5f);
+                Invoke("ColliderStart", attackColliderStartTime);
 
                 nextState = EnemyAIState.ATTACK;
                 ////Debug.Log("接近したので攻撃");
@@ -165,6 +172,7 @@ public class Enemy : MonoBehaviour
                 break;
             case EnemyAIState.CHASE:
                 nav.StartTracking();
+                Debug.Log("a");
                 break;
             case EnemyAIState.SEARCH:
                 // nav.Search();
@@ -192,8 +200,8 @@ public class Enemy : MonoBehaviour
     public void StartHit()
     {
         endDamageAnimation = false;
-        //HitCollider.enabled = false;
-        Invoke("EndHit",0.3f);
+        HitCollider.enabled = false;
+        Invoke("EndHit",0.1f);
     }
 
     public void EndHit()
@@ -206,11 +214,19 @@ public class Enemy : MonoBehaviour
     public void StartAttack()
     {
         endAttackAnimation = false;
+        if(effect) attackEffect.SetActive(true);
+        Invoke("EndAttack", attackAnimationTime);
+        Debug.Log(attackAnimationTime);
     }
 
     public void EndAttack()
     {
         endAttackAnimation = true;
+    }
+
+    public void EndEffect()
+    {
+        if (effect) attackEffect.SetActive(false);
     }
 
     public void Attack()
@@ -240,7 +256,7 @@ public class Enemy : MonoBehaviour
     {
         armCollider.enabled = true;
         Debug.Log("攻撃開始");
-        Invoke("ColliderReset", 0.2f);
+        Invoke("ColliderReset", attackColliderLifeTime);
     }
     private void ColliderReset()
     {
