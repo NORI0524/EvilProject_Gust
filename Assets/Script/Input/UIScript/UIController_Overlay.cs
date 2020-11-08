@@ -12,29 +12,27 @@ public class UIController_Overlay : MonoBehaviour
     private RectTransform canvasRectTfm;
     private RectTransform myRectTfm;
     private Vector3 offset = new Vector3(0, 1.5f, 0);
+
     // Start is called before the first frame update
     void Start()
     {
         canvasRectTfm = canvas.GetComponent<RectTransform>();
         myRectTfm = GetComponent<RectTransform>();
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 pos;
-
         switch (canvas.renderMode)
         {
-
             case RenderMode.ScreenSpaceOverlay:
-                myRectTfm.position = RectTransformUtility.WorldToScreenPoint(Camera.main, target.position+ offset);
+                myRectTfm.position = RectTransformUtility.WorldToScreenPoint(Camera.main, target.position + offset);
 
                 break;
 
             case RenderMode.ScreenSpaceCamera:
                 Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(Camera.main, target.position + offset);
+                Vector2 pos;
                 RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTfm, screenPos, Camera.main, out pos);
                 myRectTfm.localPosition = pos;
                 break;
@@ -44,6 +42,21 @@ public class UIController_Overlay : MonoBehaviour
 
                 break;
         }
+    }
 
+    public Canvas targetCanvas
+    {
+        set
+        {
+            canvas = value;
+        }
+    }
+
+    public Transform targetTransform
+    {
+        set
+        {
+            target = value;
+        }
     }
 }

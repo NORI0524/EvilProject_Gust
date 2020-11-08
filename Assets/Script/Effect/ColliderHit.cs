@@ -18,9 +18,13 @@ public class ColliderHit : MonoBehaviour
         var pos = this.transform.position;
         var hitPos = other.ClosestPointOnBounds(pos);
         var hitVec = pos - hitPos;
-        var quaternion = Quaternion.LookRotation(hitVec.normalized);
         var createObject = GameObject.Instantiate(targetObject);
         createObject.transform.position = hitPos;
-        createObject.transform.rotation = quaternion;
+
+        if(hitVec != Vector3.zero)
+        {
+            var quaternion = Quaternion.LookRotation(hitVec);
+            createObject.transform.rotation = quaternion;
+        }
     }
 }

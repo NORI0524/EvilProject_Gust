@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class LockOnTargetDetector : MonoBehaviour
 {
@@ -18,12 +19,9 @@ public class LockOnTargetDetector : MonoBehaviour
 
     public GameObject GetTargetClosestPlayer()
     {
-        var hits = Physics.SphereCastAll(
-            player.transform.position,
-            search_radius,
-            player.transform.forward,
-            0.01f, LayerMask.GetMask("Default")).Select(h => h.transform.gameObject).ToList();
+        var hits = Physics.SphereCastAll(player.transform.position, search_radius, player.transform.forward, 0.01f, LayerMask.GetMask("Default")).Select(h => h.transform.gameObject).ToList();
 
+        Debug.Log(hits.Count());
         hits = FilterTargetObject(hits);
 
         if (0 < hits.Count())

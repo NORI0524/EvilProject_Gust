@@ -62,7 +62,7 @@ public class PlayerController : BaseComponent
         summonWeapon.SetActive(isSummon);
 
         //死亡
-        if(hp.IsDead())
+        if (hp.IsDead())
         {
             animator.SetBool("Death", true);
             charaMove.enabled = false;
@@ -88,7 +88,7 @@ public class PlayerController : BaseComponent
         {
             animator.SetTrigger("Attack");
 
-            if(isSummon)
+            if (isSummon)
             {
                 weaponAnimator.SetTrigger("Attack");
             }
@@ -98,7 +98,7 @@ public class PlayerController : BaseComponent
         if (GameKeyConfig.Attack_Strong.GetKeyDown())
         {
             animator.SetTrigger("Attack2nd");
-            if(isSummon)
+            if (isSummon)
             {
                 weaponAnimator.SetTrigger("Attack");
             }

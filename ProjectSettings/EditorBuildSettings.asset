@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/TestScene/WeponTestScene.unity
     guid: b79a0a6d426d43e4e9f086c1d3a37d3f
   - enabled: 1
-    path: Assets/Scenes/TestScene/EnemyTestScene.unity
+    path: Assets/Scenes/TestScene/Enemy/EnemyTestScene.unity
     guid: 5c06c346aebaa044e92d0f2920f1c7e6
   - enabled: 0
     path: 

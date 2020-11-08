@@ -9,7 +9,8 @@ using System.Collections;
 public class DamageComponent : BaseStatusComponent
 {
     [SerializeField] private int damageValue = 10;
-    [SerializeField, Range(0.0f, 1.0f)] private float criticalRate = 0.0f;
+    //[SerializeField, Range(0.0f, 1.0f)] private float criticalRate = 0.0f;
+    [SerializeField] private bool isHitStop = false;
 
     // Use this for initialization
     void Start()
@@ -28,8 +29,17 @@ public class DamageComponent : BaseStatusComponent
 
     private void OnTriggerEnter(Collider other)
     {
+        //ダメージ増減
         var targetHp = other.GetComponent<HpComponent>();
         if (targetHp == null) return;
         targetHp.AddDamage(currentValue);
+
+        if (isHitStop == false) return;
+
+        //ヒットストップ
+        var hitStop = other.GetComponent<HitStopSlowAnim>();
+        if (hitStop == null) return;
+        if (hitStop.IsSlowDown() == false)
+            hitStop.SlowDown();
     }
 }

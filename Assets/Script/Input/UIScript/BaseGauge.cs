@@ -14,6 +14,7 @@ public class BaseGauge : MonoBehaviour
     [SerializeField] private GameObject target = null;
     [SerializeField] private Image fillImage = null;
     [SerializeField] private GaugeType gaugeType = GaugeType.HpGauge;
+    [SerializeField] private bool isDeadVisible = false;
 
     private BaseStatusComponent statusPoint = null;
 
@@ -43,6 +44,19 @@ public class BaseGauge : MonoBehaviour
         if (statusPoint != null && fillImage != null)
         {
             fillImage.fillAmount = (float)statusPoint.Value / statusPoint.MaxValue;
+        }
+
+        if(isDeadVisible && fillImage.fillAmount == 0.0f)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    public GameObject targetObject
+    {
+        set
+        {
+            target = value;
         }
     }
 }

@@ -37,6 +37,7 @@ public class Enemy : MonoBehaviour
     private SphereCollider armCollider;
     private CapsuleCollider HitCollider;
     private HpComponent hp;
+    [SerializeField]private GameObject attackEffect;
 
     private void Start()
     {
@@ -120,10 +121,10 @@ public class Enemy : MonoBehaviour
                 nav.EndNav();
                 // アニメーション
                 //animator.SetTrigger("Damage");
-                animator.Play("Damage");
-                ////Debug.Log(this.gameObject.name + " : " + hp.Hp);
+                Debug.Log(this.gameObject.name + " : " + hp.Hp);
                 nextState = EnemyAIState.DAMAGE;
                 ////Debug.Log("DAMAGE：武器に当たった");
+                animator.Play("Damage");
             }
             // 攻撃
             else if (attack && endAttackAnimation && endDamageAnimation)
@@ -192,23 +193,31 @@ public class Enemy : MonoBehaviour
     public void StartHit()
     {
         endDamageAnimation = false;
-        HitCollider.enabled = false;
+        //HitCollider.enabled = false;
+        Invoke("EndHit",0.3f);
     }
 
     public void EndHit()
     {
         endDamageAnimation = true;
         HitCollider.enabled = true;
+        damage = false;
     }
 
     public void StartAttack()
     {
         endAttackAnimation = false;
+        attackEffect.SetActive(true);
     }
 
     public void EndAttack()
     {
         endAttackAnimation = true;
+    }
+
+    public void EndEffect()
+    {
+        attackEffect.SetActive(false);
     }
 
     public void Attack()
@@ -234,20 +243,17 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void DamageReset()
-    {
-        damage = false;
-    }
-
     private void ColliderStart()
     {
         armCollider.enabled = true;
         Debug.Log("攻撃開始");
-        Invoke("ColliderReset", 0.2f);
+        //attackEffect.SetActive(true);
+        Invoke("ColliderReset", 0.25f);
     }
     private void ColliderReset()
     {
         armCollider.enabled = false;
+        //attackEffect.SetActive(false);
         Debug.Log("攻撃終了");
     }
 }
