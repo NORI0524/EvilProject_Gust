@@ -1608,13 +1608,13 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Attack2nd
+  - m_Name: Attack3rd
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Attack3rd
+  - m_Name: Attack2nd
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
