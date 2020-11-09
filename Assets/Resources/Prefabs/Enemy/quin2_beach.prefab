@@ -6714,6 +6714,7 @@ MonoBehaviour:
   attackAnimationTime: 2
   attackColliderStartTime: 0.5
   attackColliderLifeTime: 1
+  attackColTime: 120
 --- !u!54 &576177077094193742
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6771,8 +6772,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4221472bdc09d7f44ae1793171e10ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowAnimSpeed: 1
-  slowTime: 1
+  slowAnimSpeed: 0
+  slowTime: 0.05
 --- !u!114 &4853245774486102291
 MonoBehaviour:
   m_ObjectHideFlags: 0

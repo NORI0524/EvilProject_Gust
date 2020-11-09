@@ -22,6 +22,7 @@ public class PlayerController : BaseComponent
 
     Animator animator = null;
     Animator weaponAnimator = null;
+    Animator weaponAnimator2 = null;
 
     CharaMoveComponent charaMove = null;
 
@@ -30,6 +31,7 @@ public class PlayerController : BaseComponent
     HpComponent hp = null;
 
     GameObject summonWeapon = null;
+    GameObject summonWeapon2 = null;
 
     public BitFlag state = new BitFlag();
 
@@ -50,7 +52,9 @@ public class PlayerController : BaseComponent
         weaponSummonSys = GetComponent<WeaponSummonSystem>();
 
         summonWeapon = GameObject.Find("SummonWeapon");
+        summonWeapon2 = GameObject.Find("SummonWeapon2");
         weaponAnimator = summonWeapon.GetComponentInChildren<Animator>();
+        weaponAnimator2 = summonWeapon2.GetComponentInChildren<Animator>();
 
         hp = GetComponent<HpComponent>();
     }
@@ -60,6 +64,7 @@ public class PlayerController : BaseComponent
     {
         var isSummon = weaponSummonSys.IsSummon();
         summonWeapon.SetActive(isSummon);
+        summonWeapon2.SetActive(isSummon);
 
         //死亡
         if (hp.IsDead())
@@ -90,7 +95,7 @@ public class PlayerController : BaseComponent
 
             if (isSummon)
             {
-                weaponAnimator.SetTrigger("Attack");
+                weaponAnimator2.SetTrigger("Attack");
             }
         }
 

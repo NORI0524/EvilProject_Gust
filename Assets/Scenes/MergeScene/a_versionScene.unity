@@ -938,7 +938,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &503719166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -953,12 +953,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obj_Prefab:
   - {fileID: 366978879}
-  ObjDispMax: 2
-  currentNum: 1
+  ObjDispMax: 1
+  currentNum: 0
   onceSpawnNum: 1
   spawnFrequency: 100
   spanSeconds: 10
-  spawnDistance: 40
+  spawnDistance: 13.81
 --- !u!4 &503719167
 Transform:
   m_ObjectHideFlags: 0
@@ -4225,7 +4225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1232696555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4240,12 +4240,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obj_Prefab:
   - {fileID: 1606233773}
-  ObjDispMax: 2
-  currentNum: 1
+  ObjDispMax: 1
+  currentNum: 0
   onceSpawnNum: 1
   spawnFrequency: 100
   spanSeconds: 20
-  spawnDistance: 40
+  spawnDistance: 14.6
 --- !u!4 &1232696556
 Transform:
   m_ObjectHideFlags: 0
@@ -5064,11 +5064,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7702133662441826674, guid: 949d8541003387649b55182fb7805ee6,
-        type: 3}
-      propertyPath: isNoDamage
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 949d8541003387649b55182fb7805ee6, type: 3}
 --- !u!1001 &2083711008
@@ -5078,6 +5073,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 750869653741763364, guid: 9f65b6aef05affd42819874a9341a793,
+        type: 3}
+      propertyPath: slowAnimSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 750869653741763364, guid: 9f65b6aef05affd42819874a9341a793,
+        type: 3}
+      propertyPath: slowTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4489002024596288947, guid: 9f65b6aef05affd42819874a9341a793,
         type: 3}
       propertyPath: player

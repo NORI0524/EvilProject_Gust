@@ -127,7 +127,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-11760
+  m_Name: pb_Mesh-159940
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -390,7 +390,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-11754
+  m_Name: pb_Mesh-159934
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -848,7 +848,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-11746
+  m_Name: pb_Mesh-159926
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1062,7 +1062,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-11768
+  m_Name: pb_Mesh-159948
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1344,7 +1344,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-11772
+  m_Name: pb_Mesh-159952
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1525,7 +1525,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-11740
+  m_Name: pb_Mesh-159920
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2049,17 +2049,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5456327818904747697, guid: 949d8541003387649b55182fb7805ee6,
-        type: 3}
-      propertyPath: weaponList.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5456327818904747697, guid: 949d8541003387649b55182fb7805ee6,
-        type: 3}
-      propertyPath: weaponList.Array.data[3]
-      value: 
-      objectReference: {fileID: 593158949311616401, guid: 1ebe999fdf99e3b489cfbb08f5ce65db,
-        type: 3}
     - target: {fileID: 5456327819286159269, guid: 949d8541003387649b55182fb7805ee6,
         type: 3}
       propertyPath: lockonCursor

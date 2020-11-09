@@ -50,8 +50,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxValue: 100
-  damageValue: 10
-  isHitStop: 0
+  damageValue: 4
+  isHitStop: 1
 --- !u!135 &5317333893341248548
 SphereCollider:
   m_ObjectHideFlags: 0
