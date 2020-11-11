@@ -89,7 +89,6 @@ public class CharaMoveComponent : MonoBehaviour
         {
             var moveQua = Quaternion.LookRotation(moveForward);
             transform.rotation = Quaternion.Slerp(transform.rotation, moveQua, Time.deltaTime * rotateSpeed);
-
         }
 
         if(animator.applyRootMotion == false)
