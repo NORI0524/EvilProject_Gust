@@ -35,6 +35,11 @@ public class PlayerController : BaseComponent
 
     public BitFlag state = new BitFlag();
 
+
+    //長押し用の処理
+    float longPressTime = 0.0f;
+    bool isLongPress = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -79,6 +84,12 @@ public class PlayerController : BaseComponent
             animator.SetTrigger("Damage");
         }
 
+        //ジャンプ
+        if(GameKeyConfig.Jump.GetKeyDown())
+        {
+            animator.SetTrigger("Jump");
+        }
+
         //回避
         if (state.CheckBit(PlayerState.Avoid) == false)
         {
@@ -88,31 +99,63 @@ public class PlayerController : BaseComponent
             }
         }
 
-        //通常攻撃（左クリック）
-        if (GameKeyConfig.Attack_Light.GetKeyDown())
+        //長押し
+        if(isLongPress == false)
         {
-            animator.SetTrigger("Attack");
-
-            if (isSummon)
+            if (GameKeyConfig.Attack_Light.GetKey())
             {
-                weaponAnimator2.SetTrigger("Attack");
+                isLongPress = true;
+                longPressTime = 0.0f;
+            }
+        }
+        else
+        {
+            if (GameKeyConfig.Attack_Light.GetKey())
+            {
+                longPressTime += Time.deltaTime;
+            }
+            else
+            {
+                isLongPress = false;
+                if (longPressTime < 0.9f)
+                {
+                    animator.SetTrigger("Attack");
+                }
+                else
+                {
+                    Debug.Log(longPressTime);
+                }
             }
         }
 
+
+
+
+        //派生攻撃２（同時クリック）
+        if (GameKeyConfig.Attack_Light.GetKeyDown() && GameKeyConfig.Attack_Strong.GetKeyDown())
+        {
+            animator.SetTrigger("Attack3rd");
+        }
+
+        //通常攻撃（左クリック）
+        //else if (GameKeyConfig.Attack_Light.GetKeyDown())
+        //{
+        //    animator.SetTrigger("Attack");
+
+        //    if (isSummon)
+        //    {
+        //        weaponAnimator2.SetTrigger("Attack");
+        //    }
+        //}
+
         //派生攻撃（右クリック）
-        if (GameKeyConfig.Attack_Strong.GetKeyDown())
+        else if (GameKeyConfig.Attack_Strong.GetKeyDown())
         {
             animator.SetTrigger("Attack2nd");
             if (isSummon)
             {
                 weaponAnimator.SetTrigger("Attack");
             }
-        }
-
-        //派生攻撃２（同時クリック）
-        if(GameKeyConfig.Attack_Light.GetKeyDown() && GameKeyConfig.Attack_Strong.GetKeyDown())
-        {
-            animator.SetTrigger("Attack3rd");
         }
     }
 }
