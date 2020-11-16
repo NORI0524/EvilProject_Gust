@@ -1615,8 +1615,9 @@ MonoBehaviour:
   animator: {fileID: 4489002025076943588}
   aiState: 0
   nextState: 0
-  attackEffect: {fileID: 6435053272954203554}
   effect: 1
+  attackEffect:
+  - {fileID: 7422430632409024208, guid: 8b3b0246447cf214d90d5e41966f2ea1, type: 3}
   attackAnimationTime: 2
   attackColliderStartTime: 0.5
   attackColliderLifeTime: 0.25
@@ -1788,6 +1789,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81241c975e56b7d4787b5bd4db5e0687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nav: {fileID: 0}
+  animator: {fileID: 0}
+  aiState: 0
+  nextState: 0
+  effect: 0
+  attackEffect: []
+  attackAnimationTime: 1.5
+  attackColliderStartTime: 0.5
+  attackColliderLifeTime: 1
+  attackColTime: 120
 --- !u!114 &2189407943294772117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2027,12 +2038,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b3b0246447cf214d90d5e41966f2ea1, type: 3}
---- !u!1 &6435053272954203554 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7422430632409024208, guid: 8b3b0246447cf214d90d5e41966f2ea1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4489002025191844722}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6435053272954203559 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7422430632409024213, guid: 8b3b0246447cf214d90d5e41966f2ea1,

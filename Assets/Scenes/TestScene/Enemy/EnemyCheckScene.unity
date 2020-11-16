@@ -619,6 +619,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: quin2_beach
       objectReference: {fileID: 0}
+    - target: {fileID: 576177077094291112, guid: 590347cb8a635c246aa262d8b5c16332,
+        type: 3}
+      propertyPath: attackEffect.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 576177077094291113, guid: 590347cb8a635c246aa262d8b5c16332,
         type: 3}
       propertyPath: Target.Array.data[0]

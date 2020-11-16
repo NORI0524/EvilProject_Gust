@@ -39,8 +39,9 @@ public class Enemy : MonoBehaviour
     private HpComponent hp;
     private EnemyUIGenerator ui;
 
-    [SerializeField] private GameObject attackEffect;
     [SerializeField] private bool effect;
+    [SerializeField] private GameObject[] attackEffect;    // 目的地の配列
+    //[SerializeField] private GameObject attackEffect;
 
     [SerializeField] private float attackAnimationTime = 1.5f;
     [SerializeField] private float attackColliderStartTime = 0.5f;
@@ -114,21 +115,17 @@ public class Enemy : MonoBehaviour
                 EndEffect();
                 HitCollider.enabled = true;
                 nav.StartNav();
-                // アニメーション
                 animator.SetBool("Idle", false);
                 animator.SetTrigger("Running");
                 nextState = EnemyAIState.CHASE;
-                ////Debug.Log("CHASE：追いかける");
             }
             // 移動
             if (aiState != EnemyAIState.MOVE && !discover && !damage && !attack && endDamageAnimation && endAttackAnimation)
             {
                 HitCollider.enabled = true;
                 nav.StartNav();
-                // アニメーション
                 animator.SetTrigger("Walking");
                 nextState = EnemyAIState.MOVE;
-                //Debug.Log("MOVE：ステージ内を移動");
             }
             // 被弾
             if (damage)
@@ -142,10 +139,7 @@ public class Enemy : MonoBehaviour
                 EndAttack();
                 StartHit();
                 EndEffect();
-                // アニメーション
-                //Debug.Log(this.gameObject.name + " : " + hp.Hp);
                 nextState = EnemyAIState.DAMAGE;
-                //Debug.Log("DAMAGE：武器に当たった");
             }
             // 攻撃
             if (aiState != EnemyAIState.DAMAGE && aiState != EnemyAIState.ATTACK && attack && endAttackAnimation && endDamageAnimation)
@@ -157,7 +151,6 @@ public class Enemy : MonoBehaviour
                 StartAttack();
                 animator.SetTrigger("Attack");
                 nextState = EnemyAIState.ATTACK;
-                //Debug.Log("接近したので攻撃");
             }
         }
         // 死亡
@@ -194,19 +187,15 @@ public class Enemy : MonoBehaviour
             case EnemyAIState.DAMAGE:
                 animationWait++;
                 colliderWait++;
-                if (animationWait > 50.0f) { ReturnWaitState();  } //
+                if (animationWait > 50.0f) { ReturnWaitState();  } 
                 if (colliderWait > 5.0f) { HitCollider.enabled = true;EndHitAnimation(); }
-                // ダメージ処理
                 break;
             case EnemyAIState.ATTACK:
                 animationWait++;
-                if (animationWait > 230.0f) { ReturnWaitState(); } //
-                if (animationWait > attackColTime) { ColliderReset(); }    // 攻撃コライダーON
-                // 攻撃処理
+                if (animationWait > 230.0f) { ReturnWaitState(); } 
+                if (animationWait > attackColTime) { ColliderReset(); }
                 break;
         }
-
-        //if (Input.GetKeyUp(KeyCode.Space)) { Debug.Log(animationWait); }
     }
 
     public void Discover()
@@ -231,7 +220,6 @@ public class Enemy : MonoBehaviour
     public void EndHit()
     {
         damage = false;
-        //HitCollider.enabled = true;
     }
 
     public void EndHitAnimation()
@@ -242,7 +230,7 @@ public class Enemy : MonoBehaviour
     public void StartAttack()
     {
         endAttackAnimation = false;
-        if (effect) attackEffect.SetActive(true);
+        if (effect) attackEffect[0].SetActive(true);
         Invoke("ColliderStart", attackColliderStartTime);
         Invoke("EndAttack", attackAnimationTime);
     }
@@ -250,7 +238,6 @@ public class Enemy : MonoBehaviour
     public void EndAttack()
     {
         endAttackAnimation = true;
-        //Debug.Log(attack);
     }
 
     public void ReturnWaitState()
@@ -261,7 +248,7 @@ public class Enemy : MonoBehaviour
 
     public void EndEffect()
     {
-        if (effect) attackEffect.SetActive(false);
+        if (effect) attackEffect[0].SetActive(false);
     }
 
     public void Attack()
@@ -300,7 +287,6 @@ public class Enemy : MonoBehaviour
     {
         // 攻撃開始
         armCollider.enabled = true;
-        //Invoke("ColliderReset", attackColliderLifeTime);
     }
     private void ColliderReset()
     {
