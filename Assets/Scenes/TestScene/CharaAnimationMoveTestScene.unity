@@ -127,7 +127,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-11760
+  m_Name: pb_Mesh-1294
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -390,7 +390,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-11754
+  m_Name: pb_Mesh-1290
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -568,6 +568,8 @@ MonoBehaviour:
   maxValue: 100
   damageValue: 1
   isHitStop: 0
+  isOwnhitStop: 0
+  targetTag: 1
 --- !u!1 &478920002
 GameObject:
   m_ObjectHideFlags: 0
@@ -848,7 +850,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-11746
+  m_Name: pb_Mesh-1282
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1062,7 +1064,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-11768
+  m_Name: pb_Mesh-1296
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1344,7 +1346,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-11772
+  m_Name: pb_Mesh-1298
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1525,7 +1527,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-11740
+  m_Name: pb_Mesh-1280
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1847,6 +1849,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1139570041, guid: 8631115b44bfa7347b4ef6b035ad2206, type: 3}
+      propertyPath: slowTime
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1139570042, guid: 8631115b44bfa7347b4ef6b035ad2206, type: 3}
       propertyPath: drawRange
       value: 9.71
@@ -2049,17 +2055,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5456327818904747697, guid: 949d8541003387649b55182fb7805ee6,
+    - target: {fileID: 230443634144966705, guid: 949d8541003387649b55182fb7805ee6,
         type: 3}
-      propertyPath: weaponList.Array.size
+      propertyPath: onceDirectionObjectNum
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 5456327818904747697, guid: 949d8541003387649b55182fb7805ee6,
+    - target: {fileID: 230443634144966705, guid: 949d8541003387649b55182fb7805ee6,
         type: 3}
-      propertyPath: weaponList.Array.data[3]
+      propertyPath: directionNum
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 230443634144966705, guid: 949d8541003387649b55182fb7805ee6,
+        type: 3}
+      propertyPath: barrageObject
       value: 
-      objectReference: {fileID: 593158949311616401, guid: 1ebe999fdf99e3b489cfbb08f5ce65db,
+      objectReference: {fileID: 1000011128802252, guid: 96730f8640590934eacb6f860058e7f9,
         type: 3}
+    - target: {fileID: 230443634144966705, guid: 949d8541003387649b55182fb7805ee6,
+        type: 3}
+      propertyPath: betweenSpace
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5456327819286159269, guid: 949d8541003387649b55182fb7805ee6,
         type: 3}
       propertyPath: lockonCursor
