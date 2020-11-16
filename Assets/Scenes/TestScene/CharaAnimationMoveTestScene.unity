@@ -319,7 +319,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 823
 --- !u!114 &188009207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1855,7 +1855,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1139570042, guid: 8631115b44bfa7347b4ef6b035ad2206, type: 3}
       propertyPath: drawRange
-      value: 9.71
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4966795402037793257, guid: 8631115b44bfa7347b4ef6b035ad2206,
         type: 3}
@@ -1916,6 +1916,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4966795402037793271, guid: 8631115b44bfa7347b4ef6b035ad2206,
+        type: 3}
+      propertyPath: tagList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4966795402037793271, guid: 8631115b44bfa7347b4ef6b035ad2206,
+        type: 3}
+      propertyPath: <enterFunction>k__BackingField.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4966795402037793271, guid: 8631115b44bfa7347b4ef6b035ad2206,
+        type: 3}
+      propertyPath: enterEnable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4966795402037793271, guid: 8631115b44bfa7347b4ef6b035ad2206,
+        type: 3}
+      propertyPath: <enterFunction>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4966795402037793271, guid: 8631115b44bfa7347b4ef6b035ad2206,
+        type: 3}
+      propertyPath: <enterFunction>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8631115b44bfa7347b4ef6b035ad2206, type: 3}
@@ -2058,12 +2083,12 @@ PrefabInstance:
     - target: {fileID: 230443634144966705, guid: 949d8541003387649b55182fb7805ee6,
         type: 3}
       propertyPath: onceDirectionObjectNum
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 230443634144966705, guid: 949d8541003387649b55182fb7805ee6,
         type: 3}
       propertyPath: directionNum
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 230443634144966705, guid: 949d8541003387649b55182fb7805ee6,
         type: 3}
@@ -2074,7 +2099,17 @@ PrefabInstance:
     - target: {fileID: 230443634144966705, guid: 949d8541003387649b55182fb7805ee6,
         type: 3}
       propertyPath: betweenSpace
-      value: 3
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 230443634144966705, guid: 949d8541003387649b55182fb7805ee6,
+        type: 3}
+      propertyPath: offsetAngle
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 5456327818904747697, guid: 949d8541003387649b55182fb7805ee6,
+        type: 3}
+      propertyPath: weaponList.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5456327819286159269, guid: 949d8541003387649b55182fb7805ee6,
         type: 3}

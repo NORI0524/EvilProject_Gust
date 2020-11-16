@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class BarrageComponent : MonoBehaviour
 {
@@ -12,20 +13,24 @@ public class BarrageComponent : MonoBehaviour
 
     [SerializeField] float betweenSpace = 1.0f;
 
+    [SerializeField,PropertyRange(0.0f,360.0f)] float offsetAngle = 0.0f;
 
-    private void Update()
-    {
-        if(GameKeyConfig.Jump.GetKeyDown())
-            CreateBarrage();
-    }
 
+    //private void Update()
+    //{
+    //    if(GameKeyConfig.Jump.GetKeyDown())
+    //        CreateBarrage();
+    //}
+
+    [HideInEditorMode]
+    [Button("Play",ButtonSizes.Large)]
     public void CreateBarrage()
     {
         var fowardVec = originTransform.forward;
 
         for (int directionCount = 0; directionCount < directionNum; directionCount++)
         {
-            var angleDegree = directionCount * (360.0f / directionNum);
+            var angleDegree = directionCount * (360.0f / directionNum) + offsetAngle;
             var rotatedVec = Quaternion.Euler(0.0f, angleDegree, 0.0f) * fowardVec;
 
             for(int onceObjectCount = 0; onceObjectCount < onceDirectionObjectNum; onceObjectCount++)
