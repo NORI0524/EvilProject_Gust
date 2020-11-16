@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 
 [ExecuteInEditMode, DisallowMultipleComponent]
@@ -26,8 +27,7 @@ public class PlayerCameraController : MonoBehaviour
 
     [SerializeField] protected LockOnCursor lockonCursor;
 
-
-    // デバッグ用
+    [SerializeField] private float search_radius = 20f;
     [SerializeField] private bool IsLockOn = false;
 
 
@@ -35,11 +35,45 @@ public class PlayerCameraController : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         lockOnTargetDetector = player.GetComponentInChildren<LockOnTargetDetector>();
+        lockOnTargetDetector.Search_Radius = search_radius;
 
     }
 
     void LateUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (lockOnTarget == null)
+            {
+                // ロックオンターゲットを取得
+                GameObject target = lockOnTargetDetector.GetTargetClosestPlayer();
+
+                Debug.Log(target);
+                if (target != null)
+                {
+                    lockOnTarget = target;
+                    lockonCursor.OnlockonStart(target.transform);
+                }
+                IsLockOn = true;
+            }
+            else
+            {
+                // すでにターゲットが設定されていた場合は解除
+                // 視点リセット
+                transform.LookAt(player.transform.eulerAngles);
+
+                lockOnTarget = null;
+                lockonCursor.OnlockonEnd();
+                IsLockOn = false;
+                Debug.Log("ロックオン解除");
+            }
+        }
+
+        if (lockOnTarget)
+        {
+            lockOnTargetObject(lockOnTarget);
+        }
+
         if (IsLockOn == false)
         {
             //マウスのミドルボタンで変更（デバッグのため）
@@ -52,40 +86,6 @@ public class PlayerCameraController : MonoBehaviour
             var lookAtPos = target.transform.position + offset;
             updatePosition(lookAtPos);
             transform.LookAt(lookAtPos);
-        }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                Debug.Log(lockOnTarget);
-                if (lockOnTarget == null)
-                {
-                    // ロックオンターゲットを取得
-                    GameObject target = lockOnTargetDetector.GetTargetClosestPlayer();
-
-                    Debug.Log(target);
-                    if (target != null)
-                    {
-                        lockOnTarget = target;
-                        lockonCursor.OnlockonStart(target.transform);
-                    }
-                }
-                else
-                {
-                    // すでにターゲットが設定されていた場合は解除
-                    // 視点リセット
-                    transform.LookAt(player.transform.eulerAngles);
-
-                    lockOnTarget = null;
-                    lockonCursor.OnlockonEnd();
-                }
-            }
-
-            if (lockOnTarget)
-            {
-                lockOnTargetObject(lockOnTarget);
-            }
-
         }
     }
 
@@ -116,6 +116,7 @@ public class PlayerCameraController : MonoBehaviour
 
     private void lockOnTargetObject(GameObject target)
     {
+        Debug.Log("オブジェクトの方向く");
         transform.LookAt(target.transform, Vector3.up);
     }
 
