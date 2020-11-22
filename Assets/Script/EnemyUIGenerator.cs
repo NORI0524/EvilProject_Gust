@@ -43,7 +43,7 @@ public class EnemyUIGenerator : MonoBehaviour
         targetCanvas.gameObject.AddChild(gaugeUI);
 
 
-        hp = GetComponent<HpComponent>();
+        hp = gameObject.GetComponent<HpComponent>();
     }
 
     private void Update()

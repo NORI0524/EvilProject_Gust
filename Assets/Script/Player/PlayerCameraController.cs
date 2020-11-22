@@ -69,11 +69,6 @@ public class PlayerCameraController : MonoBehaviour
             }
         }
 
-        if (lockOnTarget)
-        {
-            lockOnTargetObject(lockOnTarget);
-        }
-
         if (IsLockOn == false)
         {
             //マウスのミドルボタンで変更（デバッグのため）
@@ -86,6 +81,13 @@ public class PlayerCameraController : MonoBehaviour
             var lookAtPos = target.transform.position + offset;
             updatePosition(lookAtPos);
             transform.LookAt(lookAtPos);
+        }
+
+        if (lockOnTarget)
+        {
+            var lookAtPos = target.transform.position + offset;
+            updatePosition(lookAtPos);
+            lockOnTargetObject(lockOnTarget);
         }
     }
 
