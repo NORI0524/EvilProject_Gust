@@ -34,7 +34,7 @@ public class CollisionTriggerComponent : MonoBehaviour
         {
             foreach (var targetTag in tagList)
             {
-                if (!other.CompareTag(targetTag)) continue;
+                if (!other.gameObject.CompareTag(targetTag)) continue;
                 enterFunction.Invoke(other.gameObject);
             }
         }
@@ -81,7 +81,7 @@ public class CollisionTriggerComponent : MonoBehaviour
     {
         if (exitFunction.GetPersistentEventCount() == 0) return;
 
-        if(tagList.Count == 0)
+        if (tagList.Count == 0)
         {
             exitFunction.Invoke(other.gameObject);
         }
@@ -89,7 +89,7 @@ public class CollisionTriggerComponent : MonoBehaviour
         {
             foreach (var targetTag in tagList)
             {
-                if (!other.CompareTag(targetTag)) continue;
+                if (!other.gameObject.CompareTag(targetTag)) continue;
                 exitFunction.Invoke(other.gameObject);
             }
         }
