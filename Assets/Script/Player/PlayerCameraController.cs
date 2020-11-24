@@ -1,45 +1,43 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Data.Common;
-using UnityEngine;
+﻿using UnityEngine;
+using Sirenix.OdinInspector;
 
 [ExecuteInEditMode, DisallowMultipleComponent]
 public class PlayerCameraController : MonoBehaviour
 {
-    public GameObject target; // an object to follow
-    public Vector3 offset; // offset form the target object
+    [TabGroup("Settings"), SerializeField] private GameObject target; // an object to follow
+    [TabGroup("Settings"), SerializeField] private Vector3 offset; // offset form the target object
 
-    [SerializeField] private float distance = 4.0f; // distance from following object
-    [SerializeField] private float polarAngle = 45.0f; // angle with y-axis
-    [SerializeField] private float azimuthalAngle = 45.0f; // angle with x-axis
+    [TabGroup("Settings"), PropertyRange("DistanceMin", "DistanceMax"), SerializeField] private float distance = 4.0f; // distance from following object
+    [TabGroup("Settings"), PropertyRange("PolarAngleMin", "PolarAngleMax"), SerializeField] private float polarAngle = 45.0f; // angle with y-axis
+    [TabGroup("Settings"), SerializeField] private float azimuthalAngle = 45.0f; // angle with x-axis
 
-    [SerializeField] private float minDistance = 1.0f;
-    [SerializeField] private float maxDistance = 7.0f;
-    [SerializeField] private float minPolarAngle = 5.0f;
-    [SerializeField] private float maxPolarAngle = 75.0f;
-    [SerializeField] private float mouseXSensitivity = 5.0f;
-    [SerializeField] private float mouseYSensitivity = 5.0f;
-    [SerializeField] private float scrollSensitivity = 5.0f;
+    [TabGroup("Settings"), MinMaxSlider(0.0f, 20.0f, true), SerializeField] private Vector2 distanceRange = new Vector2(1.0f, 7.0f);
+    [TabGroup("Settings"), MinMaxSlider(0.0f, 180.0f, true), SerializeField] private Vector2 polarAngleRange = new Vector2(5.0f, 75.0f);
+    [TabGroup("Settings"), SerializeField] private Vector2 mouseSensitivity = new Vector2(5.0f, 5.0f);
+    [TabGroup("Settings"), SerializeField] private float scrollSensitivity = 5.0f;
 
     private GameObject player = null;
     private LockOnTargetDetector lockOnTargetDetector = null;
     private GameObject lockOnTarget = null;
 
-    [SerializeField] protected LockOnCursor lockonCursor;
+    [TabGroup("LockOn"), SerializeField] protected LockOnCursor lockonCursor;
 
-    [SerializeField] private float search_radius = 20f;
-    [SerializeField] private bool IsLockOn = false;
+    [TabGroup("LockOn"), SerializeField] private float search_radius = 20f;
+    [TabGroup("LockOn"), SerializeField] private bool IsLockOn = false;
 
+    private float DistanceMin { get { return distanceRange.x; } }
+    private float DistanceMax { get { return distanceRange.y; } }
+    private float PolarAngleMin { get { return polarAngleRange.x; } }
+    private float PolarAngleMax { get { return polarAngleRange.y; } }
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         lockOnTargetDetector = player.GetComponentInChildren<LockOnTargetDetector>();
         lockOnTargetDetector.Search_Radius = search_radius;
-
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -53,8 +51,8 @@ public class PlayerCameraController : MonoBehaviour
                 {
                     lockOnTarget = target;
                     lockonCursor.OnlockonStart(target.transform);
+                    IsLockOn = true;
                 }
-                IsLockOn = true;
             }
             else
             {
@@ -85,6 +83,18 @@ public class PlayerCameraController : MonoBehaviour
 
         if (lockOnTarget)
         {
+            //プレイヤーから見た敵のベクトルとカメラから見たプレイヤーのベクトルを取得
+            var targetToPlayerVec = lockOnTarget.transform.position - player.transform.position;
+            var playerToCameraVec = player.transform.position - gameObject.transform.position;
+
+            //XZ平面にするためyを無視
+            targetToPlayerVec.y = 0.0f;
+            playerToCameraVec.y = 0.0f;
+
+            //角度の差分を計算して加算
+            var fixAzimuthalAngle = Vector3.SignedAngle(targetToPlayerVec, playerToCameraVec, Vector3.up);
+            azimuthalAngle += fixAzimuthalAngle;
+
             var lookAtPos = target.transform.position + offset;
             updatePosition(lookAtPos);
             lockOnTargetObject(lockOnTarget);
@@ -93,17 +103,17 @@ public class PlayerCameraController : MonoBehaviour
 
     void updateAngle(float x, float y)
     {
-        x = azimuthalAngle - x * mouseXSensitivity;
+        x = azimuthalAngle - x * mouseSensitivity.x;
         azimuthalAngle = Mathf.Repeat(x, 360);
 
-        y = polarAngle + y * mouseYSensitivity;
-        polarAngle = Mathf.Clamp(y, minPolarAngle, maxPolarAngle);
+        y = polarAngle + y * mouseSensitivity.y;
+        polarAngle = Mathf.Clamp(y, polarAngleRange.x, polarAngleRange.y);
     }
 
     void updateDistance(float scroll)
     {
         scroll = distance - scroll * scrollSensitivity;
-        distance = Mathf.Clamp(scroll, minDistance, maxDistance);
+        distance = Mathf.Clamp(scroll, distanceRange.x, distanceRange.y);
     }
 
     void updatePosition(Vector3 lookAtPos)
@@ -118,8 +128,6 @@ public class PlayerCameraController : MonoBehaviour
 
     private void lockOnTargetObject(GameObject target)
     {
-        Debug.Log("オブジェクトの方向く");
         transform.LookAt(target.transform, Vector3.up);
     }
-
 }

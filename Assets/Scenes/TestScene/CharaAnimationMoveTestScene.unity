@@ -522,12 +522,9 @@ MonoBehaviour:
   distance: 3
   polarAngle: 75
   azimuthalAngle: 270
-  minDistance: 1
-  maxDistance: 10
-  minPolarAngle: 5
-  maxPolarAngle: 75
-  mouseXSensitivity: 5
-  mouseYSensitivity: 5
+  distanceRange: {x: 1, y: 7}
+  polarAngleRange: {x: 5, y: 75}
+  mouseSensitivity: {x: 5, y: 5}
   scrollSensitivity: 5
   lockonCursor: {fileID: 0}
   search_radius: 20
@@ -1182,6 +1179,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 188009209}
     m_Modifications:
+    - target: {fileID: 2921845772334119508, guid: ab2cb1c2ec5ccee46838ec377070e8f6,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c1c12736f363f9645a61fad4789498f7,
+        type: 3}
     - target: {fileID: 2921845772334119510, guid: ab2cb1c2ec5ccee46838ec377070e8f6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2260,11 +2263,67 @@ PrefabInstance:
       propertyPath: onceDirectionObjectNum
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5456327818904747697, guid: 949d8541003387649b55182fb7805ee6,
+        type: 3}
+      propertyPath: weaponList.Array.data[1]
+      value: 
+      objectReference: {fileID: 3555270539641854492, guid: 9d56e2ceb1b8df34eab04d46a9fd9df7,
+        type: 3}
     - target: {fileID: 5456327819286159268, guid: 949d8541003387649b55182fb7805ee6,
         type: 3}
       propertyPath: lockonCursor
       value: 
       objectReference: {fileID: 1605477900}
+    - target: {fileID: 5456327819286159268, guid: 949d8541003387649b55182fb7805ee6,
+        type: 3}
+      propertyPath: maxDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5456327819286159268, guid: 949d8541003387649b55182fb7805ee6,
+        type: 3}
+      propertyPath: distanceRange.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5456327819286159268, guid: 949d8541003387649b55182fb7805ee6,
+        type: 3}
+      propertyPath: distance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5456327819286159268, guid: 949d8541003387649b55182fb7805ee6,
+        type: 3}
+      propertyPath: maxPolarAngle
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 5456327819286159268, guid: 949d8541003387649b55182fb7805ee6,
+        type: 3}
+      propertyPath: polarAngleRange.y
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 5456327819286159268, guid: 949d8541003387649b55182fb7805ee6,
+        type: 3}
+      propertyPath: polarAngle
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5456327819286159271, guid: 949d8541003387649b55182fb7805ee6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.13052621
+      objectReference: {fileID: 0}
+    - target: {fileID: 5456327819286159271, guid: 949d8541003387649b55182fb7805ee6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.2764573
+      objectReference: {fileID: 0}
+    - target: {fileID: 5456327819286159271, guid: 949d8541003387649b55182fb7805ee6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -12.897779
+      objectReference: {fileID: 0}
+    - target: {fileID: 5456327819286159271, guid: 949d8541003387649b55182fb7805ee6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9914449
+      objectReference: {fileID: 0}
     - target: {fileID: 5456327819574375292, guid: 949d8541003387649b55182fb7805ee6,
         type: 3}
       propertyPath: m_Name

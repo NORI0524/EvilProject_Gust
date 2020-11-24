@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TestScene/WeponTestScene.unity
+    path: Assets/Scenes/TestScene/Weapon/WeponTestScene.unity
     guid: b79a0a6d426d43e4e9f086c1d3a37d3f
   - enabled: 1
     path: Assets/Scenes/TestScene/Enemy/EnemyTestScene.unity
