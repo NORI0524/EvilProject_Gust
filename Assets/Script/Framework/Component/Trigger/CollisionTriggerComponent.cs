@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Sirenix.OdinInspector;
 
 
 public class CollisionTriggerComponent : MonoBehaviour
 {
     [Serializable] public class CallBackFunction : UnityEvent<GameObject> { }
-
 
     //当たり判定の開始
     [field: SerializeField] public CallBackFunction enterFunction { get; set; }
@@ -20,7 +20,8 @@ public class CollisionTriggerComponent : MonoBehaviour
     [SerializeField] GameKeyConfig gameKey = GameKeyConfig.None;
 
     //タグを複数設定できるようにリスト
-    [SerializeField] List<string> tagList = new List<string>();
+    [SerializeField]
+    List<string> tagList = new List<string>();
 
     private void OnTriggerEnter(Collider other)
     {
@@ -33,7 +34,7 @@ public class CollisionTriggerComponent : MonoBehaviour
         {
             foreach (var targetTag in tagList)
             {
-                if (!other.CompareTag(targetTag)) continue;
+                if (!other.gameObject.CompareTag(targetTag)) continue;
                 enterFunction.Invoke(other.gameObject);
             }
         }
@@ -80,7 +81,7 @@ public class CollisionTriggerComponent : MonoBehaviour
     {
         if (exitFunction.GetPersistentEventCount() == 0) return;
 
-        if(tagList.Count == 0)
+        if (tagList.Count == 0)
         {
             exitFunction.Invoke(other.gameObject);
         }
@@ -88,7 +89,7 @@ public class CollisionTriggerComponent : MonoBehaviour
         {
             foreach (var targetTag in tagList)
             {
-                if (!other.CompareTag(targetTag)) continue;
+                if (!other.gameObject.CompareTag(targetTag)) continue;
                 exitFunction.Invoke(other.gameObject);
             }
         }

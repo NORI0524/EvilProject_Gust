@@ -1,11 +1,8 @@
 ﻿//using RPGCharacterAnims;
-using RPGCharacterAnims;
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.XR;
+using Sirenix.OdinInspector;
 
 // 武器の種類
 public enum WeaponType
@@ -26,7 +23,9 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private GameObject parentObject = null;
 
     //武器リスト
-    [SerializeField] private List<GameObject> weaponList = null;
+    [SerializeField]
+    [PreviewField]
+    private List<GameObject> weaponList = null;
 
     //武器管理リスト
     private Dictionary<WeaponType, GameObject> weaponDict = null;
