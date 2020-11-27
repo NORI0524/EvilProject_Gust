@@ -151,7 +151,7 @@ MonoBehaviour:
   parentObject: {fileID: 8101267990510302021}
   weaponList:
   - {fileID: 7297565230111170155, guid: 15d10c66aaa7c11488210533b2a7ab1a, type: 3}
-  - {fileID: 893124431597647270, guid: d190fb60392b0424ea96aa4a1161ba51, type: 3}
+  - {fileID: 3555270539641854492, guid: 9d56e2ceb1b8df34eab04d46a9fd9df7, type: 3}
   - {fileID: 7413489768738054206, guid: 8c974378a7e1cbd48a9301455855a347, type: 3}
   - {fileID: 593158949311616401, guid: 1ebe999fdf99e3b489cfbb08f5ce65db, type: 3}
 --- !u!1 &5456327819286159270
@@ -181,7 +181,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5456327819286159270}
   m_LocalRotation: {x: 0.13052621, y: -0, z: -0, w: 0.9914449}
-  m_LocalPosition: {x: 0, y: 2.2764573, z: -12.897779}
+  m_LocalPosition: {x: 0, y: 2.2764573, z: -12.897778}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5456327819574375293}
@@ -255,12 +255,9 @@ MonoBehaviour:
   distance: 3
   polarAngle: 75
   azimuthalAngle: 270
-  minDistance: 1
-  maxDistance: 10
-  minPolarAngle: 5
-  maxPolarAngle: 110
-  mouseXSensitivity: 5
-  mouseYSensitivity: 5
+  distanceRange: {x: 1, y: 7}
+  polarAngleRange: {x: 5, y: 75}
+  mouseSensitivity: {x: 5, y: 5}
   scrollSensitivity: 5
   lockonCursor: {fileID: 0}
   search_radius: 20

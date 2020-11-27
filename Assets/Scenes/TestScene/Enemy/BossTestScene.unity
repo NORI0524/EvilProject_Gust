@@ -817,12 +817,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1801078931 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4726529997696902725, guid: 949d8541003387649b55182fb7805ee6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1983802886}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1820075695
 GameObject:
   m_ObjectHideFlags: 0
@@ -913,26 +907,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5456327818904747697, guid: 949d8541003387649b55182fb7805ee6,
-        type: 3}
-      propertyPath: weaponList.Array.data[1]
-      value: 
-      objectReference: {fileID: 1801078931}
-    - target: {fileID: 5456327819286159271, guid: 949d8541003387649b55182fb7805ee6,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -12.897778
-      objectReference: {fileID: 0}
-    - target: {fileID: 5456327819286159271, guid: 949d8541003387649b55182fb7805ee6,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.13052621
-      objectReference: {fileID: 0}
-    - target: {fileID: 5456327819286159271, guid: 949d8541003387649b55182fb7805ee6,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.2764573
-      objectReference: {fileID: 0}
     - target: {fileID: 5456327819574375292, guid: 949d8541003387649b55182fb7805ee6,
         type: 3}
       propertyPath: m_Name
@@ -1002,6 +976,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2025401827483017984, guid: 8f88a555f90bb8641b462266c4f70c4b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4575844830587090593, guid: 8f88a555f90bb8641b462266c4f70c4b,
         type: 3}
       propertyPath: m_Name
