@@ -6711,6 +6711,7 @@ MonoBehaviour:
   nextState: 0
   effect: 0
   attackEffect: []
+  attackValue: 1
   attackAnimationTime: 2
   attackColliderStartTime: 0.5
   attackColliderLifeTime: 1
@@ -27309,6 +27310,8 @@ MonoBehaviour:
   maxValue: 100
   damageValue: 10
   isHitStop: 0
+  isOwnhitStop: 0
+  targetTag: 1
 --- !u!1 &576177077094195113
 GameObject:
   m_ObjectHideFlags: 0

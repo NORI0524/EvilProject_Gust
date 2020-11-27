@@ -10,8 +10,8 @@ TagManager:
   - Enemy
   - Monitor
   - Arm
-  - testEnemy
   - AttackEffect
+  - Explosion
   layers:
   - Default
   - TransparentFX

@@ -971,8 +971,9 @@ MonoBehaviour:
   animator: {fileID: 0}
   aiState: 0
   nextState: 0
-  attackEffect: {fileID: 0}
   effect: 0
+  attackEffect:
+  - {fileID: 0}
   attackAnimationTime: 1.5
   attackColliderStartTime: 0.5
   attackColliderLifeTime: 1

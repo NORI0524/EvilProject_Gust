@@ -1618,6 +1618,7 @@ MonoBehaviour:
   effect: 1
   attackEffect:
   - {fileID: 7422430632409024208, guid: 8b3b0246447cf214d90d5e41966f2ea1, type: 3}
+  attackValue: 1
   attackAnimationTime: 2
   attackColliderStartTime: 0.5
   attackColliderLifeTime: 0.25
@@ -1737,7 +1738,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4489002025067906394}
   - component: {fileID: 1846143552}
-  - component: {fileID: 1846143550}
   - component: {fileID: 2189407943294772117}
   m_Layer: 0
   m_Name: Wrist_R
@@ -1777,28 +1777,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1846143550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4489002025067551098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81241c975e56b7d4787b5bd4db5e0687, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nav: {fileID: 0}
-  animator: {fileID: 0}
-  aiState: 0
-  nextState: 0
-  effect: 0
-  attackEffect: []
-  attackAnimationTime: 1.5
-  attackColliderStartTime: 0.5
-  attackColliderLifeTime: 1
-  attackColTime: 120
 --- !u!114 &2189407943294772117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1814,6 +1792,8 @@ MonoBehaviour:
   maxValue: 100
   damageValue: 10
   isHitStop: 0
+  isOwnhitStop: 0
+  targetTag: 1
 --- !u!1 &4489002025067551100
 GameObject:
   m_ObjectHideFlags: 0

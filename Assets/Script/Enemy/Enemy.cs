@@ -41,7 +41,9 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private bool effect;
     [SerializeField] private GameObject[] attackEffect;    // 目的地の配列
-    //[SerializeField] private GameObject attackEffect;
+
+    [SerializeField] private int attackValue = 1;
+    private int attackCount = 0;
 
     [SerializeField] private float attackAnimationTime = 1.5f;
     [SerializeField] private float attackColliderStartTime = 0.5f;
@@ -50,7 +52,6 @@ public class Enemy : MonoBehaviour
 
     float animationWait = 0.0f;
     float colliderWait = 0.0f;
-    int attackcount = 0;
 
     private void Start()
     {
@@ -130,13 +131,15 @@ public class Enemy : MonoBehaviour
             // 被弾
             if (damage)
             {
+                var attackS = GetComponent<Attack>();
+                if (this.gameObject.name == "Juggernaut") attackS.EndBackStep();
                 if (endDamageAnimation)
                 {
                     animator.SetTrigger("Damage");
                 }
                 animationWait = 0.0f; colliderWait = 0.0f;
                 nav.EndNav();
-                EndAttack();
+                EndAttackAnimation();
                 StartHit();
                 EndEffect();
                 nextState = EnemyAIState.DAMAGE;
@@ -145,11 +148,21 @@ public class Enemy : MonoBehaviour
             if (aiState != EnemyAIState.DAMAGE && aiState != EnemyAIState.ATTACK && attack && endAttackAnimation && endDamageAnimation)
             {
                 HitCollider.enabled = true;
-                attackcount++;
                 animationWait = 0.0f;
                 nav.EndNav();
                 StartAttack();
-                animator.SetTrigger("Attack");
+                // AttackCountなどで攻撃のバリエーションを設定、ランダムで取得(はじめはカウントアップ制でいいかも)
+                switch (attackCount)
+                {
+                    case 0:
+                        animator.SetTrigger("Attack");
+                        break;
+                    case 1:
+                        animator.SetTrigger("Jump");
+                        break;
+                }
+                attackCount++;
+                if (attackCount > attackValue - 1) { attackCount -= attackValue; }
                 nextState = EnemyAIState.ATTACK;
             }
         }
@@ -158,7 +171,7 @@ public class Enemy : MonoBehaviour
         {
             animator.SetTrigger("Death");
             nav.EndNav();
-            EndAttack();
+            EndAttackAnimation();
             EndHit();
             ColliderReset();
             HitCollider.enabled = false;
@@ -187,15 +200,16 @@ public class Enemy : MonoBehaviour
             case EnemyAIState.DAMAGE:
                 animationWait++;
                 colliderWait++;
-                if (animationWait > 50.0f) { ReturnWaitState();  } 
-                if (colliderWait > 5.0f) { HitCollider.enabled = true;EndHitAnimation(); }
+                if (animationWait > 50.0f) { ReturnWaitState(); }
+                if (colliderWait > 5.0f) { HitCollider.enabled = true; EndHitAnimation(); }
                 break;
             case EnemyAIState.ATTACK:
                 animationWait++;
-                if (animationWait > 230.0f) { ReturnWaitState(); } 
+                if (animationWait > 230.0f) { ReturnWaitState(); }
                 if (animationWait > attackColTime) { ColliderReset(); }
                 break;
         }
+        if (Input.GetKeyDown(KeyCode.Return)) { Debug.Log(aiState); Debug.Log(attackCount); }
     }
 
     public void Discover()
@@ -232,10 +246,10 @@ public class Enemy : MonoBehaviour
         endAttackAnimation = false;
         if (effect) attackEffect[0].SetActive(true);
         Invoke("ColliderStart", attackColliderStartTime);
-        Invoke("EndAttack", attackAnimationTime);
+        //Invoke("EndAttackAnimation", attackAnimationTime);
     }
 
-    public void EndAttack()
+    public void EndAttackAnimation()
     {
         endAttackAnimation = true;
     }
@@ -275,11 +289,13 @@ public class Enemy : MonoBehaviour
     {
         if (other.tag == "Weapon")
         {
+            Debug.Log("武器に当たりました");
             if (hp.IsDamageTrigger())
             {
                 damage = true;
                 animationWait = 0.0f;
             }
+            else { Debug.Log("だめだ"); }
         }
     }
 
