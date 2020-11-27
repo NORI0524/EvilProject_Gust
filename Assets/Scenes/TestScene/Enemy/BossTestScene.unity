@@ -296,6 +296,10 @@ MonoBehaviour:
   directionNum: 3
   onceDirectionObjectNum: 4
   betweenSpace: 1
+  offsetAngle: 0
+  isWayBarrage: 0
+  wayAngle: 180
+  offsetHeight: 0
 --- !u!4 &667638924
 Transform:
   m_ObjectHideFlags: 0
@@ -813,6 +817,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1801078931 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4726529997696902725, guid: 949d8541003387649b55182fb7805ee6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1983802886}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1820075695
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,6 +913,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5456327818904747697, guid: 949d8541003387649b55182fb7805ee6,
+        type: 3}
+      propertyPath: weaponList.Array.data[1]
+      value: 
+      objectReference: {fileID: 1801078931}
     - target: {fileID: 5456327819286159271, guid: 949d8541003387649b55182fb7805ee6,
         type: 3}
       propertyPath: m_LocalPosition.z
