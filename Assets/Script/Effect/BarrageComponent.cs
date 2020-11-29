@@ -8,25 +8,34 @@ public class BarrageComponent : MonoBehaviour
     [SerializeField] Transform originTransform = null;
     [SerializeField] GameObject barrageObject = null;
 
+    [TabGroup("Direction")]
     [SerializeField, Range(1, 360)] int directionNum = 4;
+    [TabGroup("Object")]
     [SerializeField, Range(1, 30)] int onceDirectionObjectNum = 4;
 
+    [TabGroup("Object")]
     [SerializeField] float betweenSpace = 1.0f;
 
+    [TabGroup("Direction")]
     [SerializeField,PropertyRange(0.0f,360.0f)] float offsetAngle = 0.0f;
 
+    [TabGroup("Direction")]
     [SerializeField] private bool isWayBarrage = false;
+    [TabGroup("Direction")]
     [SerializeField, Range(1.0f, 180.0f)]
     [ShowIf("isWayBarrage")]private float wayAngle = 180.0f;
 
+    [TabGroup("Object")]
     [SerializeField] private float offsetHeight = 0.0f;
 
+    private ObjectPool pool = null;
 
-    //private void Update()
-    //{
-    //    if(GameKeyConfig.Jump.GetKeyDown())
-    //        CreateBarrage();
-    //}
+
+    private void Awake()
+    {
+        //とりあえず 方向数×一方向数の2倍オブジェクトをストック
+        pool = new ObjectPool(barrageObject, directionNum * onceDirectionObjectNum * 2);
+    }
 
     [HideInEditorMode]
     [Button("Play",ButtonSizes.Large)]
@@ -45,7 +54,7 @@ public class BarrageComponent : MonoBehaviour
             for(int onceObjectCount = 0; onceObjectCount < onceDirectionObjectNum; onceObjectCount++)
             {
                 var objectPos = rotatedVec * betweenSpace * (onceObjectCount + 1);
-                var barrage = Instantiate(barrageObject);
+                var barrage = pool.GenerateInstance();
                 objectPos.y += offsetHeight;
                 barrage.transform.position = objectPos + originTransform.position;
             }

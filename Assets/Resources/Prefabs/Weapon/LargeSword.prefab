@@ -66,6 +66,8 @@ MonoBehaviour:
   maxValue: 100
   damageValue: 4
   isHitStop: 1
+  isOwnhitStop: 1
+  targetTag: 2
 --- !u!114 &3718467360543260713
 MonoBehaviour:
   m_ObjectHideFlags: 0
