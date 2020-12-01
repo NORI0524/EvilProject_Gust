@@ -2230,6 +2230,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1168713239167104075, guid: afb82e1859dbe41418b215804e0fa721,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2396463977669873577, guid: afb82e1859dbe41418b215804e0fa721,
         type: 3}
       propertyPath: m_Name
@@ -2238,7 +2243,7 @@ PrefabInstance:
     - target: {fileID: 2396463977669873577, guid: afb82e1859dbe41418b215804e0fa721,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2396463977669873582, guid: afb82e1859dbe41418b215804e0fa721,
         type: 3}
@@ -2458,6 +2463,11 @@ PrefabInstance:
         type: 3}
       propertyPath: onceDirectionObjectNum
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955201926340058733, guid: 949d8541003387649b55182fb7805ee6,
+        type: 3}
+      propertyPath: comboJudgeTime
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5456327818904747697, guid: 949d8541003387649b55182fb7805ee6,
         type: 3}

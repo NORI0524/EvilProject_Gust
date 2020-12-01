@@ -16,6 +16,7 @@ public class DamageComponent : BaseStatusComponent
     [SerializeField] private TagData targetTag = TagData.None;
 
     HitStopSlowAnim playerHitStop = null;
+    ComboComponent combo = null;
 
     // Use this for initialization
     void Start()
@@ -24,6 +25,7 @@ public class DamageComponent : BaseStatusComponent
 
         var player = GameObject.FindGameObjectWithTag(TagData.Player.ToString());
         playerHitStop = player.GetComponent<HitStopSlowAnim>();
+        combo = player.GetComponent<ComboComponent>();
     }
 
     public void ChangeDamageHalf()
@@ -47,6 +49,12 @@ public class DamageComponent : BaseStatusComponent
         var targetHp = other.GetComponent<HpComponent>();
         if (targetHp == null) return;
         targetHp.AddDamage(currentValue);
+
+        //コンボ
+        if(targetTag == TagData.Enemy)
+        {
+            combo.CountCombo();
+        }
 
         if (isHitStop == false) return;
 
