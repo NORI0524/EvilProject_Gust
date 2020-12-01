@@ -128,6 +128,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4489002025067551091, guid: 9f65b6aef05affd42819874a9341a793,
+        type: 3}
+      propertyPath: attackValue
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4489002025067551094, guid: 9f65b6aef05affd42819874a9341a793,
         type: 3}
       propertyPath: m_Name
@@ -974,6 +979,7 @@ MonoBehaviour:
   effect: 0
   attackEffect:
   - {fileID: 0}
+  attackValue: 1
   attackAnimationTime: 1.5
   attackColliderStartTime: 0.5
   attackColliderLifeTime: 1

@@ -147,22 +147,22 @@ public class Enemy : MonoBehaviour
             // 攻撃
             if (aiState != EnemyAIState.DAMAGE && aiState != EnemyAIState.ATTACK && attack && endAttackAnimation && endDamageAnimation)
             {
-                HitCollider.enabled = true;
-                animationWait = 0.0f;
-                nav.EndNav();
-                StartAttack();
+                HitCollider.enabled = true; //  Attack
+                animationWait = 0.0f;   // これもAttack(アニメーションイベントでもいい)で管理
+                nav.EndNav();   // Navigation
+                StartAttack();  // Attack
                 // AttackCountなどで攻撃のバリエーションを設定、ランダムで取得(はじめはカウントアップ制でいいかも)
                 switch (attackCount)
                 {
                     case 0:
-                        animator.SetTrigger("Attack");
+                        animator.SetTrigger("Attack");  //Attack
                         break;
                     case 1:
-                        animator.SetTrigger("Jump");
+                        animator.SetTrigger("Attack2");
                         break;
                 }
-                attackCount++;
-                if (attackCount > attackValue - 1) { attackCount -= attackValue; }
+                attackCount++;  //Attack
+                if (attackCount > attackValue - 1) { attackCount -= attackValue; }  // Attack
                 nextState = EnemyAIState.ATTACK;
             }
         }
@@ -177,6 +177,8 @@ public class Enemy : MonoBehaviour
             HitCollider.enabled = false;
             DestroyUI();
             nextState = EnemyAIState.DEATH;
+
+            Invoke("DestroyEnemy", 10.0f);
         }
     }
 
@@ -209,7 +211,7 @@ public class Enemy : MonoBehaviour
                 if (animationWait > attackColTime) { ColliderReset(); }
                 break;
         }
-        if (Input.GetKeyDown(KeyCode.Return)) { Debug.Log(aiState); Debug.Log(attackCount); }
+        if (Input.GetKeyDown(KeyCode.Return)) {  }
     }
 
     public void Discover()
@@ -308,5 +310,10 @@ public class Enemy : MonoBehaviour
     {
         // 攻撃終了
         armCollider.enabled = false;
+    }
+
+    public void DestroyEnemy()
+    {
+        Destroy(this.gameObject);
     }
 }

@@ -42,13 +42,7 @@ public class Attack : MonoBehaviour
     public void ExplosionEffect()
     {
         var explosionEffect = GetComponentInChildren<BarrageComponent>();
-        //explosionEffect.enabled = true;
         explosionEffect.CreateBarrage();
-    }
-    public void EndExplosionEffect()
-    {
-        //var explosionEffect = GetComponent<BarrageComponent>();
-        //explosionEffect.enabled = false;
     }
     public void Explosion()
     {
@@ -76,8 +70,8 @@ public class Attack : MonoBehaviour
         }
     }
 
-    IEnumerator Timer()
+    private void OnTriggerStay(Collider other)
     {
-        yield return new WaitForSeconds(60f);
+        
     }
 }
