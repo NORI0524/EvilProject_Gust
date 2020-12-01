@@ -650,6 +650,7 @@ GameObject:
   - component: {fileID: 8608421821777813580}
   - component: {fileID: 1074663347633230999}
   - component: {fileID: 1036106253975541489}
+  - component: {fileID: 7114061512618415088}
   m_Layer: 0
   m_Name: Exorcist
   m_TagString: Untagged
@@ -903,6 +904,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slowAnimSpeed: 0
   slowTime: 0.1
+--- !u!114 &7114061512618415088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3286173269996853682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abb8b9c2566974140980d421772ced71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comboJudgeTime: 1
 --- !u!1 &3384777848954230322
 GameObject:
   m_ObjectHideFlags: 0
@@ -1497,8 +1511,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 2786008723096847361}
   m_AABB:
-    m_Center: {x: 0, y: -13.829231, z: 1.4036293}
-    m_Extent: {x: 60.854324, y: 63.311394, z: 24.056288}
+    m_Center: {x: 0.00009530783, y: -28.251648, z: 0.0070902556}
+    m_Extent: {x: 0.5567532, y: 0.08946991, z: 0.0169905}
   m_DirtyAABB: 0
 --- !u!1 &4585405105915243427
 GameObject:

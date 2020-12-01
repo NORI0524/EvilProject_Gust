@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -8012845063701422224}
   - component: {fileID: 6405212223005762599}
   m_Layer: 0
-  m_Name: Spear_origin
+  m_Name: Spear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3555270539641854492}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.25
   m_Height: 1.1094851
@@ -127,6 +127,8 @@ MonoBehaviour:
   maxValue: 100
   damageValue: 4
   isHitStop: 1
+  isOwnhitStop: 0
+  targetTag: 0
 --- !u!114 &-8012845063701422224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +152,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3555270539641854492}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 3965bf441c0cc2943804d30d39e8e7be, type: 3}
+  m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 9faae6316d7c6e246a8cf477b07b404b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0

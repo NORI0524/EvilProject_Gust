@@ -1,15 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ColliderHit : MonoBehaviour
 {
     [SerializeField] private GameObject targetObject = null;
+    [SerializeField, Range(1, 100)] private int stockNum = 5;
 
-    // Start is called before the first frame update
-    void Start()
+    ObjectPool pool = null;
+
+    private void Awake()
     {
-
+        pool = new ObjectPool(targetObject, stockNum);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -18,7 +18,7 @@ public class ColliderHit : MonoBehaviour
         var pos = this.transform.position;
         var hitPos = other.ClosestPointOnBounds(pos);
         var hitVec = pos - hitPos;
-        var createObject = GameObject.Instantiate(targetObject);
+        var createObject = pool.GenerateInstance();
         createObject.transform.position = hitPos;
 
         if(hitVec != Vector3.zero)
