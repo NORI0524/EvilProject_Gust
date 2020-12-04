@@ -57,6 +57,7 @@ public class BarrageComponent : MonoBehaviour
                 var barrage = pool.GenerateInstance();
                 objectPos.y += offsetHeight;
                 barrage.transform.position = objectPos + originTransform.position;
+                barrage.transform.rotation = Quaternion.LookRotation(rotatedVec, Vector3.up);
             }
         }
     }
