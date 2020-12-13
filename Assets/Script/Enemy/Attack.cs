@@ -5,8 +5,14 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
 
-    private bool backStepFlg = false;
-    private Rigidbody rigidbody;
+    [SerializeField] Rigidbody rigidbody;
+    [SerializeField] Animator animator;
+
+    [SerializeField] private int attackValue = 1;
+    private int attackCount = 0;        // 攻撃種類の番号
+
+    private bool backStepFlg = false;   // バックステップをしているかどうか
+
     private void Start()
     {
         backStepFlg = false;
@@ -24,6 +30,41 @@ public class Attack : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
 
+    }
+
+    public void StartAttack()
+    {
+        attackCount++;
+        if (attackCount > attackValue - 1) { attackCount -= attackValue; }
+        switch (attackCount)
+        {
+            case 0:
+                animator.SetTrigger("Attack");
+                break;
+            case 1:
+                animator.SetTrigger("Attack2");
+                break;
+            case 2:
+                animator.SetTrigger("Attack3");
+                break;
+        }
+    }
+    public void ValidCollider(string tag)
+    {
+        Collider attackCollider;
+        attackCollider = GameObject.FindGameObjectWithTag(tag).GetComponent<Collider>();
+        attackCollider.enabled = true;
+    }
+    public void InvalidCollider()
+    {
+        Collider[] attackColliders = transform.GetComponents<Collider>();
+        foreach (var col in attackColliders) { col.enabled = false; }
+    }
+    public void InvalidCollider(string tag)
+    {
+        Collider attackCollider;
+        attackCollider = GameObject.FindGameObjectWithTag(tag).GetComponent<Collider>();
+        attackCollider.enabled = false;
     }
 
     public void StartBackStep()
@@ -70,8 +111,4 @@ public class Attack : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        
-    }
 }
