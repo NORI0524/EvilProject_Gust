@@ -90,6 +90,12 @@ public class PlayerController : BaseComponent
             animator.SetTrigger("Jump");
         }
 
+        //HP回復
+        if(GameKeyConfig.Item.GetKeyDown())
+        {
+            hp.AddHeal(30);
+        }
+
         //回避
         if (state.CheckBit(PlayerState.Avoid) == false)
         {
