@@ -28,6 +28,9 @@ public class BarrageComponent : MonoBehaviour
     [TabGroup("Object")]
     [SerializeField] private float offsetHeight = 0.0f;
 
+    [SerializeField] private bool isDelay = false;
+    [SerializeField, ShowIf("isDelay")] private float delaySeconds = 1.0f;
+
     private ObjectPool pool = null;
 
 
@@ -38,26 +41,50 @@ public class BarrageComponent : MonoBehaviour
     }
 
     [HideInEditorMode]
-    [Button("Play",ButtonSizes.Large)]
-    public void CreateBarrage()
+    [Button("Play", ButtonSizes.Large)]
+    private void Create()
+    {
+        StartCoroutine("CreateBarrage");
+    }
+    public IEnumerator CreateBarrage()
     {
         var fowardVec = originTransform.forward;
         var rangeAngle = isWayBarrage ? wayAngle : 360.0f;
         var onceAngle = rangeAngle / directionNum;
         var fixRangeAngle = isWayBarrage ? (rangeAngle - onceAngle) / 2.0f : 0.0f;
 
-        for (int directionCount = 0; directionCount < directionNum; directionCount++)
-        {
-            var angleDegree = (directionCount * onceAngle) - fixRangeAngle + offsetAngle;
-            var rotatedVec = Quaternion.Euler(0.0f, angleDegree, 0.0f) * fowardVec;
+        //for (int directionCount = 0; directionCount < directionNum; directionCount++)
+        //{
+        //    var angleDegree = (directionCount * onceAngle) - fixRangeAngle + offsetAngle;
+        //    var rotatedVec = Quaternion.Euler(0.0f, angleDegree, 0.0f) * fowardVec;
 
-            for(int onceObjectCount = 0; onceObjectCount < onceDirectionObjectNum; onceObjectCount++)
+        //    for(int onceObjectCount = 0; onceObjectCount < onceDirectionObjectNum; onceObjectCount++)
+        //    {
+        //        var objectPos = rotatedVec * betweenSpace * (onceObjectCount + 1);
+        //        var barrage = pool.GenerateInstance();
+        //        objectPos.y += offsetHeight;
+        //        barrage.transform.position = objectPos + originTransform.position;
+        //        barrage.transform.rotation = Quaternion.LookRotation(rotatedVec, Vector3.up);
+        //    }
+
+        //    yield return new WaitForSeconds(delaySeconds);
+        //}
+
+        for (int onceObjectCount = 0; onceObjectCount < onceDirectionObjectNum; onceObjectCount++)
+        {
+            for (int directionCount = 0; directionCount < directionNum; directionCount++)
             {
+                var angleDegree = (directionCount * onceAngle) - fixRangeAngle + offsetAngle;
+                var rotatedVec = Quaternion.Euler(0.0f, angleDegree, 0.0f) * fowardVec;
                 var objectPos = rotatedVec * betweenSpace * (onceObjectCount + 1);
                 var barrage = pool.GenerateInstance();
                 objectPos.y += offsetHeight;
                 barrage.transform.position = objectPos + originTransform.position;
                 barrage.transform.rotation = Quaternion.LookRotation(rotatedVec, Vector3.up);
+            }
+            if(isDelay)
+            {
+                yield return new WaitForSeconds(delaySeconds);
             }
         }
     }
