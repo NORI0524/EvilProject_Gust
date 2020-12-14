@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
     private EnemyUIGenerator ui;
 
     [SerializeField] private bool effect;
-    [SerializeField] private GameObject[] attackEffect;    // 目的地の配列
+    [SerializeField] private GameObject attackEffect;    // 目的地の配列
 
     [SerializeField] private float attackColliderStartTime = 0.5f;
     [SerializeField] private float attackColTime = 120.0f;
@@ -101,7 +101,7 @@ public class Enemy : MonoBehaviour
         {
             if (wait)
             {
-                EndEffect(); attack.InvalidCollider(); nAttack();
+                EndEffect(); attack.InvalidAllColliders(); nAttack();
                 HitCollider.enabled = true;
                 nextState = EnemyAIState.WAIT;
                 wait = false;
@@ -143,6 +143,7 @@ public class Enemy : MonoBehaviour
             // 攻撃
             if (aiState != EnemyAIState.DAMAGE && aiState != EnemyAIState.ATTACK && GetAttack && endAttackAnimation && endDamageAnimation)
             {
+                Debug.Log(aiState);
                 attack.StartAttack();
                 navigation.EndNav();   // Navigation
                 animationWait = 0.0f;   // これもAttack(アニメーションイベントでもいい)で管理
@@ -157,7 +158,7 @@ public class Enemy : MonoBehaviour
             navigation.EndNav();
             EndAttackAnimation();
             EndHit();
-            attack.InvalidCollider();
+            attack.InvalidAllColliders();
             HitCollider.enabled = false;
             DestroyUI();
             nextState = EnemyAIState.DEATH;
@@ -190,8 +191,6 @@ public class Enemy : MonoBehaviour
                 if (colliderWait > 5.0f) { HitCollider.enabled = true; EndHitAnimation(); }
                 break;
             case EnemyAIState.ATTACK:
-                animationWait++;
-                if (animationWait > 230.0f) { ReturnWaitState(); }
                 break;
         }
         if (Input.GetKeyDown(KeyCode.Return)) { }
@@ -229,23 +228,22 @@ public class Enemy : MonoBehaviour
     public void StartAttack()
     {
         endAttackAnimation = false;
-        if (effect) attackEffect[0].SetActive(true);
+        if (effect) attackEffect.SetActive(true);
     }
 
     public void EndAttackAnimation()
     {
         endAttackAnimation = true;
+        nextState = EnemyAIState.WAIT;
     }
 
     public void ReturnWaitState()
     {
-        nextState = EnemyAIState.WAIT;
-        animationWait = 0.0f;
     }
 
     public void EndEffect()
     {
-        if (effect) attackEffect[0].SetActive(false);
+        if (effect) attackEffect.SetActive(false);
     }
 
     public void Attack()
@@ -278,7 +276,6 @@ public class Enemy : MonoBehaviour
                 damage = true;
                 animationWait = 0.0f;
             }
-            else { Debug.Log("だめだ"); }
         }
     }
 
