@@ -101,6 +101,17 @@ public class PlayerController : BaseComponent
         {
             if (GameKeyConfig.Avoid.GetKeyDown())
             {
+                //キャラ操作
+                var vec = charaMove.MoveVec();
+                var moveForward = charaMove.MoveForwardCalc(vec);
+
+                //回転
+                if (moveForward != Vector3.zero)
+                {
+                    var moveQua = Quaternion.LookRotation(moveForward);
+                    transform.rotation = moveQua;
+                }
+
                 animator.SetTrigger("Roll");
             }
         }
