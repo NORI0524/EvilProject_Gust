@@ -90,11 +90,28 @@ public class PlayerController : BaseComponent
             animator.SetTrigger("Jump");
         }
 
+        //HP回復
+        if(GameKeyConfig.Item.GetKeyDown())
+        {
+            hp.AddHeal(30);
+        }
+
         //回避
         if (state.CheckBit(PlayerState.Avoid) == false)
         {
             if (GameKeyConfig.Avoid.GetKeyDown())
             {
+                //キャラ操作
+                var vec = charaMove.MoveVec();
+                var moveForward = charaMove.MoveForwardCalc(vec);
+
+                //回転
+                if (moveForward != Vector3.zero)
+                {
+                    var moveQua = Quaternion.LookRotation(moveForward);
+                    transform.rotation = moveQua;
+                }
+
                 animator.SetTrigger("Roll");
             }
         }

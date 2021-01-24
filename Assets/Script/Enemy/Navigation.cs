@@ -10,21 +10,28 @@ public class Navigation : MonoBehaviour
     Enemy e_con;
 
     // MOVE
-    [SerializeField] private float moveSpeed = 1.0f; // 移動速度
-    [SerializeField] public GameObject[] Target;    // 目的地の配列
-    private int targetCount = 0; // 現在の目的地番号
+    [SerializeField] private float moveSpeed = 1.0f;
+    [SerializeField] public GameObject[] Target;
+    private int targetCount = 0;
 
     //CHASE
-    Transform player = default;    // プレイヤーの座標
-    [SerializeField] float dist = 7.0f;    // 索敵範囲(範囲外に出たら追尾終了)
-    float approarchDist = 2.0f; // この距離まで近づいたら止まる
+    private Transform player;
+    public Transform Player
+    {
+        get
+        {
+            return player;
+        }
+    }
+    [SerializeField] float dist = 7.0f;
+    float approarchDist = 2.0f;
 
     // フラグ
-    bool tracking = false;  // プレイヤーを追尾しているかどうか
-    bool searching = false; // 見失った時にSearchするかどうか
-    bool moving = false;    // ステージ内を移動するかどうか
+    bool tracking = false;
+    bool searching = false;
+    bool moving = false;
 
-    private Vector3 saveTargetPos;  // 見失う直前のプレイヤーの座標を保存
+    private Vector3 saveTargetPos;
 
     private bool haveTarget;
 
