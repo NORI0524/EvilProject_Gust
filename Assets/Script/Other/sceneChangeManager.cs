@@ -5,17 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class sceneChangeManager : MonoBehaviour
 {
+    [SerializeField] string filePath = "";
+
+    public void Change()
+    {
+        var sceneChange = GameObject.Find("SceneChange").GetComponent<sceneChangeManager>();
+
+        if (sceneChange == null)
+        {
+            Debug.LogError("NULL参照です");
+            return;
+        }
+        StartCoroutine(sceneChange.ChangeScene(filePath));
+    }
+
+
     // フェード用のマテリアル
     [SerializeField] Material fademateiral;
     bool isFade = false;
-
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartCoroutine(ChangeScene("Scenes/TestScene/EnemyTestScene"));
-        }
-    }
 
     /// <summary>
     /// シーン偏移

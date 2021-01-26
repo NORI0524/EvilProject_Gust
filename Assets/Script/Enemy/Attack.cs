@@ -14,14 +14,18 @@ public class Attack : MonoBehaviour
     private int attackCount = 0;        // 攻撃種類の番号
 
     private bool backStepFlg = false;   // バックステップをしているかどうか
+    private bool jump = false;
 
     public GameObject Rock;
     [SerializeField] GameObject circle;
     private Transform target;
 
+    [SerializeField] GameObject explosionEffect;
+
     private void Start()
     {
         backStepFlg = false;
+        jump = false;
     }
 
     private void Update()
@@ -29,6 +33,11 @@ public class Attack : MonoBehaviour
         if (backStepFlg)
         {
             rigidbody.AddForce(-transform.forward * 0.07f, ForceMode.VelocityChange);
+        }
+        if (jump)
+        {
+            rigidbody.AddForce(transform.forward * 0.1f, ForceMode.VelocityChange);
+            rigidbody.AddForce(0, 5.0f, 0);
         }
     }
 
@@ -44,7 +53,6 @@ public class Attack : MonoBehaviour
         switch (attackCount)
         {
             case 0:
-                Debug.Log("a");
                 animator.SetTrigger("Attack");
                 break;
             case 1:
@@ -52,7 +60,6 @@ public class Attack : MonoBehaviour
                 break;
             case 2:
                 animator.SetTrigger("Attack3");
-                Debug.Log("Attack3");
                 break;
         }
     }
@@ -113,8 +120,9 @@ public class Attack : MonoBehaviour
 
     public void ExplosionEffect()
     {
-        var explosionEffect = GetComponentInChildren<BarrageComponent>();
-        explosionEffect.CreateBarrage();
+        //var explosionEffect = GetComponentInChildren<BarrageComponent>();
+        //explosionEffect.CreateBarrage();
+        explosionEffect.SetActive(true);
     }
     public void Explosion(string tag)
     {
@@ -147,13 +155,29 @@ public class Attack : MonoBehaviour
         target = nav.Player;
         circle.transform.position = target.position;
         circle.SetActive(true);
-        Invoke("RockSmash", 3.0f);
+        Invoke("RockSmash", 1.0f);
     }
     public void RockSmash()
     {
         circle.SetActive(false);
-        Rock = (GameObject)Resources.Load("Prefabs/Enemy/Rock");
-        GameObject obj = (GameObject)Instantiate(Rock, new Vector3(circle.transform.position.x, -1f, circle.transform.position.z), Quaternion.identity);
+        Rock = (GameObject)Resources.Load("Prefabs/Enemy/Crystalsv02");
+        GameObject obj = (GameObject)Instantiate(Rock, new Vector3(circle.transform.position.x, -2f, circle.transform.position.z), Quaternion.identity);
     }
 
+    public void StartJumping()
+    {
+        Debug.Log("jump開始");
+        rigidbody.SetFreezePositionX(false);
+        rigidbody.SetFreezePositionY(false);
+        rigidbody.SetFreezePositionZ(false);
+        jump = true;
+    }
+    public void EndJumping()
+    {
+        Debug.Log("jump終わり");
+        jump = false;
+        rigidbody.SetFreezePositionX(true);
+        rigidbody.SetFreezePositionY(true);
+        rigidbody.SetFreezePositionZ(true);
+    }
 }

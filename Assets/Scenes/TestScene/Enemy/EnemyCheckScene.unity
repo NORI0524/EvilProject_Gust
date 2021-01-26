@@ -559,6 +559,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1075479690958250892, guid: 590347cb8a635c246aa262d8b5c16332,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 576177077094168173, guid: 590347cb8a635c246aa262d8b5c16332,
         type: 3}
       propertyPath: m_RootOrder
@@ -619,11 +624,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: quin2_beach
       objectReference: {fileID: 0}
-    - target: {fileID: 576177077094291113, guid: 590347cb8a635c246aa262d8b5c16332,
-        type: 3}
-      propertyPath: Target.Array.data[0]
-      value: 
-      objectReference: {fileID: 1989910879}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 590347cb8a635c246aa262d8b5c16332, type: 3}
 --- !u!1001 &1438699256
@@ -707,6 +707,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702133662441826672, guid: 949d8541003387649b55182fb7805ee6,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 949d8541003387649b55182fb7805ee6, type: 3}
