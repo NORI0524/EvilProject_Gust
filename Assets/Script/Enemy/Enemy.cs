@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     //[SerializeField] Monitor monitor;
-    [SerializeField] Navigation nav;
+    [SerializeField] Navigation navigation;
     [SerializeField] Animator animator;
 
     public enum EnemyAIState
@@ -29,27 +29,33 @@ public class Enemy : MonoBehaviour
     private bool discover = false;  // 発見しているかどうか
     private bool damage = false;    // 被弾しているかどうか
     private bool approach = false;  // 接近しているかどうか
-    private bool attack = false;    // 攻撃(接近したら)
+    private bool GetAttack = false;    // 攻撃(接近したら)
 
     private bool endDamageAnimation = true; // 被弾アニメーションが終了しているかどうか
     private bool endAttackAnimation = true; // 攻撃アニメーションが終了しているかどうか
 
-    private SphereCollider armCollider;
+    //private SphereCollider armCollider;
+    private Attack attack;
     private CapsuleCollider HitCollider;
     private HpComponent hp;
+    private EnemyUIGenerator ui;
 
-    [SerializeField]private GameObject attackEffect;
     [SerializeField] private bool effect;
+    [SerializeField] private GameObject attackEffect;    // 目的地の配列
 
-    [SerializeField] private float attackAnimationTime = 1.5f;
-    [SerializeField] private float attackColliderStartTime=0.5f;
-    [SerializeField] private float attackColliderLifeTime=1.0f;
+    [SerializeField] private float attackColliderStartTime = 0.5f;
+    [SerializeField] private float attackColTime = 120.0f;
+
+    float animationWait = 0.0f;
+    float colliderWait = 0.0f;
 
     private void Start()
     {
-        armCollider = GetComponentInChildren<SphereCollider>();
+        //armCollider = GetComponentInChildren<SphereCollider>();
+        attack = GetComponent<Attack>();
         HitCollider = GetComponent<CapsuleCollider>();
         hp = GetComponent<HpComponent>();
+        ui = GetComponent<EnemyUIGenerator>();
     }
     protected void InitAI()
     {
@@ -86,76 +92,78 @@ public class Enemy : MonoBehaviour
     protected void Wait()
     {
         nextState = EnemyAIState.MOVE;
-        Debug.Log("MOVE：ステージ内を移動");
+        //Debug.Log("MOVE：ステージ内を移動");
     }
 
     protected void AIMainRoutine()
     {
-        if (!hp.IsDead())
+        if (hp.Hp > 0)
         {
             if (wait)
             {
+                EndEffect(); attack.InvalidAllColliders(); nAttack();
+                HitCollider.enabled = true;
                 nextState = EnemyAIState.WAIT;
                 wait = false;
                 return;
             }
             // 追いかける
-            if (aiState != EnemyAIState.CHASE && discover && !damage && endDamageAnimation && endAttackAnimation && !attack)
+            if (aiState != EnemyAIState.CHASE && discover && !damage && endDamageAnimation && endAttackAnimation && !GetAttack)
             {
-                nav.StartNav();
-                // アニメーション
+                EndEffect();
+                HitCollider.enabled = true;
+                navigation.StartNav();
                 animator.SetBool("Idle", false);
                 animator.SetTrigger("Running");
                 nextState = EnemyAIState.CHASE;
-                ////Debug.Log("CHASE：追いかける");
             }
             // 移動
-            else if (aiState != EnemyAIState.MOVE && !discover && !damage && !attack && endDamageAnimation && endAttackAnimation)
+            if (aiState != EnemyAIState.MOVE && !discover && !damage && !GetAttack && endDamageAnimation && endAttackAnimation)
             {
-                nav.StartNav();
-                // アニメーション
+                HitCollider.enabled = true;
+                navigation.StartNav();
                 animator.SetTrigger("Walking");
                 nextState = EnemyAIState.MOVE;
-                ////Debug.Log("MOVE：ステージ内を移動");
             }
             // 被弾
-            else if (endDamageAnimation && damage)
+            if (damage)
             {
-                EndAttack();
+                if (this.gameObject.name == "Juggernaut") attack.EndBackStep();
+                if (endDamageAnimation)
+                {
+                    animator.SetTrigger("Damage");
+                }
+                animationWait = 0.0f; colliderWait = 0.0f;
+                navigation.EndNav();
+                EndAttackAnimation();
                 StartHit();
-
-                nav.EndNav();
-                // アニメーション
-                //animator.SetTrigger("Damage");
-                Debug.Log(this.gameObject.name + " : " + hp.Hp);
+                EndEffect();
                 nextState = EnemyAIState.DAMAGE;
-                ////Debug.Log("DAMAGE：武器に当たった");
-                animator.Play("Damage");
             }
             // 攻撃
-            else if (attack && endAttackAnimation && endDamageAnimation)
+            if (aiState != EnemyAIState.DAMAGE && aiState != EnemyAIState.ATTACK && GetAttack && endAttackAnimation && endDamageAnimation)
             {
-                StartAttack();
-                nav.EndNav();
-                animator.SetTrigger("Attack");
-
-                if (!armCollider) { Debug.Log("攻撃用コライダーが見つかりません"); }
-                Invoke("ColliderStart", attackColliderStartTime);
-
+                Debug.Log(aiState);
+                attack.StartAttack();
+                navigation.EndNav();   // Navigation
+                animationWait = 0.0f;   // これもAttack(アニメーションイベントでもいい)で管理
+                StartAttack();  // Attack
                 nextState = EnemyAIState.ATTACK;
-                ////Debug.Log("接近したので攻撃");
             }
         }
         // 死亡
         if (hp.IsDead() && aiState != EnemyAIState.DEATH)
         {
-
-            EndAttack();
+            animator.SetTrigger("Death");
+            navigation.EndNav();
+            EndAttackAnimation();
             EndHit();
+            attack.InvalidAllColliders();
             HitCollider.enabled = false;
-            nav.EndNav();
-            animator.Play("Death");
+            DestroyUI();
             nextState = EnemyAIState.DEATH;
+
+            Invoke("DestroyEnemy", 10.0f);
         }
     }
 
@@ -168,23 +176,24 @@ public class Enemy : MonoBehaviour
             case EnemyAIState.WAIT:
                 break;
             case EnemyAIState.MOVE:
-                nav.StartMoving();
+                navigation.StartMoving();
                 break;
             case EnemyAIState.CHASE:
-                nav.StartTracking();
-                Debug.Log("a");
+                navigation.StartTracking();
                 break;
             case EnemyAIState.SEARCH:
                 // nav.Search();
                 break;
             case EnemyAIState.DAMAGE:
-                // ダメージ処理
+                animationWait++;
+                colliderWait++;
+                if (animationWait > 50.0f) { ReturnWaitState(); }
+                if (colliderWait > 5.0f) { HitCollider.enabled = true; EndHitAnimation(); }
                 break;
             case EnemyAIState.ATTACK:
-                // 攻撃処理
                 break;
         }
-
+        if (Input.GetKeyDown(KeyCode.Return)) { }
     }
 
     public void Discover()
@@ -197,31 +206,39 @@ public class Enemy : MonoBehaviour
         discover = false;
     }
 
+    // ダメージ処理
     public void StartHit()
     {
         endDamageAnimation = false;
         HitCollider.enabled = false;
-        Invoke("EndHit",0.1f);
+
+        Invoke("EndHit", 1.0f);
     }
 
     public void EndHit()
     {
-        endDamageAnimation = true;
-        HitCollider.enabled = true;
         damage = false;
+    }
+
+    public void EndHitAnimation()
+    {
+        endDamageAnimation = true;
     }
 
     public void StartAttack()
     {
         endAttackAnimation = false;
-        if(effect) attackEffect.SetActive(true);
-        Invoke("EndAttack", attackAnimationTime);
-        Debug.Log(attackAnimationTime);
+        if (effect) attackEffect.SetActive(true);
     }
 
-    public void EndAttack()
+    public void EndAttackAnimation()
     {
         endAttackAnimation = true;
+        nextState = EnemyAIState.WAIT;
+    }
+
+    public void ReturnWaitState()
+    {
     }
 
     public void EndEffect()
@@ -231,12 +248,12 @@ public class Enemy : MonoBehaviour
 
     public void Attack()
     {
-        attack = true;
+        GetAttack = true;
     }
 
     public void nAttack()
     {
-        attack = false;
+        GetAttack = false;
     }
 
     public void Depart()
@@ -244,23 +261,26 @@ public class Enemy : MonoBehaviour
         approach = false;
     }
 
+    public void DestroyUI()
+    {
+        ui.enabled = false;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Weapon")
         {
-            damage = true;
+            Debug.Log("武器に当たりました");
+            if (hp.IsDamageTrigger())
+            {
+                damage = true;
+                animationWait = 0.0f;
+            }
         }
     }
 
-    private void ColliderStart()
+    public void DestroyEnemy()
     {
-        armCollider.enabled = true;
-        Debug.Log("攻撃開始");
-        Invoke("ColliderReset", attackColliderLifeTime);
-    }
-    private void ColliderReset()
-    {
-        armCollider.enabled = false;
-        Debug.Log("攻撃終了");
+        Destroy(this.gameObject);
     }
 }

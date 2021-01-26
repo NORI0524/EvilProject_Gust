@@ -88,4 +88,32 @@ public static class ExtensionGameObject
         }
         return isFound;
     }
+
+    /// <summary>
+    /// オブジェクトリストから最も近いオブジェクトを取得
+    /// </summary>
+    /// <param name="objects">オブジェクト郡</param>
+    /// <returns>最も近いオブジェクト（存在しなければnull）</returns>
+    public static GameObject FindClosestGameObjects(this GameObject gameObject, GameObject[] objects)
+    {
+        if (objects == null || objects.Length == 0) return null;
+
+        GameObject targetObject = null;
+
+        var pos = gameObject.transform.position;
+        float distance = -1.0f;
+
+        foreach(var target in objects)
+        {
+            var targetPos = target.transform.position;
+            var toVec = pos - targetPos;
+            if(distance<= -1.0f || toVec.sqrMagnitude <= distance.Pow2())
+            {
+                distance = toVec.magnitude;
+                targetObject = target;
+            }
+        }
+
+        return targetObject;
+    }
 }

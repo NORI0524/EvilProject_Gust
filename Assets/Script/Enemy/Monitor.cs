@@ -52,7 +52,7 @@ public class Monitor : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            e_con.EndDiscover();
+            //e_con.EndDiscover();
         }
     }
 

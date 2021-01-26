@@ -8,9 +8,13 @@ using UnityEngine.Rendering.PostProcessing;
 public class LockOnTargetDetector : MonoBehaviour
 {
     [SerializeField] private GameObject target;
-    [SerializeField] private float search_radius;
 
+    private float search_radius;
     private GameObject player = null;
+    public float Search_Radius
+    {
+        set { search_radius = value; }
+    }
 
     private void Start()
     {
@@ -21,7 +25,6 @@ public class LockOnTargetDetector : MonoBehaviour
     {
         var hits = Physics.SphereCastAll(player.transform.position, search_radius, player.transform.forward, 0.01f, LayerMask.GetMask("Default")).Select(h => h.transform.gameObject).ToList();
 
-        Debug.Log(hits.Count());
         hits = FilterTargetObject(hits);
 
         if (0 < hits.Count())
@@ -55,6 +58,7 @@ public class LockOnTargetDetector : MonoBehaviour
         return hits.Where(h =>
         {
             Vector3 screenPoint = Camera.main.WorldToViewportPoint(h.transform.position);
+            Debug.Log(screenPoint);
             return screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
         }).Where(h => h.tag == "Enemy").ToList();
     }
