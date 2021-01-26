@@ -137,6 +137,11 @@ public class PlayerController : BaseComponent
                 if (longPressTime < 0.9f)
                 {
                     animator.SetTrigger("Attack");
+
+                    if (isSummon)
+                    {
+                        weaponAnimator2.SetTrigger("Attack");
+                    }
                 }
                 else
                 {
@@ -146,24 +151,11 @@ public class PlayerController : BaseComponent
         }
 
 
-
-
         //派生攻撃２（同時クリック）
         if (GameKeyConfig.Attack_Light.GetKeyDown() && GameKeyConfig.Attack_Strong.GetKeyDown())
         {
             animator.SetTrigger("Attack3rd");
         }
-
-        //通常攻撃（左クリック）
-        //else if (GameKeyConfig.Attack_Light.GetKeyDown())
-        //{
-        //    animator.SetTrigger("Attack");
-
-        //    if (isSummon)
-        //    {
-        //        weaponAnimator2.SetTrigger("Attack");
-        //    }
-        //}
 
         //派生攻撃（右クリック）
         else if (GameKeyConfig.Attack_Strong.GetKeyDown())
