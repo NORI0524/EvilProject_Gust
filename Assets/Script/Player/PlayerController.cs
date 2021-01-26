@@ -35,6 +35,8 @@ public class PlayerController : BaseComponent
 
     public BitFlag state = new BitFlag();
 
+    [SerializeField] GameObject healObject = null;
+
 
     //長押し用の処理
     float longPressTime = 0.0f;
@@ -94,6 +96,9 @@ public class PlayerController : BaseComponent
         if(GameKeyConfig.Item.GetKeyDown())
         {
             hp.AddHeal(30);
+            var healEffect = Instantiate(healObject);
+            healEffect.SetParent(gameObject);
+            healEffect.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
         }
 
         //回避

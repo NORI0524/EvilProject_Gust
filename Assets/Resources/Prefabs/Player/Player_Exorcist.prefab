@@ -272,6 +272,12 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 116
       objectReference: {fileID: 0}
+    - target: {fileID: 7368208115049492630, guid: f531cc62a13fccd408d175c82fe7f210,
+        type: 3}
+      propertyPath: healObject
+      value: 
+      objectReference: {fileID: 7355825302692967306, guid: 6e0a548d512c1b540ae5cbff43dd13eb,
+        type: 3}
     - target: {fileID: 7368208116318169286, guid: f531cc62a13fccd408d175c82fe7f210,
         type: 3}
       propertyPath: m_LocalPosition.x
