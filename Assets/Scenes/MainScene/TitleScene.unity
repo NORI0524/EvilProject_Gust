@@ -526,7 +526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f214e99b2a12084e85a8b2a3c04d02d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filePath: Scenes/TestScene/CharaAnimationMoveTestScene
+  filePath: Scenes/MainScene/GameScene
   fademateiral: {fileID: 2100000, guid: 174e7977166824bf49a2c2f4b54fd066, type: 2}
 --- !u!4 &569563101
 Transform:
