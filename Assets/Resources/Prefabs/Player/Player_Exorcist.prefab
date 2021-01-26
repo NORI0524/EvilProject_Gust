@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed546e728c877ce458e83a2445436a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentObject: {fileID: 0}
+  parentObject: {fileID: 6886292905442426464}
   weaponList:
   - {fileID: 7297565230111170155, guid: 15d10c66aaa7c11488210533b2a7ab1a, type: 3}
   - {fileID: 3555270539641854492, guid: 9d56e2ceb1b8df34eab04d46a9fd9df7, type: 3}
@@ -76,7 +76,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5456327819286159270}
   m_LocalRotation: {x: 0.13052621, y: -0, z: -0, w: 0.9914449}
-  m_LocalPosition: {x: 0, y: 2.2764573, z: -12.897778}
+  m_LocalPosition: {x: 0, y: 2.2764573, z: -12.897779}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5456327819574375293}
@@ -145,15 +145,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0843a99517aa6ec488a4e44e66cdf411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 6003420590308006319}
   offset: {x: 0, y: 1.5, z: 0}
   distance: 3
   polarAngle: 75
   azimuthalAngle: 270
-  distanceRange: {x: 1, y: 7}
-  polarAngleRange: {x: 5, y: 75}
+  distanceRange: {x: 2, y: 10}
+  polarAngleRange: {x: 5, y: 110}
   mouseSensitivity: {x: 5, y: 5}
-  scrollSensitivity: 5
+  scrollSensitivity: 2
   lockonCursor: {fileID: 0}
   search_radius: 20
   IsLockOn: 0
@@ -289,9 +289,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f531cc62a13fccd408d175c82fe7f210, type: 3}
+--- !u!1 &6003420590308006319 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7674217258744401357, guid: f531cc62a13fccd408d175c82fe7f210,
+    type: 3}
+  m_PrefabInstance: {fileID: 4165870164613715042}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6348878745040012053 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7046896756131469175, guid: f531cc62a13fccd408d175c82fe7f210,
+    type: 3}
+  m_PrefabInstance: {fileID: 4165870164613715042}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6886292905442426464 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7368208116615408130, guid: f531cc62a13fccd408d175c82fe7f210,
     type: 3}
   m_PrefabInstance: {fileID: 4165870164613715042}
   m_PrefabAsset: {fileID: 0}

@@ -653,7 +653,7 @@ GameObject:
   - component: {fileID: 7114061512618415088}
   m_Layer: 0
   m_Name: Exorcist
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -917,6 +917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   comboJudgeTime: 1
+  everyComboNum: 1
 --- !u!1 &3384777848954230322
 GameObject:
   m_ObjectHideFlags: 0
@@ -2747,6 +2748,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7706629082240529094, guid: 11374c40c097fb642be3b219e1d6e5c1,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706629082240529094, guid: 11374c40c097fb642be3b219e1d6e5c1,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -2762,6 +2768,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7706629082240529094, guid: 11374c40c097fb642be3b219e1d6e5c1,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706629082240529094, guid: 11374c40c097fb642be3b219e1d6e5c1,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -2774,16 +2785,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7706629082240529094, guid: 11374c40c097fb642be3b219e1d6e5c1,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7706629082240529094, guid: 11374c40c097fb642be3b219e1d6e5c1,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7706629082240529094, guid: 11374c40c097fb642be3b219e1d6e5c1,
         type: 3}
