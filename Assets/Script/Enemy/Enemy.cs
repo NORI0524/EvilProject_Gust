@@ -49,6 +49,8 @@ public class Enemy : MonoBehaviour
     float animationWait = 0.0f;
     float colliderWait = 0.0f;
 
+    private bool invincible;
+
     private void Start()
     {
         //armCollider = GetComponentInChildren<SphereCollider>();
@@ -56,6 +58,7 @@ public class Enemy : MonoBehaviour
         HitCollider = GetComponent<CapsuleCollider>();
         hp = GetComponent<HpComponent>();
         ui = GetComponent<EnemyUIGenerator>();
+        invincible = false;
     }
     protected void InitAI()
     {
@@ -92,7 +95,6 @@ public class Enemy : MonoBehaviour
     protected void Wait()
     {
         nextState = EnemyAIState.MOVE;
-        //Debug.Log("MOVE：ステージ内を移動");
     }
 
     protected void AIMainRoutine()
@@ -126,9 +128,10 @@ public class Enemy : MonoBehaviour
                 nextState = EnemyAIState.MOVE;
             }
             // 被弾
-            if (damage)
+            if (damage && !invincible)
             {
                 if (this.gameObject.name == "Juggernaut") attack.EndBackStep();
+                if (this.gameObject.name == "quin2_beach") attack.EndJumping();
                 if (endDamageAnimation)
                 {
                     animator.SetTrigger("Damage");
@@ -143,7 +146,6 @@ public class Enemy : MonoBehaviour
             // 攻撃
             if (aiState != EnemyAIState.DAMAGE && aiState != EnemyAIState.ATTACK && GetAttack && endAttackAnimation && endDamageAnimation)
             {
-                Debug.Log(aiState);
                 attack.StartAttack();
                 navigation.EndNav();   // Navigation
                 animationWait = 0.0f;   // これもAttack(アニメーションイベントでもいい)で管理
@@ -270,13 +272,23 @@ public class Enemy : MonoBehaviour
     {
         if (other.tag == "Weapon")
         {
-            Debug.Log("武器に当たりました");
             if (hp.IsDamageTrigger())
             {
                 damage = true;
                 animationWait = 0.0f;
             }
         }
+    }
+
+    public void StartInvincible()
+    {
+        Debug.Log("無敵開始");
+        invincible = true;
+    }
+    public void EndInvincible()
+    {
+        Debug.Log("無敵終了");
+        invincible = false;
     }
 
     public void DestroyEnemy()
