@@ -44290,14 +44290,14 @@ AnimationClip:
     messageOptions: 0
   - time: 0.2
     functionName: ValidCollider
-    data: Attack
+    data: j_Attack
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.1666666
     functionName: InvalidCollider
-    data: Attack
+    data: j_Attack
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

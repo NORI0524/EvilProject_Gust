@@ -623,7 +623,7 @@ MonoBehaviour:
   damageValue: 10
   isHitStop: 0
   isOwnhitStop: 0
-  targetTag: 0
+  targetTag: 1
 --- !u!114 &1912487348881607251
 MonoBehaviour:
   m_ObjectHideFlags: 0

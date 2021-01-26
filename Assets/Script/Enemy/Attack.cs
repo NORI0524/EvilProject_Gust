@@ -32,12 +32,11 @@ public class Attack : MonoBehaviour
     {
         if (backStepFlg)
         {
-            rigidbody.AddForce(-transform.forward * 0.07f, ForceMode.VelocityChange);
+            rigidbody.AddForce(-transform.forward * 0.13f, ForceMode.VelocityChange);
         }
         if (jump)
         {
-            rigidbody.AddForce(transform.forward * 0.1f, ForceMode.VelocityChange);
-            rigidbody.AddForce(0, 5.0f, 0);
+            rigidbody.AddForce(transform.forward * 0.7f, ForceMode.VelocityChange);
         }
     }
 
@@ -161,7 +160,7 @@ public class Attack : MonoBehaviour
     {
         circle.SetActive(false);
         Rock = (GameObject)Resources.Load("Prefabs/Enemy/Crystalsv02");
-        GameObject obj = (GameObject)Instantiate(Rock, new Vector3(circle.transform.position.x, -2f, circle.transform.position.z), Quaternion.identity);
+        GameObject obj = (GameObject)Instantiate(Rock, new Vector3(circle.transform.position.x, -60f, circle.transform.position.z), Quaternion.identity);
     }
 
     public void StartJumping()

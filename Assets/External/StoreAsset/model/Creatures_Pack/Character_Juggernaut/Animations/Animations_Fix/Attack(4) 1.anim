@@ -50646,7 +50646,7 @@ AnimationClip:
   m_Events:
   - time: 0.43333334
     functionName: ValidColliders
-    data: Attack2
+    data: j_Attack2
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -50660,7 +50660,7 @@ AnimationClip:
     messageOptions: 0
   - time: 1.6666666
     functionName: InvalidColliders
-    data: Attack2
+    data: j_Attack2
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

@@ -11,11 +11,13 @@ TagManager:
   - Monitor
   - AttackEffect
   - Explosion
-  - Attack
-  - Attack2
-  - Attack3
   - Arm
   - ExplosionEffect
+  - j_Attack
+  - j_Attack2
+  - t_Attack
+  - q_Attack
+  - q_Attack2
   layers:
   - Default
   - TransparentFX

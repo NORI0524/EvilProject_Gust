@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 715106606}
   m_Layer: 0
   m_Name: Explosion (1)
-  m_TagString: Attack2
+  m_TagString: j_Attack2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,7 +106,7 @@ MonoBehaviour:
   damageValue: 10
   isHitStop: 0
   isOwnhitStop: 0
-  targetTag: 0
+  targetTag: 1
 --- !u!135 &715106610
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 936631489}
   m_Layer: 0
   m_Name: Explosion
-  m_TagString: Attack2
+  m_TagString: j_Attack2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -211,7 +211,7 @@ MonoBehaviour:
   damageValue: 10
   isHitStop: 0
   isOwnhitStop: 0
-  targetTag: 0
+  targetTag: 1
 --- !u!135 &936631493
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 1260613971}
   m_Layer: 0
   m_Name: Explosion (2)
-  m_TagString: Attack2
+  m_TagString: j_Attack2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -328,7 +328,7 @@ MonoBehaviour:
   damageValue: 10
   isHitStop: 0
   isOwnhitStop: 0
-  targetTag: 0
+  targetTag: 1
 --- !u!135 &1260613975
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -555,7 +555,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4582408964209198703
 Transform:
   m_ObjectHideFlags: 0
@@ -692,7 +692,7 @@ GameObject:
   - component: {fileID: 329794710}
   m_Layer: 0
   m_Name: CATRigRArmPalm
-  m_TagString: Attack
+  m_TagString: j_Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -722,8 +722,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 0.20999783
-  m_Center: {x: -0.1567244, y: -0.004005326, z: 0.00000024669336}
+  m_Radius: 0.53858376
+  m_Center: {x: -0.48531145, y: -0.004005521, z: 0.00000030515724}
 --- !u!114 &329794710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -844,7 +844,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
-  Target: []
+  Target:
+  - {fileID: 0}
+  - {fileID: 0}
   dist: 20
 --- !u!114 &4441712469971084458
 MonoBehaviour:
@@ -937,7 +939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc717e7dcf3dea446b5cfa659cf61a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawRange: 1
+  drawRange: 20
 --- !u!114 &816820084
 MonoBehaviour:
   m_ObjectHideFlags: 0

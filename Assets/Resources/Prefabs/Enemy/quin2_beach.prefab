@@ -6691,7 +6691,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  Target: []
+  Target:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   dist: 7
 --- !u!114 &576177077094291112
 MonoBehaviour:
@@ -6739,10 +6743,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.4
+  m_Height: 1.2357018
   m_Direction: 1
-  m_Center: {x: 0.0029200315, y: 0.3, z: -0.08370727}
+  m_Center: {x: 0.0029200315, y: -0.08214915, z: -0.08370727}
 --- !u!114 &576177077094193744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8691,11 +8695,9 @@ GameObject:
   - component: {fileID: 576177077094168291}
   - component: {fileID: 1808554662}
   - component: {fileID: 1808554663}
-  - component: {fileID: 741394913541448275}
-  - component: {fileID: 6566266681509549535}
   m_Layer: 0
   m_Name: neck2
-  m_TagString: Attack2
+  m_TagString: q_Attack2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8744,37 +8746,7 @@ MonoBehaviour:
   damageValue: 10
   isHitStop: 0
   isOwnhitStop: 0
-  targetTag: 0
---- !u!135 &741394913541448275
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 576177077094193859}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.7
-  m_Center: {x: -0.5, y: 0.7, z: 0}
---- !u!114 &6566266681509549535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 576177077094193859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ad20c117300d8140b291dd220215c71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxValue: 100
-  damageValue: 10
-  isHitStop: 0
-  isOwnhitStop: 0
-  targetTag: 0
+  targetTag: 1
 --- !u!1 &576177077094193861
 GameObject:
   m_ObjectHideFlags: 0
@@ -27342,7 +27314,7 @@ GameObject:
   - component: {fileID: 1283411185}
   m_Layer: 0
   m_Name: Head
-  m_TagString: Attack
+  m_TagString: q_Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -1711,6 +1711,7 @@ MonoBehaviour:
   attackValue: 1
   Rock: {fileID: 0}
   circle: {fileID: 0}
+  explosionEffect: {fileID: 0}
 --- !u!1 &4489002025067551096
 GameObject:
   m_ObjectHideFlags: 0
@@ -1757,7 +1758,7 @@ GameObject:
   - component: {fileID: 2189407943294772117}
   m_Layer: 0
   m_Name: Wrist_R
-  m_TagString: Attack
+  m_TagString: t_Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

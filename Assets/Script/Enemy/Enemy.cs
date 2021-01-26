@@ -146,8 +146,8 @@ public class Enemy : MonoBehaviour
             // 攻撃
             if (aiState != EnemyAIState.DAMAGE && aiState != EnemyAIState.ATTACK && GetAttack && endAttackAnimation && endDamageAnimation)
             {
-                attack.StartAttack();
                 navigation.EndNav();   // Navigation
+                attack.StartAttack();
                 animationWait = 0.0f;   // これもAttack(アニメーションイベントでもいい)で管理
                 StartAttack();  // Attack
                 nextState = EnemyAIState.ATTACK;
