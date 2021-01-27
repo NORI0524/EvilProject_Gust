@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &228947523
 Transform:
   m_ObjectHideFlags: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originTransform: {fileID: 4578466987342224517}
-  barrageObject: {fileID: 8623729114673303270, guid: 8ce241a53fca6b849a0ca868ca22c75a,
+  barrageObject: {fileID: 1000011128802252, guid: 3328d5c8ec6adfd4e932282fb3c7fb55,
     type: 3}
   directionNum: 3
   onceDirectionObjectNum: 4
@@ -844,9 +844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
-  Target:
-  - {fileID: 0}
-  - {fileID: 0}
+  Target: []
   dist: 20
 --- !u!114 &4441712469971084458
 MonoBehaviour:
@@ -959,7 +957,6 @@ MonoBehaviour:
   attackValue: 3
   Rock: {fileID: 3645967388812815678, guid: eabbd2d6be974f640822b1dde8b649ac, type: 3}
   circle: {fileID: 0}
-  explosionEffect: {fileID: 228947522}
 --- !u!1 &4575906894443516031
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,8 +19,7 @@ public class Attack : MonoBehaviour
     public GameObject Rock;
     [SerializeField] GameObject circle;
     private Transform target;
-
-    [SerializeField] GameObject explosionEffect;
+    
 
     private void Start()
     {
@@ -119,9 +118,8 @@ public class Attack : MonoBehaviour
 
     public void ExplosionEffect()
     {
-        //var explosionEffect = GetComponentInChildren<BarrageComponent>();
-        //explosionEffect.CreateBarrage();
-        explosionEffect.SetActive(true);
+        var explosionEffect = GameObject.Find("ExplosionEffect").GetComponent<BarrageComponent>();
+        StartCoroutine(explosionEffect.CreateBarrage());
     }
     public void Explosion(string tag)
     {
@@ -152,7 +150,7 @@ public class Attack : MonoBehaviour
     public void StartRock()
     {
         target = nav.Player;
-        circle.transform.position = target.position;
+        circle.transform.position = new Vector3(target.position.x, -56.5f, target.position.z);
         circle.SetActive(true);
         Invoke("RockSmash", 1.0f);
     }
