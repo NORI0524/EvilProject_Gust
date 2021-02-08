@@ -2181,7 +2181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationAudio: {fileID: 8300000, guid: 5d3d550af936ce34b8336bc2415fa830, type: 3}
-  isPlayEnterAnimation: 0
+  isPlayEnterAnimation: 1
   delayList: []
   volume: 1
 --- !u!1101 &3341256782393431312
