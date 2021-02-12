@@ -26,11 +26,12 @@ public class LockOnCursor : MonoBehaviour
         {
             rectTransform.Rotate(0, 0, 1f);
 
-            if (LockonTarget != null)
-            {
-                Vector3 targetPoint = Camera.main.WorldToScreenPoint(LockonTarget.position);
-                rectTransform.position = targetPoint;
-            }
+            //Canvasのレンダーモードがカメラならコメント化
+            //if (LockonTarget != null)
+            //{
+            //    Vector3 targetPoint = Camera.main.WorldToScreenPoint(LockonTarget.position);
+            //    rectTransform.position = targetPoint;
+            //}
         }
     }
 

@@ -17,6 +17,7 @@ public class EnemyUIGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hp = GetComponent<HpComponent>();
         var targetCanvas = FindObjectOfType<Canvas>();
         var enemyGaugeUI = Resources.Load("Prefabs/UI/EnemyGauge");
 
@@ -41,9 +42,6 @@ public class EnemyUIGenerator : MonoBehaviour
 
         //指定のCanvasに追加
         targetCanvas.gameObject.AddChild(gaugeUI);
-
-
-        hp = GetComponent<HpComponent>();
     }
 
     private void Update()
