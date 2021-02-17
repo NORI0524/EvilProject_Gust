@@ -860,6 +860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navigation: {fileID: 5249418228932707678}
   animator: {fileID: 4527451710472260519}
+  enemyName: Juggernaut
   aiState: 0
   nextState: 0
   effect: 0

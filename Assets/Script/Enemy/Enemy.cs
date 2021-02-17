@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] Navigation navigation;
     [SerializeField] Animator animator;
 
+    [SerializeField] string enemyName;
+
     public enum EnemyAIState
     {
         WAIT,   // 行動を一旦停止
@@ -295,5 +297,10 @@ public class Enemy : MonoBehaviour
     {
         this.gameObject.SetActive(false);
         //Destroy(this.gameObject);
+    }
+
+    public string GetEnemyName()
+    {
+        return enemyName;
     }
 }

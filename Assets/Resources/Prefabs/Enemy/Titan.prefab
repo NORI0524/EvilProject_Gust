@@ -1614,6 +1614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navigation: {fileID: 4489002025067551101}
   animator: {fileID: 4489002025076943588}
+  enemyName: Titan
   aiState: 0
   nextState: 0
   effect: 1
@@ -1711,7 +1712,6 @@ MonoBehaviour:
   attackValue: 1
   Rock: {fileID: 0}
   circle: {fileID: 0}
-  explosionEffect: {fileID: 0}
 --- !u!1 &4489002025067551096
 GameObject:
   m_ObjectHideFlags: 0

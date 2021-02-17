@@ -27,9 +27,9 @@ public class EnemyUIGenerator : MonoBehaviour
 
         //オブジェクト名をそのまま反映
         var texts = gaugeUI.GetComponentsInChildren<Text>();
-        foreach(var text in texts)
+        foreach (var text in texts)
         {
-            text.text = gameObject.name;
+            text.text = gameObject.GetComponent<Enemy>().GetEnemyName();
         }
 
         //ゲージの設定

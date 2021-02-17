@@ -6711,6 +6711,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navigation: {fileID: 576177077094291113}
   animator: {fileID: 576177077086938053}
+  enemyName: Quin
   aiState: 0
   nextState: 0
   effect: 0
